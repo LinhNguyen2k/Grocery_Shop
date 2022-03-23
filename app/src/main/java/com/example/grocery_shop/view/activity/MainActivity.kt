@@ -1,7 +1,8 @@
-package com.example.grocery_shop
+package com.example.grocery_shop.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.grocery_shop.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
