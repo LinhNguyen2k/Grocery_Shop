@@ -23,7 +23,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         );
         lifecycleScope.launchWhenCreated {
             delay(2000)
-            openActivity(MainActivity::class.java, true)
+            openActivity(HomeActivity::class.java, true)
         }
     }
 

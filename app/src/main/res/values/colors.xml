@@ -7,4 +7,60 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="transparent">#00ffffff</color>
+    <color name="colorPrimary">#eebf31</color>
+    <color name="colorPrimaryDark">#eebf31</color>
+    <color name="colorAccent">#eebf31</color>
+    <color name="colorFacebook">#4d6bb3</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorLight">#1a1a1a</color>
+    <color name="colorGoogle">#e24d37</color>
+    <color name="colorYellowLight">#55eebf31</color>
+    <color name="colorGray">#995c5b5b</color>
+    <color name="colorLightGray">#333333</color>
+    <color name="colorCategory">#1470F8</color>
+
+    <color name="colorBlue">#0000ff</color>
+    <color name="colorGreen">#009688</color>
+    <color name="colorRed">#91152F</color>
+    <color name="colorRed2">#A60224</color>
+    <color name="colorCountTimer">#434343</color>
+
+
+    <color name="gray_10">#F1F1F1</color>
+    <color name="gray_20">#e4e4e6</color>
+    <color name="gray_30">#D8D8D8</color>
+    <color name="gray_50">#888888</color>
+    <color name="gray_trans_30">#59D8D8D8</color>
+
+    <color name="blue_dark">#0066FF</color>
+    <color name="blue_light">#EDF4FF</color>
+    <color name="blue_trans_30">#4D0066FF</color>
+
+    <color name="blue_facebook">#3b5998</color>
+
+    <color name="navy_blue_dark">#001A39</color>
+
+    <color name="green_bright">#2BBA56</color>
+    <color name="green_marker">#00B3B3</color>
+
+    <color name="yellow_bright">#fbc02d</color>
+    <color name="yellow_light">#33F8BF63</color>
+
+    <color name="red_bright">#FA0321</color>
+
+    <color name="pink_light">#FCE7EA</color>
+
+    <color name="amber_900">#ff6f00</color>
+    <color name="amber_700">#ffa000</color>
+    <color name="amber_500">#ffc107</color>
+    <color name="amber_300">#ffd54f</color>
+    <color name="amber_100">#ffecb3</color>
+
+    <color name="colorBlackTitle">#1E1E1E</color>
+    <color name="colorLineGray">#F2F2F2</color>
+    <color name="color_light_bottom_bar">#55ffffff</color>
+    <color name="bg_ll_control">#55333333</color>
 </resources>

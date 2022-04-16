@@ -22,7 +22,7 @@
             android:name=".view.activity.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name=".view.activity.HomeActivity"
             android:exported="true" >
 
         </activity>

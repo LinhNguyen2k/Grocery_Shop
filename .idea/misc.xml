@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable-/user_status_on.xml" value="0.2703125" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/background_btn_gray_ripple_white.xml" value="0.25435897435897437" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/background_chat_left.xml" value="0.2703125" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/background_chat_right.xml" value="0.24074074074074073" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/bg_rounded_white.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/border_edittext.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/circle_checkbox.xml" value="0.25435897435897437" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_background_view_chat.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_email_icon.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_lock_icon.xml" value="0.24074074074074073" />
@@ -14,15 +18,26 @@
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_text_input.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/email_icon.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/email_icon_focused.xml" value="0.24074074074074073" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_check_mark.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_facebook_white.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_google_white.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_menu_customer.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_tab_home.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_tab_other.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_tab_sell.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_white_circle.xml" value="0.25435897435897437" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/icon_send.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/lock_icon.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/lock_icon_focused.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/user_status_on.xml" value="0.2703125" />
-        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_login.xml" value="0.176" />
-        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_main.xml" value="0.24909420289855072" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_splash.xml" value="0.2" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/attr.xml" value="0.25416666666666665" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_home.xml" value="0.2421875" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_sell.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/toolbar_app.xml" value="0.25416666666666665" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2421875" />
       </map>
     </option>
   </component>
