@@ -3,6 +3,7 @@ package com.example.grocery_shop.view.activity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.grocery_shop.R
 import com.example.grocery_shop.base.BaseActivity
@@ -20,19 +21,18 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        );
+        )
         lifecycleScope.launchWhenCreated {
             delay(2000)
-            openActivity(HomeActivity::class.java, true)
+            openActivity(LoginActivity::class.java, true)
         }
     }
 
     override fun initListener() {
+
     }
 
     override fun initData() {
     }
 
-    override fun onClick(v: View?) {
-    }
 }

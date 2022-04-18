@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:gravity="center"
+        android:background="#A9DC6F"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.activity.SignUpActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:background="@drawable/border_edittext"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_tiny"
+                android:layout_marginEnd="@dimen/spacing_tiny"
+                android:backgroundTint="@color/colorWhite"
+                android:hint="Email"
+                android:singleLine="true"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:background="@drawable/border_edittext"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/et_login_mobile_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_tiny"
+                android:layout_marginEnd="@dimen/spacing_tiny"
+                android:backgroundTint="@color/colorWhite"
+                android:hint="@string/hint_your_mobile_number"
+                android:inputType="number"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:background="@drawable/border_edittext"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/et_userName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_tiny"
+                android:layout_marginEnd="@dimen/spacing_tiny"
+                android:backgroundTint="@color/colorWhite"
+                android:hint="UserName"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:background="@drawable/border_edittext"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/et_fullName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_tiny"
+                android:layout_marginEnd="@dimen/spacing_tiny"
+                android:backgroundTint="@color/colorWhite"
+                android:hint="FullName"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_SignUp"
+            style="@style/ButtonText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:text="SignUp"
+            app:backgroundTint="@color/colorPrimary"
+            app:textAllCaps="true" />
+    </LinearLayout>

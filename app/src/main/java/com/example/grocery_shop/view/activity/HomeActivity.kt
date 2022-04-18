@@ -12,20 +12,18 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.grocery_shop.R
+import com.example.grocery_shop.base.BaseActivity
 import com.example.grocery_shop.databinding.ActivityHomeBinding
 import com.example.grocery_shop.util.StatusBarUtil
 import com.example.grocery_shop.view.fragment.CustomerFragment
 import com.example.grocery_shop.view.fragment.HomeFragment
 import com.example.grocery_shop.view.fragment.SellFragment
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private var currentPositionBtmNav = 0
-    lateinit var binding : ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-        setHome()
-        setUpBottomNav()
+
     }
 
 
@@ -78,7 +76,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setHome() {
-        replaceFragment(HomeFragment(),true)
+        replaceFragment(HomeFragment(), true)
     }
 
 
@@ -107,5 +105,16 @@ class HomeActivity : AppCompatActivity() {
         } else {
             finish()
         }
+    }
+
+    override fun initView() {
+        setHome()
+        setUpBottomNav()
+    }
+
+    override fun initListener() {
+    }
+
+    override fun initData() {
     }
 }

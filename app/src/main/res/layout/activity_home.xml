@@ -1,57 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <FrameLayout
+            android:id="@+id/mainFrame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/bottom_nevBar" />
+
+        <LinearLayout
+            android:id="@+id/bottom_nevBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/mainFrame"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@id/bottom_nevBar" />
+                android:layout_height="@dimen/_1sdp"
+                android:background="#55ffffff" />
 
-            <LinearLayout
-                android:id="@+id/bottom_nevBar"
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:orientation="vertical">
+                app:itemIconTint="@color/bnv_tab_item_foreground"
+                app:itemRippleColor="@color/white"
+                app:itemTextColor="@color/bnv_tab_item_foreground"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_nav_menu">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:background="#55ffffff" />
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-                <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottom_navigation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:itemIconTint="@color/bnv_tab_item_foreground"
-                    app:itemRippleColor="@color/white"
-                    app:itemTextColor="@color/bnv_tab_item_foreground"
-                    app:labelVisibilityMode="labeled"
-                    app:menu="@menu/bottom_nav_menu">
-
-                </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/rl_contain_full_screen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="@dimen/spacing_micro" />
+        </LinearLayout>
 
     </RelativeLayout>
 
-</layout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/rl_contain_full_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/spacing_micro" />
+
+</RelativeLayout>
+
