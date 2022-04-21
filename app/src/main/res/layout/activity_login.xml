@@ -58,9 +58,7 @@
                     android:layout_marginStart="@dimen/spacing_tiny"
                     android:layout_marginEnd="@dimen/spacing_tiny"
                     android:backgroundTint="@color/colorWhite"
-                    android:hint="@string/hint_your_mobile_number"
-                    android:inputType="number"
-                    android:maxLength="15"
+                    android:hint="@string/text_user_name"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -81,7 +79,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="@null"
-                    android:maxLength="15"
                     android:digits="@string/simple_password_digits"
                     android:hint="@string/hint_password"
                     android:inputType="textPassword"

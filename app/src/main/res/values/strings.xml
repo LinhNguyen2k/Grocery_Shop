@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Grocery_Shop</string>
+    <string name="app_name">Grocery Shop</string>
     <string name="your_string_here">  <u>SIGN UP</u>.</string>
     //Facebook Credentials
     <string name="facebook_app_id">993347248271340</string>
@@ -169,6 +169,7 @@
 
     <!--Show alert-->
     <string name="alert_account_is_empty">Username is required</string>
+    <string name="text_user_name">Username </string>
     <string name="alert_verify_code_is_invalid">Verify code is invalid</string>
     <string name="alert_email_is_empty">Enter email address</string>
     <string name="alert_email_is_invalid">Email is invalid</string>
@@ -293,7 +294,8 @@
     <string name="text_permission_denied">Permission denied</string>
     <string name="text_confirm_video_rated">Do you want to continue watching this video?</string>
     <string name="text_confirm_rate_video">Do you want to rate this video?</string>
-    <string name="text_successfully_unFollow_this_user">Successfully unFollow this user.</string>
+    <string name="text_confirm_signup">Đăng nhập thành công.</string>
+    <string name="text_confirm_login_fail">Tài khoản mật khẩu không chính xác.</string>
     <string name="_4_minutes"><![CDATA[<= 4 minutes]]></string>
     <string name="_4_minutes_amp_6_minutes"><![CDATA[> 4 minutes & <= 6 minutes]]></string>
     <string name="_6_minutes"><![CDATA[> 6 minutes]]></string>

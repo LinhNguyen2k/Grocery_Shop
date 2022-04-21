@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Message
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
@@ -80,6 +82,10 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), View.OnClic
         this.observe(this@BaseActivity) {
             function.invoke(it)
         }
+    }
+
+    fun showToast(message: String) {
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {
