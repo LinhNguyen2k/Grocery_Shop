@@ -1,4 +1,4 @@
-package com.example.grocery_shop.model
+package com.example.grocery_shop.model.auth
 
 import com.google.gson.annotations.SerializedName
 

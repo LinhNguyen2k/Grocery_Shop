@@ -1,7 +1,8 @@
 package com.example.grocery_shop.api.base
 
 data class ErrorResponse(
-    val msg: String,
-    val success: Boolean,
-    var isTokenExpire: Boolean
+    val timestamp: String?,
+    val status: String?,
+    val error: String?,
+    val path: String?,
 )

@@ -20,27 +20,25 @@ class SignUpActivity : BaseVMActivity<ActivitySignUpBinding, AuthenticationViewM
     override fun initListener() {
 
         binding.btnSignUp.singleClick {
-            lifecycleScope.launchWhenCreated {
-                authenticationViewModel.signUp(
-                    null,
-                    binding.etEmail.text.toString(),
-                    binding.etFullName.text.toString(),
-                    binding.etLoginMobileNumber.text.toString(),
-                    binding.etUserName.text.toString()
-                )
-            }
+            signUp()
         }
 
+    }
+
+    private fun signUp() {
+        authenticationViewModel.signUp(
+            null,
+            binding.etEmail.text.toString(),
+            binding.etFullName.text.toString(),
+            binding.etLoginMobileNumber.text.toString(),
+            binding.etUserName.text.toString()
+        )
     }
 
     override fun initData() {
         authenticationViewModel.resultSignUp.observe(this, Observer { respones ->
             if (respones.jwt != null) {
                 Toast.makeText(applicationContext, "Đăng ký thành công", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(applicationContext, "Đăng ký không thành công", Toast.LENGTH_LONG)
-                    .show()
-
             }
         })
     }

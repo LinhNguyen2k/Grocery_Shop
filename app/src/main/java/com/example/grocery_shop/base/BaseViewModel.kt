@@ -1,6 +1,9 @@
 package com.example.grocery_shop.base
 
+import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.grocery_shop.api.base.ErrorResponse
 import com.google.gson.Gson
@@ -13,9 +16,9 @@ import java.net.UnknownHostException
 open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
 
     protected val context by lazy { ActivityManager.getTopActivity() }
-
+    private val thread by lazy { Handler(Looper.getMainLooper()) }
     private val viewModelJob = SupervisorJob()
-
+    val isLoading by lazy { MutableLiveData<Boolean>() }
     private val viewModelScope: CoroutineScope =
         CoroutineScope(viewModelJob + Dispatchers.Main.immediate)
 
@@ -44,7 +47,7 @@ open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
                             val error: ErrorResponse? =
                                 Gson().fromJson(body, ErrorResponse::class.java)
                             error?.let {
-                                it.isTokenExpire = response.code() == 401
+//                                it.isTokenExpire = response.code() == 401
                                 onError?.invoke(it)
                             }
                         }
@@ -61,27 +64,33 @@ open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
             block()
         }
     }
-
     fun <T> flowOnIO(value: T) = flow {
         emit(value)
     }.flowOn(Dispatchers.Default)
-
     fun <T> Flow<T>.subscribe(
+        onLoading: Boolean = true,
+        keepLoading: Boolean = false,
         onError: ((err: ErrorResponse?) -> Unit)? = null,
-        onNext: (T) -> Unit,
+        onNext: (T) -> Unit
     ) {
         this@subscribe.onStart {
+            isLoading.value = onLoading
         }.onEach {
             if (it != null) {
                 withContext(Dispatchers.Main) {
                     onNext.invoke(it)
                 }
             }
+            if (!keepLoading && onLoading) {
+                thread.postDelayed(disableLoading, 500)
+            }
         }.catch {
+            isLoading.value = false
             Throwable(it).also { throwable ->
-                handleError(throwable, onError)
                 throwable.printStackTrace()
             }
         }.launchIn(viewModelScope)
     }
+
+    private val disableLoading: java.lang.Runnable = Runnable { isLoading.value = false }
 }

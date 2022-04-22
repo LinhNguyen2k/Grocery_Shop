@@ -1,5 +1,8 @@
 package com.example.grocery_shop.view.activity
 
+import android.util.Log
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -12,9 +15,9 @@ import com.mobile.mbccs.base.component.navigator.openActivity
 import kotlinx.coroutines.delay
 
 class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewModel>() {
-    private val authenticationViewModel by lazy {
-        ViewModelProvider(this)[AuthenticationViewModel::class.java]
-    }
+
+    private val viewModels by viewModels<AuthenticationViewModel>()
+
     private val confirmDialog by lazy {
         DialogConfirm(this)
     }
@@ -22,6 +25,19 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
 
     override fun initView() {
 
+    }
+
+    fun forGotPassWord(username: String) {
+        lifecycleScope.launchWhenCreated {
+            viewModels.forGotPassWord(username, onComplete = { data ->
+                if (data.status) {
+                    confirmDialog.showDialogConfirm("Thay đổi mật khẩu thành công")
+                } else {
+                    confirmDialog.showDialogConfirm("Thông tin người dùng không chính xác")
+                }
+
+            })
+        }
     }
 
     override fun initListener() {
@@ -33,38 +49,48 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
         }
 
         binding.btnLogin.singleClick {
+            loginWithAccount()
+        }
+
+        binding.btnForgotPw.singleClick {
             when {
                 binding.etLoginMobileNumber.text.isEmpty() -> {
                     showToast("Tài khoản không được để trống")
                 }
-                binding.etLoginPassword.text!!.isEmpty() -> {
-                    showToast("Mật khẩu không được để trống")
-                }
                 else -> {
-                    lifecycleScope.launchWhenCreated {
-                        authenticationViewModel.login(
-                            binding.etLoginPassword.text.toString(),
-                            binding.etLoginMobileNumber.text.toString()
-                        )
-                    }
+                    forGotPassWord(binding.etLoginMobileNumber.text.toString())
                 }
             }
-
         }
     }
 
     override fun initData() {
-        authenticationViewModel.resultLogin.observe(this, Observer { respones ->
-            if (respones.jwt != null) {
-                    lifecycleScope.launchWhenCreated {
-                        openActivity(HomeActivity::class.java, true)
-                    }
-            } else {
-                confirmDialog.showDialogConfirm(respones.message.toString())
 
+    }
+
+    fun loginWithAccount() {
+        when {
+            binding.etLoginMobileNumber.text.isEmpty() -> {
+                showToast("Tài khoản không được để trống")
             }
-        })
-
+            binding.etLoginPassword.text!!.isEmpty() -> {
+                showToast("Mật khẩu không được để trống")
+            }
+            else -> {
+                lifecycleScope.launchWhenCreated {
+                    viewModels.login(
+                        binding.etLoginPassword.text.toString(),
+                        binding.etLoginMobileNumber.text.toString(), onComplete = { data ->
+                            if (data.jwt!!.isNotEmpty()) {
+                                lifecycleScope.launchWhenCreated {
+                                    openActivity(HomeActivity::class.java, true)
+                                }
+                            }
+                        }
+                    )
+                }
+            }
+        }
     }
 
 }

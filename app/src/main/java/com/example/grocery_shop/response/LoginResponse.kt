@@ -1,4 +1,10 @@
 package com.example.grocery_shop.response
 
-data class LoginResponse( val status: String? = null, val message: String? = null, val jwt : String? = null,
-                            val userId : Long, val username : String? = null, val roleName : String? = null)
+import com.google.gson.annotations.SerializedName
+
+data class LoginResponse(@SerializedName("status") val status: String? = null,
+                         @SerializedName("message") val message: String? = null,
+                         @SerializedName("jwt") val jwt : String? = null,
+                         @SerializedName("userId") val userId : Long,
+                         @SerializedName("username") val username : String? = null,
+                         @SerializedName("roleName") val roleName : String? = null)

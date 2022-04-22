@@ -1,12 +1,14 @@
 package com.example.grocery_shop.viewmodel
 
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.grocery_shop.api.client.ApiClient
 import com.example.grocery_shop.api.services.ProductService
 import com.example.grocery_shop.base.BaseViewModel
-import com.example.grocery_shop.model.AuthenticationRequest
-import com.example.grocery_shop.model.SignBody
+import com.example.grocery_shop.model.auth.LoginBody
+import com.example.grocery_shop.model.auth.SignBody
 import com.example.grocery_shop.repository.LoginRepository
+import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 
 class AuthenticationViewModel : BaseViewModel() {
@@ -34,18 +36,48 @@ class AuthenticationViewModel : BaseViewModel() {
     ) {
         val signBody = SignBody(avatar, email, fullName, phone, username)
         launchHandler {
-            authenticationRepository.signUpWithAccount(signBody).subscribe { signBody ->
-                resultSignUp.postValue(signBody)
-            }
+            authenticationRepository.signUpWithAccount(signBody).subscribe(onNext = { response ->
+                resultSignUp.postValue(response)
+            }, onError = { error ->
+                error?.let { response ->
+                    Toast.makeText(
+                        context,
+                        "${response.status}  ${response.error}",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
+                }
+            })
         }
     }
 
-    fun login(password: String, username: String) {
-        val loginBody = AuthenticationRequest(password, username)
+    fun login(password: String, username: String, onComplete: (response: LoginResponse) -> Unit) {
+        val loginBody = LoginBody(password, username)
         launchHandler {
-            authenticationRepository.loginUpWithAccount(loginBody).subscribe { loginBody ->
-                resultLogin.postValue(loginBody)
+            flowOnIO(apiClient.login(loginBody)).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                err?.let { response ->
+                    Toast.makeText(
+                        context,
+                        "${response.status}  ${response.error}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+            })
+
+        }
+
+    }
+
+    fun forGotPassWord(
+        username: String,
+        onComplete: (response: ForGotPassWordResponse) -> Unit
+    ) {
+        launchHandler {
+            flowOnIO(apiClient.forgotPassWord(username)).subscribe { response ->
+                onComplete.invoke(response)
             }
 
         }

@@ -1,0 +1,52 @@
+package com.example.grocery_shop.customview.diaglog
+
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import com.example.grocery_shop.R
+import com.example.grocery_shop.base.BaseDialogFragment
+import com.example.grocery_shop.databinding.LoadingDialogBinding
+
+class LoadingDialog : BaseDialogFragment<LoadingDialogBinding>() {
+
+    override fun getDialogStyle(): Int {
+        return STYLE_NO_FRAME
+    }
+
+    override fun getDialogTheme(): Int {
+        return R.style.fly_uikit_TransparentDialog
+    }
+
+    override fun initView() {
+
+    }
+
+    override fun initData() {
+
+    }
+
+    override fun isFullScreen(): Boolean {
+        return true
+    }
+
+    override fun show(activity: FragmentActivity, tag: String?) {
+        super.show(activity, tag)
+        binding?.loadingView?.start()
+    }
+
+    override fun show(fragment: Fragment, tag: String?) {
+        super.show(fragment, tag)
+        binding?.loadingView?.start()
+    }
+
+    override fun dismiss() {
+        binding?.loadingView?.stop()
+        super.dismiss()
+    }
+
+    override fun dismissAllowingStateLoss() {
+        if (binding != null) {
+            binding?.loadingView?.stop()
+        }
+        super.dismissAllowingStateLoss()
+    }
+}

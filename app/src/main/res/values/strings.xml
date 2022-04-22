@@ -303,6 +303,15 @@
     <string name="title_tab_other">Khác</string>
     <string name="title_tab_sell">Giỏ hàng</string>
     <string name="title_tab_customer">Cá Nhân</string>
+    
+    <string name="Titel_san_pham_khuyen_mai">Sản Phẩm Khuyến Mãi</string>
+    <string name="Titel_rau_cu_traicay">Rau - Củ - Trái Cây</string>
+    <string name="Titel_thit_trung_haisan">Thịt - Trứng - Hải Sản</string>
+    <string name="Titel_thucphamdonglanh">Thực Phẩm Đông Lạnh</string>
+    <string name="Titel_banhkeo_doanvat">Bánh Kẹo - Đồ Ăn Vặt</string>
+
+
+    <string name="text_view_all">Tất cả</string>
     <!--Show string array-->
 
 </resources>

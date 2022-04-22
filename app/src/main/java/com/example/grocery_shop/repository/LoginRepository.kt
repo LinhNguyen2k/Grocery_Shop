@@ -2,8 +2,9 @@ package com.example.grocery_shop.repository
 
 import com.example.grocery_shop.api.client.ApiClient
 import com.example.grocery_shop.api.services.ProductService
-import com.example.grocery_shop.model.AuthenticationRequest
-import com.example.grocery_shop.model.SignBody
+import com.example.grocery_shop.model.auth.LoginBody
+import com.example.grocery_shop.model.auth.SignBody
+import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +21,9 @@ class LoginRepository {
         return flow { emit(apiClient.signUp(request)) }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun loginUpWithAccount(request: AuthenticationRequest): Flow<LoginResponse> {
+    suspend fun loginUpWithAccount(request: LoginBody): Flow<LoginResponse> {
         return flow { emit(apiClient.login(request)) }.flowOn(Dispatchers.IO)
     }
+
+
 }

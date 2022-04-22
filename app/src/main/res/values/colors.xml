@@ -63,4 +63,5 @@
     <color name="colorLineGray">#F2F2F2</color>
     <color name="color_light_bottom_bar">#55ffffff</color>
     <color name="bg_ll_control">#55333333</color>
+    <color name="color_viewAll">#797979</color>
 </resources>

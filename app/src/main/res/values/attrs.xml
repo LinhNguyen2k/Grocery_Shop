@@ -10,4 +10,15 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+    <!--  ToolBarApp  -->
+    <declare-styleable name="ToolBarApp" localization="suggested">
+        <attr name="title" format="string" localization="suggested" />
+        <attr name="title_color" format="color"/>
+        <attr name="drawable_start" format="reference" />
+        <attr name="drawable_end" format="reference" />
+    </declare-styleable>
+
+    <style name="fly_uikit_TransparentDialog" parent="fly_uikit_CommonDialog">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>
