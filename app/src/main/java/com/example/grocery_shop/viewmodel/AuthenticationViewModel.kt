@@ -70,7 +70,6 @@ class AuthenticationViewModel : BaseViewModel() {
         }
 
     }
-
     fun forGotPassWord(
         username: String,
         onComplete: (response: ForGotPassWordResponse) -> Unit

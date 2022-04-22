@@ -1,10 +1,6 @@
 package com.example.grocery_shop.view.activity
 
-import android.util.Log
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.grocery_shop.base.BaseVMActivity
 import com.example.grocery_shop.customview.diaglog.DialogConfirm
@@ -22,6 +18,9 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
         DialogConfirm(this)
     }
 
+    override fun handleLoading(isCancel: Boolean?) {
+        super.handleLoading(true)
+    }
 
     override fun initView() {
 
@@ -43,7 +42,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
     override fun initListener() {
         binding.tvSignupLogin.singleClick {
             lifecycleScope.launchWhenCreated {
-                delay(100)
+                delay(500)
                 openActivity(SignUpActivity::class.java, true)
             }
         }
@@ -78,6 +77,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
             }
             else -> {
                 lifecycleScope.launchWhenCreated {
+
                     viewModels.login(
                         binding.etLoginPassword.text.toString(),
                         binding.etLoginMobileNumber.text.toString(), onComplete = { data ->

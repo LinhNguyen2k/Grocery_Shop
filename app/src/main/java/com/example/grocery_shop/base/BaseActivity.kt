@@ -1,17 +1,14 @@
 package com.example.grocery_shop.base
 
-import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
-import android.os.Message
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
-import com.mobile.mbccs.base.component.navigator.popFragment
+import com.example.grocery_shop.customview.diaglog.LoadingDialog
 import java.util.*
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), View.OnClickListener,
@@ -20,6 +17,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), View.OnClic
     private val activityObserverList by lazy { mutableListOf<ActivityResultObserver>() }
     private var lastClickTime = 0L
     private var interval = 500L
+    protected val loadingDialog by lazy { LoadingDialog() }
     protected val binding: VB by lazy(mode = LazyThreadSafetyMode.NONE) {
         BindingReflex.reflexViewBinding(javaClass, layoutInflater)
     }
