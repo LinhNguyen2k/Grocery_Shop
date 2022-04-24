@@ -5,9 +5,4 @@ import com.example.grocery_shop.base.BaseViewModel
 class ProductViewModel : BaseViewModel() {
 
 
-
-    fun signUp(){
-
-    }
-
 }

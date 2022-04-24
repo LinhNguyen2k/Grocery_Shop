@@ -7,6 +7,7 @@ import com.example.grocery_shop.api.services.ProductService
 import com.example.grocery_shop.base.BaseViewModel
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
+import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.repository.LoginRepository
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
@@ -22,8 +23,8 @@ class AuthenticationViewModel : BaseViewModel() {
         MutableLiveData<LoginResponse>()
     }
 
-    val resultLogin by lazy {
-        MutableLiveData<LoginResponse>()
+    val resultCategory by lazy {
+        MutableLiveData<ArrayList<productList>>()
     }
 
 
@@ -70,6 +71,7 @@ class AuthenticationViewModel : BaseViewModel() {
         }
 
     }
+
     fun forGotPassWord(
         username: String,
         onComplete: (response: ForGotPassWordResponse) -> Unit
@@ -79,6 +81,21 @@ class AuthenticationViewModel : BaseViewModel() {
                 onComplete.invoke(response)
             }
 
+        }
+    }
+
+    //alo, khong nghe, co nghe
+    fun getCategory(
+        page: Int? = null,
+        category: Int? = null,
+        onComplete: (response: List<productList>) -> Unit
+    ) {
+        isLoading.value = true
+        launchHandler {
+            flowOnIO(apiClient.getCategory(page, category)).subscribe { response ->
+                onComplete.invoke(response)
+                isLoading.value = false
+            }
         }
     }
 }

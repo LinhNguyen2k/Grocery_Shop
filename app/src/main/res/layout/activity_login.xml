@@ -59,6 +59,7 @@
                     android:layout_marginEnd="@dimen/spacing_tiny"
                     android:backgroundTint="@color/colorWhite"
                     android:hint="@string/text_user_name"
+                    android:text="admin"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -79,6 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="@null"
+                    android:text="admin"
                     android:digits="@string/simple_password_digits"
                     android:hint="@string/hint_password"
                     android:inputType="textPassword"
