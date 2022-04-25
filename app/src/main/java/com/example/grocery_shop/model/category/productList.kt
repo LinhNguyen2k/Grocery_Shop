@@ -1,7 +1,12 @@
 package com.example.grocery_shop.model.category
 
+import android.os.Parcelable
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
+@Keep
 data class productList(
     @SerializedName("productId")
     val productId: Int? = null,
@@ -20,9 +25,9 @@ data class productList(
     @SerializedName("descriptionProduct")
     val descriptionProduct: String? = null,
     @SerializedName("cartEntities")
-    val cartEntities: List<Any>? = null,
+    val cartEntities: List<String>?,
     @SerializedName("reviewsEntities")
-    val reviewsEntities: List<Any>? = null,
+    val reviewsEntities: List<String>?,
     @SerializedName("delete")
     val delete: Boolean? = null
-)
+) : Parcelable

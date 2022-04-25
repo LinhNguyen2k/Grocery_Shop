@@ -3,6 +3,7 @@ package com.example.grocery_shop.api.services
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
 import com.example.grocery_shop.model.category.productList
+import com.example.grocery_shop.model.product.infoProduct
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 import retrofit2.http.Body
@@ -27,5 +28,11 @@ interface ProductService {
     suspend fun forgotPassWord(@Query("username") username: String?): ForGotPassWordResponse
 
     @GET("/api/v1/products")
-    suspend fun getCategory(@Query("page") page : Int? = null, @Query("category") category : Int? = null) : List<productList>
+    suspend fun getCategory(
+        @Query("page") page: String? = null,
+        @Query("category") category: String? = null
+    ): List<productList>
+
+    @GET("/api/v1/products")
+    suspend fun getInfoProduct(@Query("id") id: String? = null): infoProduct
 }

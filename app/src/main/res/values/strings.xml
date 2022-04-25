@@ -312,6 +312,7 @@
 
 
     <string name="text_view_all">Tất cả</string>
+    <string name="Text_add_cart">Thêm Vào Giỏ</string>
     <!--Show string array-->
 
 </resources>

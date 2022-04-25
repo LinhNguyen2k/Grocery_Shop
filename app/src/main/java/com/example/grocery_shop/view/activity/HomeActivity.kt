@@ -64,9 +64,20 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
 
-    fun replaceFragment(mFragment: Fragment, addBackStack: Boolean? = false) {
+     fun replaceFragment(mFragment: Fragment, addBackStack: Boolean? = false) {
         val trans = supportFragmentManager.beginTransaction()
         trans.replace(R.id.mainFrame, mFragment)
+        addBackStack?.let { add ->
+            if (add) {
+                trans.addToBackStack(mFragment.javaClass.name)
+            }
+        }
+        trans.commit()
+    }
+
+     fun replaceFragmentFullScreen(mFragment: Fragment, addBackStack: Boolean? = false) {
+        val trans = supportFragmentManager.beginTransaction()
+        trans.replace(R.id.rl_contain_full_screen, mFragment)
         addBackStack?.let { add ->
             if (add) {
                 trans.addToBackStack(mFragment.javaClass.name)

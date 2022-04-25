@@ -175,7 +175,7 @@
                 android:layout_marginTop="@dimen/_2sdp">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/Rc_Foods"
+                    android:id="@+id/rc_Foods"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
@@ -227,7 +227,7 @@
                 android:layout_marginTop="@dimen/_2sdp">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/Rc_FrozenFoods"
+                    android:id="@+id/rc_FrozenFoods"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
@@ -279,7 +279,7 @@
                 android:layout_marginTop="@dimen/_2sdp">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/Rc_Confectionery"
+                    android:id="@+id/rc_Confectionery"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
