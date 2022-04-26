@@ -1,8 +1,11 @@
 package com.example.grocery_shop.api.base
 
+import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
+@Keep
 data class ErrorResponse(
-    val timestamp: String?,
-    val status: String?,
-    val error: String?,
-    val path: String?,
+    @SerializedName("status")
+    val status: Int? = null,
+    @SerializedName("message")
+    val message: String? = null
 )

@@ -1,7 +1,10 @@
 package com.example.grocery_shop.view.activity
 
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.grocery_shop.R
 import com.example.grocery_shop.base.BaseVMActivity
 import com.example.grocery_shop.customview.diaglog.DialogConfirm
 import com.example.grocery_shop.databinding.ActivityLoginBinding
@@ -29,12 +32,9 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
     fun forGotPassWord(username: String) {
         lifecycleScope.launchWhenCreated {
             viewModels.forGotPassWord(username, onComplete = { data ->
-                if (data.status) {
                     confirmDialog.showDialogConfirm("Thay đổi mật khẩu thành công")
-                } else {
-                    confirmDialog.showDialogConfirm("Thông tin người dùng không chính xác")
-                }
-
+            }, onErrors = { err ->
+                confirmDialog.showDialogConfirm("Thay đổi mật khẩu không thành công")
             })
         }
     }
@@ -56,9 +56,8 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
                 binding.etLoginMobileNumber.text.isEmpty() -> {
                     showToast("Tài khoản không được để trống")
                 }
-                else -> {
-                    forGotPassWord(binding.etLoginMobileNumber.text.toString())
-                }
+                else ->
+                forGotPassWord(binding.etLoginMobileNumber.text.toString())
             }
         }
     }
@@ -67,7 +66,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
 
     }
 
-    fun loginWithAccount() {
+    private fun loginWithAccount() {
         when {
             binding.etLoginMobileNumber.text.isEmpty() -> {
                 showToast("Tài khoản không được để trống")
@@ -86,6 +85,8 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
                                     openActivity(HomeActivity::class.java, true)
                                 }
                             }
+                        }, onErrors = {
+                            confirmDialog.showDialogConfirm(getString(R.string.message_error_username_or_password))
                         }
                     )
                 }

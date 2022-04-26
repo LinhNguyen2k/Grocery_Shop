@@ -12,36 +12,30 @@ import java.util.*
 class CategoryAdapter : BaseRecyclerViewAdapter<productList, CustomItemProductBinding>() {
     var onTrashClickListener: ((item: productList) -> Unit)? = null
     override fun bindData(binding: CustomItemProductBinding, item: productList, position: Int) {
-        when (item) {
-            is productList -> {
-                val iv: String = item.productImage.toString()
-                binding.tvNameSpBanChay.text = item.productName
-
-                if (TextUtils.isEmpty(iv)) {
-                } else {
-                    try {
-                        Glide.with(context)
-                            .load(iv)
-                            .error(R.drawable.iv_no_image)
-                            .into(binding.imageSpBanChay)
-                    } catch (throwable: Throwable) {
-                        throwable.printStackTrace()
-                    }
-                }
-
-                binding.tvOldPriceSpBanChay.text = item.oldUnitPrice.toString()
-
-                val local = Locale("vi", "VN")
-                val numberFormat = NumberFormat.getInstance(local)
-                val money: String = numberFormat.format(item.unitPrice)
-                binding.tvPriceSpBanChay.text = money
-
-                binding.customListSPBanChay.setOnClickListener {
-                    onTrashClickListener?.invoke(item)
-                }
+        val iv: String = item.productImage.toString()
+        binding.tvNameSpBanChay.text = item.productName
+        if (TextUtils.isEmpty(iv)) {
+        } else {
+            try {
+                Glide.with(context)
+                    .load(iv)
+                    .error(R.drawable.iv_no_image)
+                    .into(binding.imageSpBanChay)
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
             }
         }
 
+        binding.tvOldPriceSpBanChay.text = item.oldUnitPrice.toString()
+
+        val local = Locale("vi", "VN")
+        val numberFormat = NumberFormat.getInstance(local)
+        val money: String = numberFormat.format(item.unitPrice)
+        binding.tvPriceSpBanChay.text = money
+
+        binding.customListSPBanChay.setOnClickListener {
+            onTrashClickListener?.invoke(item)
+        }
 
     }
 }

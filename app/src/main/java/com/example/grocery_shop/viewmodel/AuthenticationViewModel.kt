@@ -1,7 +1,9 @@
 package com.example.grocery_shop.viewmodel
 
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import com.example.grocery_shop.api.base.ErrorResponse
 import com.example.grocery_shop.api.client.ApiClient
 import com.example.grocery_shop.api.services.ProductService
 import com.example.grocery_shop.base.BaseViewModel
@@ -39,29 +41,26 @@ class AuthenticationViewModel : BaseViewModel() {
                 error?.let { response ->
                     Toast.makeText(
                         context,
-                        "${response.status}  ${response.error}",
+                        "${response.status}  ${response.message}",
                         Toast.LENGTH_SHORT
                     ).show()
+                    Log.d("LINH2KKKKK", "${response.status}  ${response.message}")
 
                 }
             })
         }
     }
 
-    fun login(password: String, username: String, onComplete: (response: LoginResponse) -> Unit) {
+    fun login(
+        password: String, username: String, onComplete: (response: LoginResponse) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
         val loginBody = LoginBody(password, username)
         launchHandler {
-            flowOnIO(apiClient.login(loginBody)).subscribe(onNext = { response ->
+            authenticationRepository.loginUpWithAccount(loginBody).subscribe(onNext = { response ->
                 onComplete.invoke(response)
             }, onError = { err ->
-                err?.let { response ->
-                    Toast.makeText(
-                        context,
-                        "${response.status}  ${response.error}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                }
+                onErrors?.invoke(err)
             })
 
         }
@@ -70,12 +69,16 @@ class AuthenticationViewModel : BaseViewModel() {
 
     fun forGotPassWord(
         username: String,
-        onComplete: (response: ForGotPassWordResponse) -> Unit
+        onComplete: (response: ForGotPassWordResponse) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
         launchHandler {
-            flowOnIO(apiClient.forgotPassWord(username)).subscribe { response ->
+            authenticationRepository.forGotPassWord(username).subscribe(onNext = {
+                    response ->
                 onComplete.invoke(response)
-            }
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
 
         }
     }
@@ -83,27 +86,30 @@ class AuthenticationViewModel : BaseViewModel() {
     fun getCategory(
         page: String? = null,
         category: String? = null,
-        onComplete: (response: List<productList>) -> Unit
+        onComplete: (response: List<productList>) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
         isLoading.value = true
         launchHandler {
-            flowOnIO(apiClient.getCategory(page, category)).subscribe { response ->
+            authenticationRepository.getCategory(page, category).subscribe(onNext = { response ->
                 onComplete.invoke(response)
                 isLoading.value = false
-            }
+            }, onError = {err ->
+                onErrors?.invoke(err)
+            })
         }
     }
 
-    fun getInfoProduct(
-        id: String?,
-        onComplete: (response: infoProduct) -> Unit
-    ) {
-        isLoading.value = true
-        launchHandler {
-            flowOnIO(apiClient.getInfoProduct(id)).subscribe { response ->
-                onComplete.invoke(response)
-                isLoading.value = false
-            }
-        }
-    }
+//    fun getInfoProduct(
+//        id: String?,
+//        onComplete: (response: infoProduct) -> Unit
+//    ) {
+//        isLoading.value = true
+//        launchHandler {
+//            flowOnIO(apiClient.getInfoProduct(id)).subscribe { response ->
+//                onComplete.invoke(response)
+//                isLoading.value = false
+//            }
+//        }
+//    }
 }

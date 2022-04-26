@@ -33,6 +33,6 @@ interface ProductService {
         @Query("category") category: String? = null
     ): List<productList>
 
-    @GET("/api/v1/products")
+    @GET("/api/v1/products/detail")
     suspend fun getInfoProduct(@Query("id") id: String? = null): infoProduct
 }

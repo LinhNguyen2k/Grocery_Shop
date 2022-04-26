@@ -46,7 +46,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
     override fun initListener() {
         categoryListOne.onTrashClickListener = { data ->
             val bundle = Bundle()
-            bundle.putString(KEY_PRODUCT_SELECTED, data.productId.toString())
+            bundle.putParcelable(KEY_PRODUCT_SELECTED, data)
             (requireActivity() as? HomeActivity?)?.let { activity ->
                 activity.replaceFragmentFullScreen(DetailProductFragment().apply {
                     arguments = bundle

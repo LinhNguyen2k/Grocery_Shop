@@ -13,7 +13,6 @@ class SignUpActivity : BaseVMActivity<ActivitySignUpBinding, AuthenticationViewM
     private val authenticationViewModel by lazy {
         ViewModelProvider(this)[AuthenticationViewModel::class.java]
     }
-//Chắc thêm vào cái BaseVMActivity là được
     override fun initView() {
     }
 

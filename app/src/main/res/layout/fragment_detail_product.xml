@@ -20,7 +20,7 @@
 
             <ImageView
 
-                android:id="@+id/ig_item_spbanchay"
+                android:id="@+id/img_product"
                 android:layout_width="@dimen/_150sdp"
                 android:layout_height="@dimen/_175sdp" />
         </androidx.cardview.widget.CardView>
@@ -120,6 +120,24 @@
                     android:text="Chương Trình Khuyến Mãi:"
                     android:textSize="@dimen/_8sdp"
                     android:textColor="#FA0000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số lượng: "
+                    android:textColor="#2C2A2A"
+                    android:textSize="@dimen/_9sdp"/>
+                <TextView
+                    android:id="@+id/tv_Quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#2C2A2A"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="@dimen/_4sdp"

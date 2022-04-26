@@ -313,6 +313,9 @@
 
     <string name="text_view_all">Tất cả</string>
     <string name="Text_add_cart">Thêm Vào Giỏ</string>
+    <string name="message_error_unknown_host">Không tải được dữ liệu. Vui lòng kiểm tra lại kết nối!.</string>
+    <string name="message_error_socket_timeout">Lỗi server socket timeout</string>
+    <string name="message_error_username_or_password">Thông tin tài khoản mật khẩu không chính xác</string>
     <!--Show string array-->
 
 </resources>

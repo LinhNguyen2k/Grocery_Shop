@@ -5,7 +5,10 @@ import android.os.Looper
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.grocery_shop.R
 import com.example.grocery_shop.api.base.ErrorResponse
+import com.example.grocery_shop.response.ErrorServer
+import com.example.grocery_shop.viewmodel.MessageVM
 import com.google.gson.Gson
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -14,6 +17,7 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
+    val message by lazy { MutableLiveData<MessageVM>() }
 
     protected val context by lazy { ActivityManager.getTopActivity() }
     private val thread by lazy { Handler(Looper.getMainLooper()) }
@@ -64,9 +68,8 @@ open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
             block()
         }
     }
-    fun <T> flowOnIO(value: T) = flow {
-        emit(value)
-    }.flowOn(Dispatchers.Default)
+
+
     fun <T> Flow<T>.subscribe(
         onLoading: Boolean = true,
         keepLoading: Boolean = false,
@@ -88,9 +91,49 @@ open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
             isLoading.value = false
             Throwable(it).also { throwable ->
                 throwable.printStackTrace()
+                handleError(onError, throwable)
             }
         }.launchIn(viewModelScope)
     }
 
     private val disableLoading: java.lang.Runnable = Runnable { isLoading.value = false }
+
+    fun handleError(
+        onError: ((err: ErrorResponse) -> Unit)? = null,
+        throwable: Throwable? = null
+    ) {
+        if (throwable != null) {
+            when (throwable.cause) {
+                is UnknownHostException,
+                is java.net.ConnectException -> {
+                    message.value =
+                        MessageVM(400, context?.getString(R.string.message_error_unknown_host))
+                }
+                is SocketTimeoutException -> {
+                    message.value =
+                        MessageVM(400, context?.getString(R.string.message_error_socket_timeout))
+                }
+                is HttpException -> {
+                    (throwable.cause as? HttpException)?.response()?.errorBody()?.string()
+                        .let { body ->
+                            if (!body.isNullOrEmpty()) {
+                                try {
+                                    if (onError != null && !body.isNullOrEmpty()) {
+                                        onError.invoke(ErrorResponse(message = body))
+                                    } else {
+                                        val errorServer =
+                                            Gson().fromJson(body, ErrorResponse::class.java)
+                                        if (errorServer?.message != null) {
+                                            message.value = MessageVM(errorServer.status, errorServer.message)
+                                        }
+                                    }
+                                } catch (e: java.lang.Exception) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        }
+                }
+            }
+        }
+    }
 }
