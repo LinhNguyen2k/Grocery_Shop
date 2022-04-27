@@ -47,13 +47,53 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         categoryListOne.onTrashClickListener = { data ->
             val bundle = Bundle()
             bundle.putParcelable(KEY_PRODUCT_SELECTED, data)
+            bundle.putString("category_key", "1")
             (requireActivity() as? HomeActivity?)?.let { activity ->
                 activity.replaceFragmentFullScreen(DetailProductFragment().apply {
                     arguments = bundle
                 }, true)
             }
         }
-
+        categoryListTwo.onTrashClickListener = { data ->
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_PRODUCT_SELECTED, data)
+            bundle.putString("category_key", "2")
+            (requireActivity() as? HomeActivity?)?.let { activity ->
+                activity.replaceFragmentFullScreen(DetailProductFragment().apply {
+                    arguments = bundle
+                }, true)
+            }
+        }
+        categoryListThree.onTrashClickListener = { data ->
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_PRODUCT_SELECTED, data)
+            bundle.putString("category_key", "3")
+            (requireActivity() as? HomeActivity?)?.let { activity ->
+                activity.replaceFragmentFullScreen(DetailProductFragment().apply {
+                    arguments = bundle
+                }, true)
+            }
+        }
+        categoryListFour.onTrashClickListener = { data ->
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_PRODUCT_SELECTED, data)
+            bundle.putString("category_key", "4")
+            (requireActivity() as? HomeActivity?)?.let { activity ->
+                activity.replaceFragmentFullScreen(DetailProductFragment().apply {
+                    arguments = bundle
+                }, true)
+            }
+        }
+        categoryListFive.onTrashClickListener = { data ->
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_PRODUCT_SELECTED, data)
+            bundle.putString("category_key", "5")
+            (requireActivity() as? HomeActivity?)?.let { activity ->
+                activity.replaceFragmentFullScreen(DetailProductFragment().apply {
+                    arguments = bundle
+                }, true)
+            }
+        }
     }
 
     override fun initData() {

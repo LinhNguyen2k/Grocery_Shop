@@ -6,11 +6,66 @@
     android:background="@color/amber_100"
     tools:context=".view.fragment.SellFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
+    <RelativeLayout
+        android:background="#ffffff"
+        android:id="@+id/all"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        >
+        <RelativeLayout
+            android:id="@+id/layout_thongBao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="@dimen/_150sdp">
 
+            <TextView
+                android:id="@+id/tv_thongBao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="#039887"
+                android:textSize="@dimen/_10sdp"></TextView>
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginLeft="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/RC_list_sp_car"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_350sdp"/>
+        <RelativeLayout
+
+            android:id="@+id/layout_mid"
+            android:layout_below="@+id/RC_list_sp_car"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"
+                android:textColor="#00796B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng Tiền:"/>
+
+            <TextView
+                android:textSize="@dimen/_12sdp"
+                android:gravity="center"
+                android:textColor="#FF0303"
+                android:id="@+id/sum_price_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:textColor="#1632E4"
+            android:layout_below="@id/layout_mid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thanh Toán"
+            android:textAllCaps="false"
+            android:id="@+id/bt_Refund"/>
+    </RelativeLayout>
 </LinearLayout>

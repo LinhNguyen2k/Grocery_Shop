@@ -4,6 +4,8 @@ import com.example.grocery_shop.api.client.ApiClient
 import com.example.grocery_shop.api.services.ProductService
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
+import com.example.grocery_shop.model.cart.CartBody
+import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
@@ -35,6 +37,11 @@ class LoginRepository {
         category: String? = null
     ): Flow<List<productList>> {
         return flow { emit(apiClient.getCategory(page, category)) }.flowOn(Dispatchers.IO)
+    }
+    suspend fun addProductIntoCart(
+        request: CartBody
+    ): Flow<CartResponse> {
+        return flow { emit(apiClient.addProductIntoCart(request)) }.flowOn(Dispatchers.IO)
     }
 
 

@@ -9,6 +9,8 @@ import com.example.grocery_shop.api.services.ProductService
 import com.example.grocery_shop.base.BaseViewModel
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
+import com.example.grocery_shop.model.cart.CartBody
+import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.product.infoProduct
 import com.example.grocery_shop.repository.LoginRepository
@@ -98,6 +100,35 @@ class AuthenticationViewModel : BaseViewModel() {
                 onErrors?.invoke(err)
             })
         }
+    }
+
+    fun getCategoryDetail(
+        page: String? = null,
+        category: String? = null,
+        onComplete: (response: List<productList>) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        isLoading.value = false
+        launchHandler {
+            authenticationRepository.getCategory(page, category).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+                isLoading.value = false
+            }, onError = {err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+    fun addProductIntoCart( request : CartBody,
+                           onComplete: (response: CartResponse) -> Unit,
+                           onErrors: ((ErrorResponse?) -> Unit)? = null){
+        launchHandler {
+            authenticationRepository.addProductIntoCart(request).subscribe (onNext = {cartResponse ->
+            onComplete.invoke(cartResponse)
+
+            })
+        }
+
     }
 
 //    fun getInfoProduct(
