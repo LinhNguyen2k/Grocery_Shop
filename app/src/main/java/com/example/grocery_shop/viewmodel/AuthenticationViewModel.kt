@@ -29,6 +29,10 @@ class AuthenticationViewModel : BaseViewModel() {
         MutableLiveData<LoginResponse>()
     }
 
+    val resultAddCart by lazy {
+        MutableLiveData<CartResponse>()
+    }
+
     fun signUp(
         avatar: String? = null,
         email: String,
@@ -120,19 +124,16 @@ class AuthenticationViewModel : BaseViewModel() {
 
     fun addProductIntoCart(
         request: CartBody,
-        onComplete: (response: CartResponse) -> Unit,
-        onErrors: ((ErrorResponse?) -> Unit)? = null
+//        onComplete: (response: CartResponse) -> Unit,
+//        onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
+        isLoading.value = false
         launchHandler {
             authenticationRepository.addProductIntoCart(request)
-                .subscribe(onNext = { cartResponse ->
-                    onComplete.invoke(cartResponse)
-
-                }, onError = { err ->
-                    onErrors?.invoke(err)
-                })
+                .subscribe{ cartResponse ->
+                    resultAddCart.postValue(cartResponse)
+                }
         }
-
     }
 
     fun getAllProductCart(

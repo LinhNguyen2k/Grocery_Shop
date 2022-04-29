@@ -67,4 +67,5 @@
     <color name="COLOR_GRAY19">#303030</color>
     <color name="COLOR_GRAY_TITLE">#EFEFEF</color>
     <color name="COLOR_GRAY_BG">#f2f2f2</color>
+    <color name="COLOR_BLUE_BG">#1189CC</color>
 </resources>

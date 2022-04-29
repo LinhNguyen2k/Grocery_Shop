@@ -11,11 +11,12 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import com.example.grocery_shop.R
 import com.example.grocery_shop.databinding.DialogConfirmBinding
+import com.example.grocery_shop.databinding.DialogConfirmV2Binding
 
-class DialogConfirm(val context: Context) {
+class DialogConfirmV2(val context: Context) {
 
     private val binding by lazy {
-        DialogConfirmBinding.inflate(LayoutInflater.from(context))
+        DialogConfirmV2Binding.inflate(LayoutInflater.from(context))
     }
     private val dialog: Dialog by lazy {
         AlertDialog.Builder(context).setView(binding.root).create()
@@ -26,11 +27,10 @@ class DialogConfirm(val context: Context) {
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT
         )
+
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val window = dialog.window
         window?.setGravity(Gravity.CENTER)
-        dialog.window?.setWindowAnimations(R.style.animation_show_dialog)
-        dialog.setCancelable(true)
     }
 
     fun showDialogConfirm(

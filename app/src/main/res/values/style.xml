@@ -176,5 +176,10 @@
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
 
+    <style name="animation_show_dialog">
+        <item name="android:windowEnterAnimation">@anim/animate_fade_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_fade_exit</item>
+    </style>
+
 
 </resources>

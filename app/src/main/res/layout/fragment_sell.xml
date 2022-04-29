@@ -25,28 +25,31 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:textColor="#039887"
-                android:textSize="@dimen/_10sdp"></TextView>
+                android:textSize="@dimen/_10sdp"/>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RC_list_sp_car"
+            android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_350sdp"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_mid"
             android:layout_marginTop="@dimen/_20sdp" />
         <RelativeLayout
-
+            android:layout_marginHorizontal="@dimen/_20sdp"
             android:id="@+id/layout_mid"
-            android:layout_below="@+id/RC_list_sp_car"
+            android:layout_above="@+id/bt_Refund"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
-                android:textSize="@dimen/_12sdp"
-                android:gravity="center"
-                android:textColor="#00796B"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng Tiền:"/>
+                android:gravity="center"
+                android:text="Tổng Tiền:"
+                android:textColor="#00796B"
+                android:textSize="@dimen/_12sdp" />
 
             <TextView
                 android:textSize="@dimen/_12sdp"
@@ -57,13 +60,18 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>
+
         <androidx.appcompat.widget.AppCompatButton
-            android:textColor="#1632E4"
-            android:layout_below="@id/layout_mid"
+            android:id="@+id/bt_Refund"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:text="Thanh Toán"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:fontFamily="@font/beausanspro_semibold"
             android:textAllCaps="false"
-            android:id="@+id/bt_Refund"/>
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:background="@drawable/background_button_pay" />
     </RelativeLayout>
 </LinearLayout>

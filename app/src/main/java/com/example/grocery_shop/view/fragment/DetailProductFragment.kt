@@ -1,5 +1,6 @@
 package com.example.grocery_shop.view.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.viewModels
@@ -9,6 +10,7 @@ import com.example.grocery_shop.adapter.CategoryAdapter
 import com.example.grocery_shop.base.BaseFragment
 import com.example.grocery_shop.base.RecyclerUtils
 import com.example.grocery_shop.customview.diaglog.DialogConfirm
+import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.FragmentDetailProductBinding
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.category.productList
@@ -26,7 +28,7 @@ class DetailProductFragment :
         CategoryAdapter()
     }
     private val confirmDialog by lazy {
-        DialogConfirm(requireContext())
+        DialogConfirmV2(requireContext())
     }
     var item: productList? = null
     override fun initView() {
@@ -43,6 +45,7 @@ class DetailProductFragment :
     }
 
     override fun initData() {
+        observeAddCart()
     }
 
     private fun getInfoProduct(bundle: Bundle?) {
@@ -85,7 +88,7 @@ class DetailProductFragment :
     private fun setClickAddCart() {
         binding.addCart.setOnClickListener {
             addCart(
-                UserManager.getUserId(requireContext()).toString(), 1,
+                item?.productId.toString(), 1,
                 UserManager.getUserId(requireContext()).toString()
             )
         }
@@ -104,12 +107,14 @@ class DetailProductFragment :
 
     private fun addCart(productId: String? = null, quantity: Int? = null, userId: String? = null) {
         var result = CartBody(productId, quantity, userId)
-        viewModels.addProductIntoCart(result, onComplete = { data ->
-            confirmDialog.showDialogConfirm(getString(R.string.message_add_cart_success))
+        viewModels.addProductIntoCart(result)
+    }
 
-        }, onErrors = { errorResponse ->
-            confirmDialog.showDialogConfirm(getString(R.string.message_add_cart_failure))
-        })
+    @SuppressLint("NotifyDataSetChanged")
+    private fun observeAddCart(){
+            viewModels.resultAddCart.observe(this, androidx.lifecycle.Observer {  data ->
+                    categoryListOne.notifyDataSetChanged()
+            })
     }
 
 }

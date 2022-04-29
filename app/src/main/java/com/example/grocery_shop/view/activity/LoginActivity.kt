@@ -5,6 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.grocery_shop.R
 import com.example.grocery_shop.base.BaseVMActivity
 import com.example.grocery_shop.customview.diaglog.DialogConfirm
+import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.ActivityLoginBinding
 import com.example.grocery_shop.util.UserManager
 import com.example.grocery_shop.util.UserManager.getPassWord
@@ -24,7 +25,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
     private val viewModels by viewModels<AuthenticationViewModel>()
 
     private val confirmDialog by lazy {
-        DialogConfirm(this)
+        DialogConfirmV2(this)
     }
 
     override fun handleLoading(isCancel: Boolean?) {
