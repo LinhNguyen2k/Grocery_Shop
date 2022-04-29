@@ -52,19 +52,19 @@
     <color name="red_bright">#FA0321</color>
 
     <color name="pink_light">#FCE7EA</color>
-
+    <color name="COLOR_PROGRESS">#EE0033</color>
     <color name="amber_900">#ff6f00</color>
     <color name="amber_700">#ffa000</color>
     <color name="amber_500">#ffc107</color>
     <color name="amber_300">#ffd54f</color>
     <color name="amber_100">#ffecb3</color>
-
+    <color name="TRANSPARENT">#00000000</color>
     <color name="colorBlackTitle">#1E1E1E</color>
     <color name="colorLineGray">#F2F2F2</color>
     <color name="color_light_bottom_bar">#55ffffff</color>
     <color name="bg_ll_control">#55333333</color>
     <color name="color_viewAll">#797979</color>
-
+    <color name="COLOR_GRAY19">#303030</color>
     <color name="COLOR_GRAY_TITLE">#EFEFEF</color>
     <color name="COLOR_GRAY_BG">#f2f2f2</color>
 </resources>

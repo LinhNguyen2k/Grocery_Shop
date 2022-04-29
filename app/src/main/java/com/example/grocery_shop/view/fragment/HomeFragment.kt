@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -109,6 +110,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
                 binding.rcProductSale,
                 categoryListOne
             )
+        }, onErrors = {
+
         })
         viewModels.getCategory(null, "2", onComplete = { data ->
             categoryListTwo.addMoreData(data)
@@ -144,9 +147,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         })
     }
 
-    private fun setListener(){
-
-    }
 
     private fun setlayout() {
         val slide = ArrayList<String>()
@@ -170,25 +170,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         binding.Viewflipper.inAnimation = animation_slide_in
         binding.Viewflipper.outAnimation = animation_slide_out
 
-        val linearLayoutManagerOne = LinearLayoutManager(activity)
-        linearLayoutManagerOne.orientation = LinearLayoutManager.HORIZONTAL
-        binding.rcProductSale.layoutManager = linearLayoutManagerOne
-
-        val linearLayoutManagerTwo = LinearLayoutManager(activity)
-        linearLayoutManagerTwo.orientation = LinearLayoutManager.HORIZONTAL
-        binding.rcVegetable.layoutManager = linearLayoutManagerTwo
-
-        val linearLayoutManagerThree = LinearLayoutManager(activity)
-        linearLayoutManagerThree.orientation = LinearLayoutManager.HORIZONTAL
-        binding.rcFoods.layoutManager = linearLayoutManagerThree
-
-        val linearLayoutManagerFour = LinearLayoutManager(activity)
-        linearLayoutManagerFour.orientation = LinearLayoutManager.HORIZONTAL
-        binding.rcFrozenFoods.layoutManager = linearLayoutManagerFour
-
-        val linearLayoutManagerRock = LinearLayoutManager(activity)
-        linearLayoutManagerRock.orientation = LinearLayoutManager.HORIZONTAL
-        binding.rcConfectionery.layoutManager = linearLayoutManagerRock
     }
 
 }

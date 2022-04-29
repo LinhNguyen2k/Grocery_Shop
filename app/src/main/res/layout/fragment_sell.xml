@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/amber_100"
     tools:context=".view.fragment.SellFragment">
 
     <RelativeLayout
-        android:background="#ffffff"
+        android:background="@color/COLOR_GRAY_BG"
         android:id="@+id/all"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <RelativeLayout
             android:id="@+id/layout_thongBao"
             android:layout_width="match_parent"
@@ -30,11 +29,10 @@
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginLeft="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_20sdp"
             android:id="@+id/RC_list_sp_car"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_350sdp"/>
+            android:layout_height="@dimen/_350sdp"
+            android:layout_marginTop="@dimen/_20sdp" />
         <RelativeLayout
 
             android:id="@+id/layout_mid"

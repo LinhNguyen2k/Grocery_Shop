@@ -7,6 +7,7 @@ import com.example.grocery_shop.model.auth.SignBody
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
+import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,11 @@ class LoginRepository {
         request: CartBody
     ): Flow<CartResponse> {
         return flow { emit(apiClient.addProductIntoCart(request)) }.flowOn(Dispatchers.IO)
+    }
+   suspend fun getAllProductCart(
+        userId: String
+    ): Flow<List<CartGetAllResponseItem>> {
+        return flow { emit(apiClient.getAllProductCart(userId)) }.flowOn(Dispatchers.IO)
     }
 
 

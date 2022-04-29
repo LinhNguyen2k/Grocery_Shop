@@ -6,6 +6,7 @@ import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.product.infoProduct
+import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 import retrofit2.http.Body
@@ -41,4 +42,7 @@ interface ProductService {
 
     @GET("/api/v1/products/detail")
     suspend fun getInfoProduct(@Query("id") id: String? = null): infoProduct
+
+    @GET("/api/v1/carts/product")
+    suspend fun getAllProductCart(@Query("userId") id: String? = null): List<CartGetAllResponseItem>
 }

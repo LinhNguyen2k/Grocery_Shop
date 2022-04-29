@@ -35,7 +35,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/beausanspro_bold"
                     android:text="@string/Titel_san_pham_khuyen_mai"
                     android:textColor="@color/teal_700" />
 
@@ -87,7 +87,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/beausanspro_bold"
                     android:text="@string/Titel_rau_cu_traicay"
                     android:textColor="@color/teal_700" />
 
@@ -139,7 +139,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/beausanspro_bold"
                     android:text="@string/Titel_thit_trung_haisan"
                     android:textColor="@color/teal_700" />
 
@@ -191,7 +191,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/beausanspro_bold"
                     android:text="@string/Titel_thucphamdonglanh"
                     android:textColor="@color/teal_700" />
 
@@ -243,7 +243,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/beausanspro_bold"
                     android:text="@string/Titel_banhkeo_doanvat"
                     android:textColor="@color/teal_700" />
 

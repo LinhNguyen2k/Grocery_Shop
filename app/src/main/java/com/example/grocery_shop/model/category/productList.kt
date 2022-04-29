@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 @Parcelize
 @Keep
@@ -25,7 +26,7 @@ data class productList(
     @SerializedName("descriptionProduct")
     val descriptionProduct: String? = null,
     @SerializedName("cartEntities")
-    val cartEntities: List<String>?,
+    var cartEntities: @RawValue List<Any>? = null,
     @SerializedName("reviewsEntities")
     val reviewsEntities: List<String>?,
     @SerializedName("delete")

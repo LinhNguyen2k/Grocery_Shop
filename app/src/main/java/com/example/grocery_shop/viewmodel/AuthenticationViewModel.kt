@@ -14,6 +14,7 @@ import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.product.infoProduct
 import com.example.grocery_shop.repository.LoginRepository
+import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 
@@ -46,7 +47,6 @@ class AuthenticationViewModel : BaseViewModel() {
                         "${response.status}  ${response.message}",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Log.d("LINH2KKKKK", "${response.status}  ${response.message}")
 
                 }
             })
@@ -75,8 +75,7 @@ class AuthenticationViewModel : BaseViewModel() {
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
         launchHandler {
-            authenticationRepository.forGotPassWord(username).subscribe(onNext = {
-                    response ->
+            authenticationRepository.forGotPassWord(username).subscribe(onNext = { response ->
                 onComplete.invoke(response)
             }, onError = { err ->
                 onErrors?.invoke(err)
@@ -96,7 +95,7 @@ class AuthenticationViewModel : BaseViewModel() {
             authenticationRepository.getCategory(page, category).subscribe(onNext = { response ->
                 onComplete.invoke(response)
                 isLoading.value = false
-            }, onError = {err ->
+            }, onError = { err ->
                 onErrors?.invoke(err)
             })
         }
@@ -113,19 +112,40 @@ class AuthenticationViewModel : BaseViewModel() {
             authenticationRepository.getCategory(page, category).subscribe(onNext = { response ->
                 onComplete.invoke(response)
                 isLoading.value = false
-            }, onError = {err ->
+            }, onError = { err ->
                 onErrors?.invoke(err)
             })
         }
     }
 
-    fun addProductIntoCart( request : CartBody,
-                           onComplete: (response: CartResponse) -> Unit,
-                           onErrors: ((ErrorResponse?) -> Unit)? = null){
+    fun addProductIntoCart(
+        request: CartBody,
+        onComplete: (response: CartResponse) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
         launchHandler {
-            authenticationRepository.addProductIntoCart(request).subscribe (onNext = {cartResponse ->
-            onComplete.invoke(cartResponse)
+            authenticationRepository.addProductIntoCart(request)
+                .subscribe(onNext = { cartResponse ->
+                    onComplete.invoke(cartResponse)
 
+                }, onError = { err ->
+                    onErrors?.invoke(err)
+                })
+        }
+
+    }
+
+    fun getAllProductCart(
+        userId: String,
+        onComplete: (response: List<CartGetAllResponseItem>) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.getAllProductCart(userId).subscribe(onNext = { cartResponse ->
+                onComplete.invoke(cartResponse)
+
+            }, onError = {err ->
+                onErrors?.invoke(err)
             })
         }
 
