@@ -44,5 +44,5 @@ interface ProductService {
     suspend fun getInfoProduct(@Query("id") id: String? = null): infoProduct
 
     @GET("/api/v1/carts/product")
-    suspend fun getAllProductCart(@Query("userId") id: String? = null): List<CartGetAllResponseItem>
+    suspend fun getAllProductCart(@Query("userId") id: String? = null): List<productList>
 }

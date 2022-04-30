@@ -116,37 +116,41 @@ class AuthenticationViewModel : BaseViewModel() {
             authenticationRepository.getCategory(page, category).subscribe(onNext = { response ->
                 onComplete.invoke(response)
                 isLoading.value = false
+
             }, onError = { err ->
                 onErrors?.invoke(err)
+                isLoading.value = false
             })
         }
     }
 
     fun addProductIntoCart(
         request: CartBody,
-//        onComplete: (response: CartResponse) -> Unit,
-//        onErrors: ((ErrorResponse?) -> Unit)? = null
+        onComplete: (response: CartResponse) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
-        isLoading.value = false
         launchHandler {
             authenticationRepository.addProductIntoCart(request)
-                .subscribe{ cartResponse ->
-                    resultAddCart.postValue(cartResponse)
-                }
+                .subscribe(onNext = { cartResponse ->
+                    onComplete.invoke(cartResponse)
+
+                })
         }
+
     }
 
     fun getAllProductCart(
         userId: String,
-        onComplete: (response: List<CartGetAllResponseItem>) -> Unit,
+        onComplete: (response: List<productList>) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
         launchHandler {
             authenticationRepository.getAllProductCart(userId).subscribe(onNext = { cartResponse ->
                 onComplete.invoke(cartResponse)
-
-            }, onError = {err ->
+                isLoading.value = false
+            }, onError = { err ->
                 onErrors?.invoke(err)
+                isLoading.value = false
             })
         }
 

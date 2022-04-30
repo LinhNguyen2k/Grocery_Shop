@@ -28,7 +28,7 @@ data class productList(
     @SerializedName("cartEntities")
     var cartEntities: @RawValue List<Any>? = null,
     @SerializedName("reviewsEntities")
-    val reviewsEntities: List<String>?,
+    val reviewsEntities:  @RawValue List<Any>?,
     @SerializedName("delete")
     val delete: Boolean? = null
 ) : Parcelable

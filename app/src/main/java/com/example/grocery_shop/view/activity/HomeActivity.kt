@@ -112,7 +112,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         if (currentPositionBtmNav == 0 && supportFragmentManager.backStackEntryCount >= 1) {
             supportFragmentManager.popBackStack()
         } else if (currentPositionBtmNav == 1 && supportFragmentManager.backStackEntryCount >= 1) {
-            finish()
+            supportFragmentManager.popBackStack()
         } else {
             finish()
         }

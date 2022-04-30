@@ -38,6 +38,11 @@ class DetailProductFragment :
 
     }
 
+    override fun onResume() {
+        isLoading.value = false
+        super.onResume()
+    }
+
     override fun initListener() {
         binding.toolbar.onLeftClickListener = { onBackPressed() }
         setClickAddCart()
@@ -45,7 +50,6 @@ class DetailProductFragment :
     }
 
     override fun initData() {
-        observeAddCart()
     }
 
     private fun getInfoProduct(bundle: Bundle?) {
@@ -107,14 +111,24 @@ class DetailProductFragment :
 
     private fun addCart(productId: String? = null, quantity: Int? = null, userId: String? = null) {
         var result = CartBody(productId, quantity, userId)
-        viewModels.addProductIntoCart(result)
+        viewModels.addProductIntoCart(result, onComplete = { data ->
+            confirmDialog.showDialogConfirm(getString(R.string.message_add_cart_success))
+
+        }, onErrors = { errorResponse ->
+            confirmDialog.showDialogConfirm(getString(R.string.message_add_cart_failure))
+        })
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun observeAddCart(){
-            viewModels.resultAddCart.observe(this, androidx.lifecycle.Observer {  data ->
-                    categoryListOne.notifyDataSetChanged()
-            })
-    }
+//    @SuppressLint("NotifyDataSetChanged")
+//    private fun observeAddCart(){
+//        viewModels.resultAddCart.observe(this, androidx.lifecycle.Observer { data ->
+//            if (data.id.userId != null) {
+//                categoryListOne.notifyDataSetChanged()
+//                confirmDialog.showDialogConfirm(getString(R.string.message_add_cart_success))
+//            } else {
+//                confirmDialog.showDialogConfirm(getString(R.string.message_add_cart_failure))
+//            }
+//        })
+//    }
 
 }

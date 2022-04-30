@@ -46,7 +46,7 @@ class LoginRepository {
     }
    suspend fun getAllProductCart(
         userId: String
-    ): Flow<List<CartGetAllResponseItem>> {
+    ): Flow<List<productList>> {
         return flow { emit(apiClient.getAllProductCart(userId)) }.flowOn(Dispatchers.IO)
     }
 
