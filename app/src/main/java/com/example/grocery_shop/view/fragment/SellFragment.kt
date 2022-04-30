@@ -1,5 +1,6 @@
 package com.example.grocery_shop.view.fragment
 
+import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import com.example.grocery_shop.R
 import com.example.grocery_shop.adapter.CategoryAdapter
@@ -10,11 +11,15 @@ import com.example.grocery_shop.customview.diaglog.DialogConfirm
 import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.FragmentSellBinding
 import com.example.grocery_shop.model.cart.CartBody
+import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.util.UserManager
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
+import java.text.NumberFormat
+import java.util.*
 
 class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>() {
     private val viewModels by viewModels<AuthenticationViewModel>()
+    private var sumMoney : Int = 0
     private val productCartAdapter by lazy {
         ProductCartAdapter()
     }
@@ -25,6 +30,8 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
 
     override fun initView() {
         getAllCartUser(UserManager.getUserId(requireContext()).toString())
+
+
     }
 
     override fun initListener() {
@@ -32,7 +39,7 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
     }
 
     override fun initData() {
-        observeAddCart()
+//        observeAddCart()
     }
 
     private fun initListenerCart() {
@@ -56,7 +63,11 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
                 binding.RCListSpCar,
                 productCartAdapter
             )
+            resultMoney(response)
         })
+
+
+
     }
 
     private fun addCart(productId: String? = null, quantity: Int? = null, userId: String? = null) {
@@ -73,5 +84,19 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
                 confirmDialog.showDialogConfirm(getString(R.string.message_add_cart_failure))
             }
         })
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun resultMoney(listSell : List<CartGetAllResponseItem>) {
+
+        for (sp in listSell) {
+            if (sp.unitPrice > 0) {
+                sumMoney += sp.unitPrice
+            }
+        }
+        val local = Locale("vi", "VN")
+        val numberFormat = NumberFormat.getInstance(local)
+        val money: String = numberFormat.format(sumMoney)
+        binding.btRefund.text = "Thanh Toán (${money}đ)"
     }
 }

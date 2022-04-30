@@ -1,5 +1,6 @@
 package com.example.grocery_shop.adapter
 
+import android.graphics.Paint
 import android.text.TextUtils
 import com.bumptech.glide.Glide
 import com.example.grocery_shop.R
@@ -27,7 +28,7 @@ class CategoryAdapter : BaseRecyclerViewAdapter<productList, CustomItemProductBi
         }
 
         binding.tvOldPriceSpBanChay.text = item.oldUnitPrice.toString()
-
+        binding.tvOldPriceSpBanChay.paintFlags =  binding.tvOldPriceSpBanChay.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         val local = Locale("vi", "VN")
         val numberFormat = NumberFormat.getInstance(local)
         val money: String = numberFormat.format(item.unitPrice)

@@ -56,14 +56,14 @@
                     android:id="@+id/tv_item_old_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
+                    android:textColor="@color/COLOR_GRAY19"
                     android:textSize="@dimen/_8sdp" />
 
                 <TextView
                     android:id="@+id/tv_item_new_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FA0000"
+                    android:textColor="@color/COLOR_PROGRESS"
                     android:textSize="@dimen/_10sdp" />
             </LinearLayout>
 

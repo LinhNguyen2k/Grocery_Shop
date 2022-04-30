@@ -33,33 +33,9 @@
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/layout_mid"
-            android:layout_marginTop="@dimen/_20sdp" />
-        <RelativeLayout
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:id="@+id/layout_mid"
             android:layout_above="@+id/bt_Refund"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Tổng Tiền:"
-                android:textColor="#00796B"
-                android:textSize="@dimen/_12sdp" />
-
-            <TextView
-                android:textSize="@dimen/_12sdp"
-                android:gravity="center"
-                android:textColor="#FF0303"
-                android:id="@+id/sum_price_car"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true" />
-        </RelativeLayout>
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_Refund"

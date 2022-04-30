@@ -16,7 +16,6 @@ class ProductCartAdapter : BaseRecyclerViewAdapter<CartGetAllResponseItem, Custo
     var onTrashClickListenerDelete: ((item: CartGetAllResponseItem) -> Unit)? = null
     var onTrashClickListenerAddCart: ((item: CartGetAllResponseItem) -> Unit)? = null
     var onTrashClickListenerSubtraction: ((item: CartGetAllResponseItem) -> Unit)? = null
-
     @SuppressLint("SetTextI18n")
     override fun bindData(
         binding: CustomItemCartBinding,
@@ -27,8 +26,6 @@ class ProductCartAdapter : BaseRecyclerViewAdapter<CartGetAllResponseItem, Custo
 
         val iv: String = item.productImage
         binding.tvNameProduct.text = item.productName
-        if (TextUtils.isEmpty(iv)) {
-        } else {
             try {
                 Glide.with(context)
                     .load(iv)
@@ -37,7 +34,6 @@ class ProductCartAdapter : BaseRecyclerViewAdapter<CartGetAllResponseItem, Custo
             } catch (throwable: Throwable) {
                 throwable.printStackTrace()
             }
-        }
         binding.tvResult.text = sumBefore.toString()
 
         val local = Locale("vi", "VN")
@@ -70,4 +66,5 @@ class ProductCartAdapter : BaseRecyclerViewAdapter<CartGetAllResponseItem, Custo
             onTrashClickListenerDelete?.invoke(item)
         }
     }
+
 }
