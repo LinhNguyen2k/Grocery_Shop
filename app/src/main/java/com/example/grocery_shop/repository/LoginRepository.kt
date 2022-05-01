@@ -5,6 +5,7 @@ import com.example.grocery_shop.api.client.ApiClient
 import com.example.grocery_shop.api.services.ProductService
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
+import com.example.grocery_shop.model.auth.setNewPassBody
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.cart.deleteCartBody
@@ -15,6 +16,7 @@ import com.example.grocery_shop.model.user.userResponse
 import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
+import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.responseDeleteCart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -74,6 +76,13 @@ class LoginRepository {
       request: UserEditBody
     ): Flow<userResponse> {
         return flow { emit(apiClient.editProfile(id, request)) }.flowOn(Dispatchers.IO)
+    }
+
+
+  suspend fun setNewPassWord(
+      request: setNewPassBody
+    ): Flow<responseNewPass> {
+        return flow { emit(apiClient.setNewPassWord(request)) }.flowOn(Dispatchers.IO)
     }
 
 

@@ -2,6 +2,7 @@ package com.example.grocery_shop.api.services
 
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
+import com.example.grocery_shop.model.auth.setNewPassBody
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
@@ -12,6 +13,7 @@ import com.example.grocery_shop.model.user.updateImage.responseImage
 import com.example.grocery_shop.model.user.userResponse
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
+import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.responseDeleteCart
 import okhttp3.MultipartBody
 import retrofit2.http.*
@@ -61,4 +63,7 @@ interface ProductService {
 
     @GET("/api/v1/users/detail")
     suspend fun getInfoUser(@Query("id") id: String? = null): getUserById
+
+    @POST("/api/v1/auth/new-password")
+    suspend fun setNewPassWord(@Body  response: setNewPassBody): responseNewPass
 }

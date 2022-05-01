@@ -12,6 +12,7 @@ import com.example.grocery_shop.base.BaseViewModel
 import com.example.grocery_shop.base.file.FileUtil
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
+import com.example.grocery_shop.model.auth.setNewPassBody
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
@@ -21,6 +22,7 @@ import com.example.grocery_shop.model.user.userResponse
 import com.example.grocery_shop.repository.LoginRepository
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
+import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.responseDeleteCart
 import com.example.grocery_shop.util.UserManager
 import com.octalsoftaware.myapplication.utils.image.Compressor
@@ -213,6 +215,22 @@ class AuthenticationViewModel : BaseViewModel() {
             })
         }
     }
+
+        fun setNewPassWord(
+        body: setNewPassBody,
+        onComplete: (response: responseNewPass) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.setNewPassWord(body).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+
 
     fun compressorImage(id: String,intent: Intent, onComplete: (bitmap: Bitmap) -> Unit) {
         try {

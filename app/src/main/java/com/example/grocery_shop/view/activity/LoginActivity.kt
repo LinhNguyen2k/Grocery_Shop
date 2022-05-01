@@ -1,5 +1,6 @@
 package com.example.grocery_shop.view.activity
 
+import android.content.Intent
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.grocery_shop.R
@@ -37,15 +38,6 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
         setUpLogin()
     }
 
-    private fun forGotPassWord(username: String) {
-        lifecycleScope.launchWhenCreated {
-            viewModels.forGotPassWord(username, onComplete = { data ->
-                confirmDialog.showDialogConfirm("Thay đổi mật khẩu thành công")
-            }, onErrors = { err ->
-                confirmDialog.showDialogConfirm("Thay đổi mật khẩu không thành công")
-            })
-        }
-    }
 
     override fun initListener() {
         binding.tvSignupLogin.singleClick {
@@ -60,13 +52,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
         }
 
         binding.btnForgotPw.singleClick {
-            when {
-                binding.etLoginMobileNumber.text.isEmpty() -> {
-                    showToast("Tài khoản không được để trống")
-                }
-                else ->
-                    forGotPassWord(binding.etLoginMobileNumber.text.toString())
-            }
+            openActivity(ForGotPasswordActivity::class.java)
         }
     }
 

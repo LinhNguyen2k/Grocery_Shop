@@ -210,7 +210,8 @@
 
     <string name="label_number_of_seats">Number of seats</string>
     <string name="label_do_not_have_account">Don\'t have an account?</string>
-    <string name="label_reset_password">To reset your password, enter the mobile phone number that you use to log into Mazeoke</string>
+    <string name="label_reset_password">Để nhận mã đặt lại mật khẩu của bạn, hãy nhập username mà bạn sử dụng để đăng nhập vào Grocery Shop</string>
+    <string name="label_new_password">Để đặt lại mật khẩu của bạn, hãy nhập username, token (nhận từ mail) và mật khẩu mới</string>
     <string name="label_create_new_password">Enter new password</string>
     <string name="label_verification_code">Verification Code</string>
     <string name="label_verification_code_message">OTP has been sent to your mobile number.</string>
@@ -303,6 +304,7 @@
     <string name="title_tab_other">Khác</string>
     <string name="title_tab_sell">Giỏ hàng</string>
     <string name="title_tab_customer">Cá Nhân</string>
+    <string name="title_confirm">Xác nhận</string>
 
     <string name="Titel_san_pham_khuyen_mai">Sản Phẩm Khuyến Mãi</string>
     <string name="Titel_rau_cu_traicay">Rau - Củ - Trái Cây</string>
