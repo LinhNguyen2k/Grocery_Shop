@@ -12,6 +12,7 @@ import com.example.grocery_shop.util.UserManager.getPassWord
 import com.example.grocery_shop.util.UserManager.getUserName
 import com.example.grocery_shop.util.UserManager.setFulLName
 import com.example.grocery_shop.util.UserManager.setPassWord
+import com.example.grocery_shop.util.UserManager.setPhotoUrl
 import com.example.grocery_shop.util.UserManager.setToken
 import com.example.grocery_shop.util.UserManager.setUserId
 import com.example.grocery_shop.util.UserManager.setUserName
@@ -92,7 +93,6 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
                                 setUserId(applicationContext, data.userId.toInt())
                                 setToken(applicationContext, data.jwt.toString())
                                 setUserName(applicationContext, data.username.toString())
-                                setFulLName(applicationContext, data.username.toString())
                                 setPassWord(
                                     applicationContext,
                                     binding.etLoginPassword.text.toString()

@@ -68,7 +68,9 @@ open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
             block()
         }
     }
-
+    fun <T> flowOnIO(value: T) = flow {
+        emit(value)
+    }.flowOn(Dispatchers.Default)
 
     fun <T> Flow<T>.subscribe(
         onLoading: Boolean = true,
@@ -98,7 +100,7 @@ open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
 
     private val disableLoading: java.lang.Runnable = Runnable { isLoading.value = false }
 
-    fun handleError(
+    private fun handleError(
         onError: ((err: ErrorResponse) -> Unit)? = null,
         throwable: Throwable? = null
     ) {

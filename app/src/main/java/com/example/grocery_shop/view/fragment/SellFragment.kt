@@ -13,6 +13,7 @@ import com.example.grocery_shop.base.RecyclerUtils
 import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.FragmentSellBinding
 import com.example.grocery_shop.model.cart.CartBody
+import com.example.grocery_shop.model.cart.deleteCartBody
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.util.Constants
@@ -50,6 +51,7 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initListenerCart() {
         productCartAdapter.onTrashClickListenerAddCart = { data ->
             addCart(
@@ -65,12 +67,10 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
             getAllListAfterChange()
         }
         productCartAdapter.onTrashClickListenerDelete = { data ->
-            addCart(
-                data.productId.toString(),
-                -(data.quantity)!!,
-                UserManager.getUserId(requireContext()).toString()
-            )
-            getAllListAfterChange()
+            deleteCart(data.productId.toString(), UserManager.getUserId(requireContext()).toString())
+            productCartAdapter.dataList.remove(data)
+            productCartAdapter.notifyDataSetChanged()
+            resultMoney(productCartAdapter.dataList)
         }
         productCartAdapter.onTrashClickListener = { data ->
             val bundle = Bundle()
@@ -88,7 +88,6 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
     fun getAllListAfterChange(){
         viewModels.getAllProductCart(UserManager.getUserId(requireContext()).toString(), onComplete = { response ->
             productCartAdapter.dataList = response as MutableList<productList>
-            productCartAdapter.notifyDataSetChanged()
             resultMoney(response)
         })
     }
@@ -105,6 +104,15 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
 
         })
 
+    }
+
+    private fun deleteCart(productId : String, userId : String){
+        viewModels.deleteCart(productId, userId, onComplete = { data ->
+            if (data.status == true)
+                confirmDialog.showDialogConfirm(getString(R.string.message_delete_cart_success))
+        }, onErrors = {errorResponse ->
+            confirmDialog.showDialogConfirm(getString(R.string.message_delete_cart_failure))
+        })
     }
 
     private fun addCart(productId: String? = null, quantity: Int? = null, userId: String? = null) {

@@ -42,12 +42,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="Thanh Toán"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:fontFamily="@font/beausanspro_semibold"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
             android:layout_marginHorizontal="@dimen/_20sdp"
-            android:background="@drawable/background_button_pay" />
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/background_button_pay"
+            android:fontFamily="@font/beausanspro_semibold"
+            android:text="Thanh Toán"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
     </RelativeLayout>
 </LinearLayout>

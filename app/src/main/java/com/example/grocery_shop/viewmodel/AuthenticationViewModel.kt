@@ -1,27 +1,40 @@
 package com.example.grocery_shop.viewmodel
 
-import android.util.Log
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.grocery_shop.api.base.ErrorResponse
 import com.example.grocery_shop.api.client.ApiClient
 import com.example.grocery_shop.api.services.ProductService
 import com.example.grocery_shop.base.BaseViewModel
+import com.example.grocery_shop.base.file.FileUtil
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
-import com.example.grocery_shop.model.product.infoProduct
+import com.example.grocery_shop.model.user.UserEditBody
+import com.example.grocery_shop.model.user.infoUser.getUserById
+import com.example.grocery_shop.model.user.userResponse
 import com.example.grocery_shop.repository.LoginRepository
-import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
+import com.example.grocery_shop.response.responseDeleteCart
+import com.example.grocery_shop.util.UserManager
+import com.octalsoftaware.myapplication.utils.image.Compressor
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
+import java.io.IOException
 
 class AuthenticationViewModel : BaseViewModel() {
     private val authenticationRepository by lazy {
         LoginRepository()
     }
+    var imageFile: File? = null
     private val apiClient by lazy {
         ApiClient.createService(ProductService::class.java)
     }
@@ -154,6 +167,82 @@ class AuthenticationViewModel : BaseViewModel() {
             })
         }
 
+    }
+
+    fun deleteCart(
+        productId: String,
+        userId: String,
+        onComplete: (response: responseDeleteCart) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.deleteCart(productId, userId)
+                .subscribe(onNext = { responseDelete ->
+                    onComplete.invoke(responseDelete)
+                }, onError = { err ->
+                    onErrors?.invoke(err)
+                })
+        }
+    }
+
+    fun getInfoUser(
+        id: String,
+        onComplete: (response: getUserById) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.getInfoUser(id).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+    fun editProfile(
+        id: String,
+        body: UserEditBody,
+        onComplete: (response: userResponse) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.editProfile(id, body).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+    fun compressorImage(id: String,intent: Intent, onComplete: (bitmap: Bitmap) -> Unit) {
+        try {
+            imageFile = FileUtil.from(context, intent.data)?.also { file ->
+                launchHandler {
+                    context?.let { context ->
+                        imageFile = Compressor.compress(context, file)
+                        onComplete.invoke(BitmapFactory.decodeFile(imageFile?.absolutePath))
+                        updateImageProfile(id)
+                    }
+                }
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun updateImageProfile(id: String) {
+        imageFile?.asRequestBody("multipart/form-data".toMediaType())
+            ?.also { body ->
+                MultipartBody.Part.createFormData("avt", imageFile?.name, body).let { part ->
+                    launchHandler {
+                        flowOnIO(apiClient.editProfileImage(id, part))
+                            .subscribe(onNext = { response ->
+
+                            }, onError = { error ->
+                            })
+                    }
+                }
+            }
     }
 
 //    fun getInfoProduct(

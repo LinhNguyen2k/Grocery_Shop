@@ -303,7 +303,7 @@
     <string name="title_tab_other">Khác</string>
     <string name="title_tab_sell">Giỏ hàng</string>
     <string name="title_tab_customer">Cá Nhân</string>
-    
+
     <string name="Titel_san_pham_khuyen_mai">Sản Phẩm Khuyến Mãi</string>
     <string name="Titel_rau_cu_traicay">Rau - Củ - Trái Cây</string>
     <string name="Titel_thit_trung_haisan">Thịt - Trứng - Hải Sản</string>
@@ -318,6 +318,8 @@
     <string name="message_error_username_or_password">Thông tin tài khoản mật khẩu không chính xác</string>
     <string name="message_add_cart_success">Thêm vào giỏ hàng thành công</string>
     <string name="message_add_cart_failure">Thêm vào giỏ hàng thất bại</string>
+    <string name="message_delete_cart_success">Xóa thành công</string>
+    <string name="message_delete_cart_failure">Xóa thất bại</string>
     <!--Show string array-->
 
 </resources>

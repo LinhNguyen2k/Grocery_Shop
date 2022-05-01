@@ -45,27 +45,23 @@ class ProductCartAdapter : BaseRecyclerViewAdapter<productList, CustomItemCartBi
 
         binding.tvSubtraction.setOnClickListener {
             onTrashClickListenerSubtraction?.invoke(item)
-            count = count?.minus(1)
+            count = count!! - 1
             binding.tvResult.text = (count).toString()
-            val resultMoney : String = numberFormat.format(item.unitPrice?.times(count!!))
+            val resultMoney : String = numberFormat.format(item.unitPrice!! * count!!)
             binding.tvResultMoney.text = resultMoney
         }
 
         binding.tvAddCart.setOnClickListener {
             onTrashClickListenerAddCart?.invoke(item)
-            count = count?.plus(1)
-            binding.tvResult.text = count.toString()
-            val resultMoney : String = numberFormat.format(count?.let { it1 ->
-                item.unitPrice?.times(
-                    it1
-                )
-            })
+            count = count!! + 1
+            binding.tvResult.text = (count).toString()
+            val resultMoney : String = numberFormat.format(item.unitPrice!! * count!!)
             binding.tvResultMoney.text = resultMoney
         }
 
         binding.ivDeleteProduct.setOnClickListener {
             onTrashClickListenerDelete?.invoke(item)
-            remove(dataList[position])
+
         }
          binding.imgItem.setOnClickListener {
              onTrashClickListener?.invoke(item)

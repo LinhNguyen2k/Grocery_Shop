@@ -47,15 +47,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                     true
                 }
                 R.id.tab_customer -> {
-                    false
-                }
-                R.id.tab_other -> {
-                    if (currentPositionBtmNav == 3) return@setOnNavigationItemSelectedListener false
-                    currentPositionBtmNav = 3
+                    if (currentPositionBtmNav == 2) return@setOnNavigationItemSelectedListener false
+                    currentPositionBtmNav = 2
                     setCustomerFragment()
                     true
                 }
-
                 else -> {
                     false
                 }

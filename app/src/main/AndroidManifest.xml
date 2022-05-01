@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.grocery_shop">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -11,13 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grocery_Shop">
         <activity
-            android:screenOrientation="portrait"
-            android:name=".view.activity.SignUpActivity"
-            android:exported="true" />
+            android:name=".view.activity.EditProfileActivity"
+            android:exported="false" />
         <activity
-            android:screenOrientation="portrait"
+            android:name=".view.activity.SignUpActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".view.activity.SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 android:screenOrientation="portrait"
                 <action android:name="android.intent.action.MAIN" />
@@ -26,15 +32,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="portrait"
             android:name=".view.activity.LoginActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:screenOrientation="portrait"
             android:name=".view.activity.HomeActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -18,9 +18,4 @@
         android:id="@+id/tab_customer"
         android:icon="@drawable/ic_menu_customer"
         android:title="@string/title_tab_customer" />
-    <item
-        android:enabled="true"
-        android:id="@+id/tab_other"
-        android:icon="@drawable/ic_tab_other"
-        android:title="@string/title_tab_other" />
 </menu>
