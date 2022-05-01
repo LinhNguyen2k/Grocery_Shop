@@ -87,6 +87,7 @@
                     android:layout_marginLeft="@dimen/_2sdp"
                     android:textColor="#0080FF"
                     android:textSize="@dimen/_11sdp"
+                    android:text="Còn hàng"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -151,16 +152,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/tv_test1"
                     android:textSize="@dimen/_8sdp"
                     android:textColor="#151414"
-                    android:text="- Bộ lọc thô xử lý canxi Trị giá 350.000đ."
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textSize="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:textColor="#151414"
-                    android:text="- Lắp đặt, giao hàng miễn phí khu vực Hà Nội."
+                    android:maxLines="3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

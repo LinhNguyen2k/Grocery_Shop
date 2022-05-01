@@ -5,6 +5,7 @@ import android.text.TextUtils
 import com.bumptech.glide.Glide
 import com.example.grocery_shop.R
 import com.example.grocery_shop.base.BaseRecyclerViewAdapter
+import com.example.grocery_shop.base.PriceHelper
 import com.example.grocery_shop.databinding.CustomItemProductBinding
 import com.example.grocery_shop.model.category.productList
 import java.text.NumberFormat
@@ -27,7 +28,7 @@ class CategoryAdapter : BaseRecyclerViewAdapter<productList, CustomItemProductBi
             }
         }
 
-        binding.tvOldPriceSpBanChay.text = item.oldUnitPrice.toString()
+        binding.tvOldPriceSpBanChay.text = PriceHelper.getPriceFormat(item.oldUnitPrice)
         binding.tvOldPriceSpBanChay.paintFlags =  binding.tvOldPriceSpBanChay.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         val local = Locale("vi", "VN")
         val numberFormat = NumberFormat.getInstance(local)

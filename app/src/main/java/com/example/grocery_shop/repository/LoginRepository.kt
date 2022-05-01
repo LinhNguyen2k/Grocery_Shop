@@ -10,6 +10,7 @@ import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.cart.deleteCartBody
 import com.example.grocery_shop.model.category.productList
+import com.example.grocery_shop.model.order.orderBody
 import com.example.grocery_shop.model.user.UserEditBody
 import com.example.grocery_shop.model.user.infoUser.getUserById
 import com.example.grocery_shop.model.user.userResponse
@@ -17,6 +18,7 @@ import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 import com.example.grocery_shop.response.auth.responseNewPass
+import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.responseDeleteCart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -83,6 +85,21 @@ class LoginRepository {
       request: setNewPassBody
     ): Flow<responseNewPass> {
         return flow { emit(apiClient.setNewPassWord(request)) }.flowOn(Dispatchers.IO)
+    }
+
+
+  suspend fun orderClient(
+      id: String,
+      request: orderBody
+    ): Flow<orderResponse> {
+        return flow { emit(apiClient.orderClient(id, request)) }.flowOn(Dispatchers.IO)
+    }
+
+
+  suspend fun getListSearch(
+      key : String
+    ): Flow<List<productList>> {
+        return flow { emit(apiClient.getListSearch(key)) }.flowOn(Dispatchers.IO)
     }
 
 

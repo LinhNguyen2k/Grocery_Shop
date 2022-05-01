@@ -12,6 +12,7 @@
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/background_chat_right.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/bg_border.xml" value="0.25092592592592594" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/bg_border_add_cart.xml" value="0.25092592592592594" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/bg_border_add_customer.xml" value="0.25833333333333336" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/bg_border_close.xml" value="0.24537037037037038" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/bg_loading_dialog.xml" value="0.25833333333333336" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/bg_rounded_white.xml" value="0.25435897435897437" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_background_dialog_confirm.xml" value="0.25435897435897437" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_background_view_chat.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_email_icon.xml" value="0.24074074074074073" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_layout_search.xml" value="0.25833333333333336" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_lock_icon.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_login_button.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/custom_search_box.xml" value="0.24074074074074073" />
@@ -29,6 +31,7 @@
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_arrow_left.xml" value="0.19907407407407407" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.25833333333333336" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.25833333333333336" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_calender_gray.xml" value="0.25833333333333336" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_check_mark.xml" value="0.25435897435897437" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_close.xml" value="0.19907407407407407" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_facebook_white.xml" value="0.25435897435897437" />
@@ -38,10 +41,12 @@
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_tab_home.xml" value="0.25435897435897437" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_tab_other.xml" value="0.25435897435897437" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_tab_sell.xml" value="0.25435897435897437" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_vector_down_search.xml" value="0.25833333333333336" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/ic_white_circle.xml" value="0.25435897435897437" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/icon_send.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/lock_icon.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/lock_icon_focused.xml" value="0.24074074074074073" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/spinner_selector_two_v2.xml" value="0.25833333333333336" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/user_status_on.xml" value="0.2703125" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_edit_profile.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_for_got_password.xml" value="0.2421875" />
@@ -54,14 +59,19 @@
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/attr.xml" value="0.25416666666666665" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/custom_item_cart.xml" value="0.176" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/custom_item_product.xml" value="0.4" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/custom_item_view_search.xml" value="0.4" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/dialog_confirm.xml" value="0.4" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/dialog_confirm_v2.xml" value="0.2" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/dialog_waiting_loader.xml" value="0.2421875" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/edittext_layout.xml" value="0.2421875" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_add_info_user.xml" value="0.264" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_customer.xml" value="0.2" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_detail_product.xml" value="0.264" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_home.xml" value="0.34065934065934067" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_order.xml" value="0.264" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_other.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_sell.xml" value="0.2421875" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/fragment_view_all_category.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/loading_dialog.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/loading_view.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/toolbar_app.xml" value="0.25416666666666665" />

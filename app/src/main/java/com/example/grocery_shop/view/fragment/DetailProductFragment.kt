@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.grocery_shop.R
 import com.example.grocery_shop.adapter.CategoryAdapter
 import com.example.grocery_shop.base.BaseFragment
+import com.example.grocery_shop.base.PriceHelper
 import com.example.grocery_shop.base.RecyclerUtils
 import com.example.grocery_shop.customview.diaglog.DialogConfirm
 import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
@@ -52,6 +53,7 @@ class DetailProductFragment :
     override fun initData() {
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getInfoProduct(bundle: Bundle?) {
         item = bundle?.getParcelable(Constants.KEY_PRODUCT_SELECTED)
         val iv: String = item?.productImage.toString()
@@ -68,14 +70,15 @@ class DetailProductFragment :
             }
         }
 
-        binding.tvItemOldPrice.text = item?.oldUnitPrice.toString()
+        binding.tvItemOldPrice.text = PriceHelper.getPriceFormat(item?.oldUnitPrice)  + "đ"
 
         val local = Locale("vi", "VN")
         val numberFormat = NumberFormat.getInstance(local)
         val money: String = numberFormat.format(item?.unitPrice)
-        binding.tvItemNewPrice.text = money
+        binding.tvItemNewPrice.text = money + "đ"
         binding.tvItemContent.text = item?.descriptionProduct
         binding.tvQuantity.text = item?.quantity.toString()
+        binding.tvTest1.text = item?.descriptionProduct
     }
 
     private fun getListProduct(id: String) {

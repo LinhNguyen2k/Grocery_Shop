@@ -21,7 +21,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment(),
     View.OnClickListener, DefaultLifecycleObserver {
 
     private val loadingDialog by lazy { LoadingDialog() }
-    private var isLoaded = false
+    var isLoaded = false
     private var lastClickTime = 0L
     private val interval by lazy { 500L }
     private var _binding: VB? = null

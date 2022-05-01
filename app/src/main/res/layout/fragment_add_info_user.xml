@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/COLOR_GRAY_BG"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.example.grocery_shop.customview.toolbar.ToolBarApp
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:drawable_start="@drawable/ic_arrow_left"
+        app:title="Thông tin khách hàng" />
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_marginTop="?actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llfooter">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="10"
+            android:background="@color/COLOR_GRAY_BG"
+            android:orientation="vertical"
+            android:padding="@dimen/_16sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:text="Địa chỉ"
+                android:textColor="@color/COLOR_GRAY19"
+                android:textSize="@dimen/_14sdp" />
+
+            <LinearLayout style="@style/DMSLiteLinearInforDetail">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/edAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:background="@drawable/bg_border_add_customer"
+                        android:hint="Địa chỉ"
+                        android:inputType="textMultiLine"
+                        android:lines="2"
+                        android:maxLines="2"
+                        android:paddingVertical="@dimen/_4sdp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingRight="@dimen/_15sdp"
+                        android:scrollbars="vertical"
+                        android:textColor="@color/COLOR_GRAY19"
+                        android:visibility="visible" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:text="Chọn phương thức thanh toán"
+                android:textColor="@color/COLOR_GRAY19"
+                android:textSize="@dimen/_14sdp" />
+
+            <RelativeLayout
+                style="@style/DMSLiteLinearInforDetail"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/bg_border_add_customer"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/ic_vector_down_search"
+                    android:visibility="visible"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <Spinner
+                    android:id="@+id/spTypeProblem"
+                    style="@style/DMSLiteSpinnerSearchV2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    android:background="@color/TRANSPARENT"
+                    android:dropDownVerticalOffset="@dimen/_43sdp"
+                    android:visibility="visible" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:text="SĐT"
+                android:textColor="@color/COLOR_GRAY19"
+                android:textSize="@dimen/_14sdp" />
+
+            <LinearLayout style="@style/DMSLiteLinearInforDetail">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/edPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:background="@drawable/bg_border_add_customer"
+                        android:hint="SĐT"
+                        android:maxLength="10"
+                        android:paddingVertical="@dimen/_4sdp"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingRight="@dimen/_16sdp"
+                        android:scrollbars="vertical"
+                        android:textColor="@color/COLOR_GRAY19"
+                        android:visibility="visible" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/llfooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:paddingVertical="@dimen/_22sdp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/id_btn_clear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_close"
+            android:text="Nhập lại"
+            android:textAllCaps="false"
+            android:textColor="@color/COLOR_GRAY19"
+            android:textSize="@dimen/_13sdp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:background="@drawable/background_button_save"
+            android:filterTouchesWhenObscured="true"
+            android:text="Xác nhận"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

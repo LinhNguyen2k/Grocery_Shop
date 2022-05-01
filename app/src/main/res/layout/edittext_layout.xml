@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/edittextcustom">
+
+ <RelativeLayout
+     android:layout_centerVertical="true"
+     android:orientation="horizontal"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content">
+     <EditText
+         android:focusable="false"
+         android:layout_centerInParent="true"
+         android:windowSoftInputMode="stateAlwaysHidden"
+         android:paddingLeft="4dp"
+         android:layout_gravity="center_vertical"
+         android:cursorVisible="false"
+         android:id="@+id/edittext"
+         android:background="@android:color/transparent"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+
+     <ImageButton
+         android:id="@+id/ic_calendar"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_centerInParent="true"
+         android:layout_marginRight="5dp"
+         android:background="@null"
+         android:src="@drawable/ic_calender_gray"
+         android:visibility="visible" />
+
+         <ImageButton
+            android:layout_centerInParent="true"
+             android:layout_marginRight="5dp"
+             android:layout_alignParentRight="true"
+             android:id="@+id/ic_clear"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@null"
+             android:src="@drawable/clear"
+             android:visibility="gone" />
+
+ </RelativeLayout>
+
+</LinearLayout>

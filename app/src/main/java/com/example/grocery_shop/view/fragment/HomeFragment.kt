@@ -45,6 +45,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
     }
 
     override fun initListener() {
+        setLayoutViewAll()
         categoryListOne.onTrashClickListener = { data ->
             val bundle = Bundle()
             bundle.putParcelable(KEY_PRODUCT_SELECTED, data)
@@ -170,6 +171,54 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         binding.Viewflipper.inAnimation = animation_slide_in
         binding.Viewflipper.outAnimation = animation_slide_out
 
+    }
+
+    private fun setLayoutViewAll() {
+        binding.layoutViewAllSale.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("setCategory", "1")
+            (requireActivity() as? HomeActivity?)?.let { activity ->
+                activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
+                    arguments = bundle
+                }, true)
+            }
+        }
+        binding.layoutViewAllVegetable.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("setCategory", "2")
+            (requireActivity() as? HomeActivity?)?.let { activity ->
+                activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
+                    arguments = bundle
+                }, true)
+            }
+        }
+        binding.layoutViewAllFood.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("setCategory", "3")
+            (requireActivity() as? HomeActivity?)?.let { activity ->
+                activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
+                    arguments = bundle
+                }, true)
+            }
+        }
+        binding.layoutViewAllFrozenFoods.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("setCategory", "4")
+            (requireActivity() as? HomeActivity?)?.let { activity ->
+                activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
+                    arguments = bundle
+                }, true)
+            }
+        }
+        binding.layoutViewAllConfectionery.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("setCategory", "5")
+            (requireActivity() as? HomeActivity?)?.let { activity ->
+                activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
+                    arguments = bundle
+                }, true)
+            }
+        }
     }
 
 }

@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="HINT_TEXT_COLOR">#61000000</color>
     <color name="transparent">#00ffffff</color>
     <color name="colorPrimary">#eebf31</color>
     <color name="colorPrimaryDark">#eebf31</color>

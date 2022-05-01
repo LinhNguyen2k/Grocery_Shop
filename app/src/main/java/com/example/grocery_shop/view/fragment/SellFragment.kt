@@ -1,6 +1,7 @@
 package com.example.grocery_shop.view.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.viewModels
@@ -19,7 +20,10 @@ import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.util.Constants
 import com.example.grocery_shop.util.UserManager
 import com.example.grocery_shop.view.activity.HomeActivity
+import com.example.grocery_shop.view.activity.SignUpActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
+import com.mobile.mbccs.base.component.navigator.openActivity
+import java.text.FieldPosition
 
 class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>() {
     private val viewModels by viewModels<AuthenticationViewModel>()
@@ -40,10 +44,12 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
 
     override fun initListener() {
         initListenerCart()
-    }
-
-    override fun onResume() {
-        super.onResume()
+        binding.btRefund.setOnClickListener {
+            (requireActivity() as? HomeActivity?)?.replaceFragmentFullScreen(
+                AddInfoUserFragment(),
+                true
+            )
+        }
     }
 
     override fun initData() {
@@ -61,13 +67,19 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
 
         }
         productCartAdapter.onTrashClickListenerSubtraction = { data ->
-            addCart(
-                data.productId.toString(), -1, UserManager.getUserId(requireContext()).toString()
-            )
-            getAllListAfterChange()
+                addCart(
+                    data.productId.toString(),
+                    -1,
+                    UserManager.getUserId(requireContext()).toString()
+
+                )
+                getAllListAfterChange()
         }
         productCartAdapter.onTrashClickListenerDelete = { data ->
-            deleteCart(data.productId.toString(), UserManager.getUserId(requireContext()).toString())
+            deleteCart(
+                data.productId.toString(),
+                UserManager.getUserId(requireContext()).toString()
+            )
             productCartAdapter.dataList.remove(data)
             productCartAdapter.notifyDataSetChanged()
             resultMoney(productCartAdapter.dataList)
@@ -85,11 +97,13 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun getAllListAfterChange(){
-        viewModels.getAllProductCart(UserManager.getUserId(requireContext()).toString(), onComplete = { response ->
-            productCartAdapter.dataList = response as MutableList<productList>
-            resultMoney(response)
-        })
+    fun getAllListAfterChange() {
+        viewModels.getAllProductCart(
+            UserManager.getUserId(requireContext()).toString(),
+            onComplete = { response ->
+                productCartAdapter.dataList = response as MutableList<productList>
+                resultMoney(productCartAdapter.dataList)
+            })
     }
 
     private fun getAllCartUser(userId: String) {
@@ -106,11 +120,11 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
 
     }
 
-    private fun deleteCart(productId : String, userId : String){
+    private fun deleteCart(productId: String, userId: String) {
         viewModels.deleteCart(productId, userId, onComplete = { data ->
             if (data.status == true)
                 confirmDialog.showDialogConfirm(getString(R.string.message_delete_cart_success))
-        }, onErrors = {errorResponse ->
+        }, onErrors = { errorResponse ->
             confirmDialog.showDialogConfirm(getString(R.string.message_delete_cart_failure))
         })
     }
@@ -133,6 +147,6 @@ class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>(
             sumMoney += (listSell[i].quantity?.times(listSell[i].unitPrice!!)!!)
         }
         binding.btRefund.text = "Thanh Toán (${PriceHelper.getPriceFormat(sumMoney)}đ)"
-//        Log.d("LINHZZZZZZZZZZZZZZZ", sumMoney.toString())
     }
+
 }

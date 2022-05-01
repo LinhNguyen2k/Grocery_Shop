@@ -1,19 +1,14 @@
 package com.example.grocery_shop.view.activity
 
-import android.content.Intent
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.grocery_shop.R
 import com.example.grocery_shop.base.BaseVMActivity
-import com.example.grocery_shop.customview.diaglog.DialogConfirm
 import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.ActivityLoginBinding
-import com.example.grocery_shop.util.UserManager
 import com.example.grocery_shop.util.UserManager.getPassWord
 import com.example.grocery_shop.util.UserManager.getUserName
-import com.example.grocery_shop.util.UserManager.setFulLName
 import com.example.grocery_shop.util.UserManager.setPassWord
-import com.example.grocery_shop.util.UserManager.setPhotoUrl
 import com.example.grocery_shop.util.UserManager.setToken
 import com.example.grocery_shop.util.UserManager.setUserId
 import com.example.grocery_shop.util.UserManager.setUserName

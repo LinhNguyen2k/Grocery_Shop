@@ -7,8 +7,8 @@ class Constants {
     companion object {
         val LIVE_BASE_URL = "https://sale-server-app.herokuapp.com"
         val KEY_PRODUCT_SELECTED = "KEY_PRODUCT_SELECTED"
+        val SEARCH_NEWS_TIME_DELAY = 500L
     }
-    val SEARCH_NEWS_TIME_DELAY = 500L
 
 
     //Login response

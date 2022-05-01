@@ -16,6 +16,7 @@ import com.example.grocery_shop.model.auth.setNewPassBody
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
+import com.example.grocery_shop.model.order.orderBody
 import com.example.grocery_shop.model.user.UserEditBody
 import com.example.grocery_shop.model.user.infoUser.getUserById
 import com.example.grocery_shop.model.user.userResponse
@@ -23,6 +24,7 @@ import com.example.grocery_shop.repository.LoginRepository
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 import com.example.grocery_shop.response.auth.responseNewPass
+import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.responseDeleteCart
 import com.example.grocery_shop.util.UserManager
 import com.octalsoftaware.myapplication.utils.image.Compressor
@@ -224,6 +226,40 @@ class AuthenticationViewModel : BaseViewModel() {
         launchHandler {
             authenticationRepository.setNewPassWord(body).subscribe(onNext = { response ->
                 onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+
+        fun orderClient(
+            id: String,
+            body: orderBody,
+        onComplete: (response: orderResponse) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+            isLoading.value = true
+        launchHandler {
+            authenticationRepository.orderClient(id, body).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+                isLoading.value = false
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+        fun getListSearch(
+            key: String,
+        onComplete: (response: List<productList>) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+            isLoading.value = false
+        launchHandler {
+            authenticationRepository.getListSearch(key).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+                isLoading.value = false
             }, onError = { err ->
                 onErrors?.invoke(err)
             })

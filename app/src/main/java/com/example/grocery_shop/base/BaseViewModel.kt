@@ -79,7 +79,6 @@ open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
         onNext: (T) -> Unit
     ) {
         this@subscribe.onStart {
-            isLoading.value = onLoading
         }.onEach {
             if (it != null) {
                 withContext(Dispatchers.Main) {
@@ -90,7 +89,6 @@ open class BaseViewModel : ViewModel(), DefaultLifecycleObserver {
                 thread.postDelayed(disableLoading, 500)
             }
         }.catch {
-            isLoading.value = false
             Throwable(it).also { throwable ->
                 throwable.printStackTrace()
                 handleError(onError, throwable)
