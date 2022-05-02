@@ -1,6 +1,5 @@
-package com.example.grocery_shop.view.fragment
+package com.example.grocery_shop.view.fragment.client
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -11,7 +10,7 @@ import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.FragmentAddInfoUserBinding
 import com.example.grocery_shop.model.order.orderBody
 import com.example.grocery_shop.util.UserManager
-import com.example.grocery_shop.view.activity.HomeActivity
+import com.example.grocery_shop.view.activity.client.HomeActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 
 class AddInfoUserFragment : BaseFragment<FragmentAddInfoUserBinding, AuthenticationViewModel>() {
@@ -42,7 +41,7 @@ class AddInfoUserFragment : BaseFragment<FragmentAddInfoUserBinding, Authenticat
     }
 
 
-    fun setUpSpinner() {
+    private fun setUpSpinner() {
         binding.spTypeProblem.adapter = ArrayAdapter<String>(
             requireContext(),
             android.R.layout.simple_expandable_list_item_1,
@@ -70,7 +69,6 @@ class AddInfoUserFragment : BaseFragment<FragmentAddInfoUserBinding, Authenticat
                 position: Int,
                 id: Long
             ) {
-                TODO("Not yet implemented")
             }
 
         }

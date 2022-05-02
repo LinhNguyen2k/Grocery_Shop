@@ -1,22 +1,17 @@
-package com.example.grocery_shop.view.fragment
+package com.example.grocery_shop.view.fragment.client
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.grocery_shop.R
 import com.example.grocery_shop.adapter.CategoryAdapter
 import com.example.grocery_shop.base.BaseFragment
 import com.example.grocery_shop.base.RecyclerUtils
 import com.example.grocery_shop.databinding.FragmentHomeBinding
-import com.example.grocery_shop.util.Constants
 import com.example.grocery_shop.util.Constants.Companion.KEY_PRODUCT_SELECTED
-import com.example.grocery_shop.view.activity.HomeActivity
+import com.example.grocery_shop.view.activity.client.HomeActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 import com.squareup.picasso.Picasso
 import java.util.*

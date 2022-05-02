@@ -1,23 +1,15 @@
-package com.example.grocery_shop.view.activity
+package com.example.grocery_shop.view.activity.client
 
-import android.content.Intent
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.view.WindowInsets
-import android.view.WindowInsetsController
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.grocery_shop.R
 import com.example.grocery_shop.base.BaseActivity
 import com.example.grocery_shop.databinding.ActivityHomeBinding
 import com.example.grocery_shop.util.StatusBarUtil
-import com.example.grocery_shop.view.fragment.CustomerFragment
-import com.example.grocery_shop.view.fragment.HomeFragment
-import com.example.grocery_shop.view.fragment.SellFragment
+import com.example.grocery_shop.view.fragment.client.CustomerFragment
+import com.example.grocery_shop.view.fragment.client.HomeFragment
+import com.example.grocery_shop.view.fragment.client.SellFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private var currentPositionBtmNav = 0
@@ -105,7 +97,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
 
     override fun onBackPressed() {
-        if (currentPositionBtmNav == 0 && supportFragmentManager.backStackEntryCount >= 1) {
+        if (currentPositionBtmNav == 0 && supportFragmentManager.backStackEntryCount > 1) {
             supportFragmentManager.popBackStack()
         } else if (currentPositionBtmNav == 1 && supportFragmentManager.backStackEntryCount >= 1) {
             supportFragmentManager.popBackStack()

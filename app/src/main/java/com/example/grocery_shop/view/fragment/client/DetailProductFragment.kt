@@ -1,4 +1,4 @@
-package com.example.grocery_shop.view.fragment
+package com.example.grocery_shop.view.fragment.client
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,14 +10,12 @@ import com.example.grocery_shop.adapter.CategoryAdapter
 import com.example.grocery_shop.base.BaseFragment
 import com.example.grocery_shop.base.PriceHelper
 import com.example.grocery_shop.base.RecyclerUtils
-import com.example.grocery_shop.customview.diaglog.DialogConfirm
 import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.FragmentDetailProductBinding
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.util.Constants
 import com.example.grocery_shop.util.UserManager
-import com.example.grocery_shop.view.activity.HomeActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 import java.text.NumberFormat
 import java.util.*

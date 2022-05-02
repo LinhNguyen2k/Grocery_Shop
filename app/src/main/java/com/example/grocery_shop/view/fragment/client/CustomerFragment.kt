@@ -1,4 +1,4 @@
-package com.example.grocery_shop.view.fragment
+package com.example.grocery_shop.view.fragment.client
 
 import android.content.Intent
 import android.util.Log
@@ -9,8 +9,8 @@ import com.example.grocery_shop.base.BaseFragment
 import com.example.grocery_shop.databinding.FragmentCustomerBinding
 import com.example.grocery_shop.util.UserManager
 import com.example.grocery_shop.util.singleClick
-import com.example.grocery_shop.view.activity.EditProfileActivity
-import com.example.grocery_shop.view.activity.LoginActivity
+import com.example.grocery_shop.view.activity.client.EditProfileActivity
+import com.example.grocery_shop.view.activity.client.LoginActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 
 
@@ -57,11 +57,8 @@ class CustomerFragment : BaseFragment<FragmentCustomerBinding, AuthenticationVie
                 UserManager.setFulLName(requireContext(), data.fullName)
                 UserManager.setEmail(requireContext(), data.email)
                 UserManager.setPhone(requireContext(), data.phone)
+                UserManager.setDateOfBirth(requireContext(), data.dateOfBirthday.toString())
 
-                Log.d("LIXXXXXXXXXXXXXXXXX1", UserManager.getFullName(requireContext()))
-                Log.d("LIXXXXXXXXXXXXXXXXX2", UserManager.getUserName(requireContext()))
-                Log.d("LIXXXXXXXXXXXXXXXXX3", UserManager.getEmail(requireContext()))
-                Log.d("LIXXXXXXXXXXXXXXXXX4", UserManager.getPhone(requireContext()))
             })
     }
 

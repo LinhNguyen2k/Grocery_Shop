@@ -1,4 +1,4 @@
-package com.example.grocery_shop.view.activity
+package com.example.grocery_shop.view.activity.client
 
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +13,7 @@ import com.example.grocery_shop.util.UserManager.setToken
 import com.example.grocery_shop.util.UserManager.setUserId
 import com.example.grocery_shop.util.UserManager.setUserName
 import com.example.grocery_shop.util.singleClick
+import com.example.grocery_shop.view.activity.admin.AdminHomeActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 import com.mobile.mbccs.base.component.navigator.openActivity
 import kotlinx.coroutines.delay
@@ -25,9 +26,9 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
         DialogConfirmV2(this)
     }
 
-    override fun handleLoading(isCancel: Boolean?) {
-        super.handleLoading(true)
-    }
+//    override fun handleLoading(isCancel: Boolean?) {
+//        super.handleLoading(true)
+//    }
 
     override fun initView() {
         setUpLogin()
@@ -69,16 +70,30 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
                     viewModels.login(
                         binding.etLoginPassword.text.toString(),
                         binding.etLoginMobileNumber.text.toString(), onComplete = { data ->
-                            lifecycleScope.launchWhenCreated {
-                                openActivity(HomeActivity::class.java, true)
-                                setUserId(applicationContext, data.userId.toInt())
-                                setToken(applicationContext, data.jwt.toString())
-                                setUserName(applicationContext, data.username.toString())
-                                setPassWord(
-                                    applicationContext,
-                                    binding.etLoginPassword.text.toString()
-                                )
+                            if (data.roleName == "ROLE_ADMIN") {
+                                lifecycleScope.launchWhenCreated {
+                                    openActivity(AdminHomeActivity::class.java, true)
+                                    setUserId(applicationContext, data.userId.toInt())
+                                    setToken(applicationContext, data.jwt.toString())
+                                    setUserName(applicationContext, data.username.toString())
+                                    setPassWord(
+                                        applicationContext,
+                                        binding.etLoginPassword.text.toString()
+                                    )
+                                }
+                            } else {
+                                lifecycleScope.launchWhenCreated {
+                                    openActivity(HomeActivity::class.java, true)
+                                    setUserId(applicationContext, data.userId.toInt())
+                                    setToken(applicationContext, data.jwt.toString())
+                                    setUserName(applicationContext, data.username.toString())
+                                    setPassWord(
+                                        applicationContext,
+                                        binding.etLoginPassword.text.toString()
+                                    )
+                                }
                             }
+
                         }, onErrors = {
                             confirmDialog.showDialogConfirm(getString(R.string.message_error_username_or_password))
                         }

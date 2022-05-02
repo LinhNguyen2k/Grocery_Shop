@@ -1,7 +1,6 @@
-package com.example.grocery_shop.view.activity
+package com.example.grocery_shop.view.activity.client
 
 import android.Manifest
-import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,21 +8,14 @@ import android.os.Build
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
-import com.example.grocery_shop.R
-import com.example.grocery_shop.base.BaseActivity
 import com.example.grocery_shop.base.BaseVMActivity
+import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.ActivityEditProfileBinding
 import com.example.grocery_shop.model.user.UserEditBody
 import com.example.grocery_shop.util.UserManager
-import com.example.grocery_shop.view.fragment.CustomerFragment
+import com.example.grocery_shop.view.fragment.client.CustomerFragment
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
-import android.R.attr.data
-import android.net.Uri
-import android.R.attr.data
-import android.util.Log
-import com.example.grocery_shop.view.fragment.DetailProductFragment
+import com.example.grocery_shop.view.fragment.client.DetailProductFragment
 
 
 private const val PERMISSION_CODE = 1001
@@ -31,7 +23,9 @@ private const val IMAGE_PICK_CODE = 1000
 
 class EditProfileActivity : BaseVMActivity<ActivityEditProfileBinding, AuthenticationViewModel>() {
     private val viewModels by viewModels<AuthenticationViewModel>()
-
+    private val confirmDialog by lazy {
+        DialogConfirmV2(this)
+    }
 
     override fun initView() {
         getInfoUser()
@@ -42,15 +36,16 @@ class EditProfileActivity : BaseVMActivity<ActivityEditProfileBinding, Authentic
     override fun initListener() {
 
         binding.layoutSubmit.setOnClickListener {
-//            editProfile(null, binding.etRealName.text.toString(), binding.etUserName.text.toString(),binding.etEmail.text.toString(),  binding.etPhone.text.toString() )
+            editProfile( binding.etRealName.text.toString(), binding.etUserName.text.toString(),binding.etEmail.text.toString(),  binding.etPhone.text.toString(), binding.etDateOfBirth.text.toString() )
         }
 
         binding.ivEditImage.setOnClickListener {
             checkPerPermission()
         }
-        binding.toolbar.setOnClickListener {
+        binding.toolbar.onLeftClickListener = {
+            finish()
             (applicationContext as? HomeActivity?)?.replaceFragmentFullScreen(
-                DetailProductFragment(),
+                CustomerFragment(),
                 true
             )
         }
@@ -65,6 +60,7 @@ class EditProfileActivity : BaseVMActivity<ActivityEditProfileBinding, Authentic
         binding.etUserName.setText(UserManager.getFullName(applicationContext))
         binding.etEmail.setText(UserManager.getEmail(applicationContext))
         binding.etPhone.setText(UserManager.getPhone(applicationContext))
+        binding.etDateOfBirth.setText(UserManager.getDateOfBirth(applicationContext))
     }
 
     private fun chooseImageLocal() {
@@ -113,21 +109,23 @@ class EditProfileActivity : BaseVMActivity<ActivityEditProfileBinding, Authentic
     }
 
     private fun editProfile(
-        avatar: String? = null,
         username: String,
         fullName: String,
         email: String,
-        phone: String
+        phone: String,
+        dateOfBirth : String,
     ) {
-        var body = UserEditBody(avatar, username, fullName, email, phone)
+        loadingDialog.show(this,"")
+        val body = UserEditBody( username, fullName, email, phone, dateOfBirth)
         viewModels.editProfile(
             UserManager.getUserId(applicationContext).toString(),
             body,
             onComplete = { data ->
-                Toast.makeText(applicationContext, "Oke", Toast.LENGTH_SHORT).show()
+                loadingDialog.dismiss()
+                confirmDialog.showDialogConfirm("Sửa thông tin thành công")
             }, onErrors = {
-                Toast.makeText(applicationContext, "fail", Toast.LENGTH_SHORT).show()
-
+                loadingDialog.dismiss()
+                confirmDialog.showDialogConfirm("Sửa thông tin không thành công")
             })
     }
 }

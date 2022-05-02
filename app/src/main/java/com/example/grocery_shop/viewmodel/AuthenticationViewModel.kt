@@ -17,14 +17,19 @@ import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.order.orderBody
+import com.example.grocery_shop.model.product.productAddBody
 import com.example.grocery_shop.model.user.UserEditBody
 import com.example.grocery_shop.model.user.infoUser.getUserById
 import com.example.grocery_shop.model.user.userResponse
 import com.example.grocery_shop.repository.LoginRepository
+import com.example.grocery_shop.response.ErrorServer
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
+import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.order.orderResponse
+import com.example.grocery_shop.response.order.orderResponseManage
+import com.example.grocery_shop.response.product.responseManageProduct
 import com.example.grocery_shop.response.responseDeleteCart
 import com.example.grocery_shop.util.UserManager
 import com.octalsoftaware.myapplication.utils.image.Compressor
@@ -79,9 +84,11 @@ class AuthenticationViewModel : BaseViewModel() {
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
         val loginBody = LoginBody(password, username)
+        isLoading.value = true
         launchHandler {
             authenticationRepository.loginUpWithAccount(loginBody).subscribe(onNext = { response ->
                 onComplete.invoke(response)
+                isLoading.value = false
             }, onError = { err ->
                 onErrors?.invoke(err)
             })
@@ -161,6 +168,7 @@ class AuthenticationViewModel : BaseViewModel() {
         onComplete: (response: List<productList>) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
+        isLoading.value = true
         launchHandler {
             authenticationRepository.getAllProductCart(userId).subscribe(onNext = { cartResponse ->
                 onComplete.invoke(cartResponse)
@@ -194,9 +202,11 @@ class AuthenticationViewModel : BaseViewModel() {
         onComplete: (response: getUserById) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
+        isLoading.value = true
         launchHandler {
             authenticationRepository.getInfoUser(id).subscribe(onNext = { response ->
                 onComplete.invoke(response)
+                isLoading.value = false
             }, onError = { err ->
                 onErrors?.invoke(err)
             })
@@ -266,9 +276,103 @@ class AuthenticationViewModel : BaseViewModel() {
         }
     }
 
+        fun getListOrder(
+        onComplete: (response: List<orderResponseManage>) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.getListOrder().subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+        fun deleteOrder(
+            token : String,
+            key: String,
+        onComplete: (response: responseDeleteProduct) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.deleteOrder(token, key).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
 
 
-    fun compressorImage(id: String,intent: Intent, onComplete: (bitmap: Bitmap) -> Unit) {
+        fun deleteProduct(
+            token : String,
+            key: String,
+            onComplete: (response: responseDeleteProduct) -> Unit,
+            onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+            isLoading.value = false
+        launchHandler {
+            authenticationRepository.deleteProduct(token, key).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+                isLoading.value = false
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+
+        fun addProduct(
+            token : String,
+            key: String,
+            body : productAddBody,
+            onComplete: (response: responseManageProduct) -> Unit,
+            onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.addProduct(token, key, body).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+    fun compressorImageProduct(token: String, id: String, intent: Intent, onComplete: (bitmap: Bitmap) -> Unit) {
+        try {
+            imageFile = FileUtil.from(context, intent.data)?.also { file ->
+                launchHandler {
+                    context?.let { context ->
+                        imageFile = Compressor.compress(context, file)
+                        onComplete.invoke(BitmapFactory.decodeFile(imageFile?.absolutePath))
+                        updateImageProduct(token, id)
+                    }
+                }
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun updateImageProduct(token: String, id: String) {
+        imageFile?.asRequestBody("multipart/form-data".toMediaType())
+            ?.also { body ->
+                MultipartBody.Part.createFormData("avt", imageFile?.name, body).let { part ->
+                    launchHandler {
+                        flowOnIO(apiClient.addImage(token, id, part))
+                            .subscribe(onNext = { response ->
+
+                            }, onError = { error ->
+                            })
+                    }
+                }
+            }
+    }
+
+
+
+    fun compressorImage(id: String, intent: Intent, onComplete: (bitmap: Bitmap) -> Unit) {
         try {
             imageFile = FileUtil.from(context, intent.data)?.also { file ->
                 launchHandler {

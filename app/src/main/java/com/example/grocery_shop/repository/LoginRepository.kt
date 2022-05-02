@@ -11,15 +11,16 @@ import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.cart.deleteCartBody
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.order.orderBody
+import com.example.grocery_shop.model.product.productAddBody
 import com.example.grocery_shop.model.user.UserEditBody
 import com.example.grocery_shop.model.user.infoUser.getUserById
 import com.example.grocery_shop.model.user.userResponse
-import com.example.grocery_shop.response.CartGetAllResponseItem
-import com.example.grocery_shop.response.ForGotPassWordResponse
-import com.example.grocery_shop.response.LoginResponse
+import com.example.grocery_shop.response.*
+import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.order.orderResponse
-import com.example.grocery_shop.response.responseDeleteCart
+import com.example.grocery_shop.response.order.orderResponseManage
+import com.example.grocery_shop.response.product.responseManageProduct
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -102,6 +103,33 @@ class LoginRepository {
         return flow { emit(apiClient.getListSearch(key)) }.flowOn(Dispatchers.IO)
     }
 
+  suspend fun deleteProduct(
+      token : String,
+      key : String
+    ): Flow<responseDeleteProduct> {
+        return flow { emit(apiClient.deleteProduct(token, key)) }.flowOn(Dispatchers.IO)
+    }
+
+  suspend fun addProduct(
+      token : String,
+      key : String,
+      body: productAddBody
+    ): Flow<responseManageProduct> {
+        return flow { emit(apiClient.addProduct(token, key, body)) }.flowOn(Dispatchers.IO)
+    }
+
+
+    suspend fun getListOrder(
+    ): Flow< List<orderResponseManage>> {
+        return flow { emit(apiClient.getListOrder()) }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun deleteOrder(
+        token : String,
+        key : String
+    ): Flow< responseDeleteProduct> {
+        return flow { emit(apiClient.deleteOrder(token, key)) }.flowOn(Dispatchers.IO)
+    }
 
 
 }

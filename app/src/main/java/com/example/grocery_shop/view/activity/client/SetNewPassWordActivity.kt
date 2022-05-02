@@ -1,4 +1,4 @@
-package com.example.grocery_shop.view.activity
+package com.example.grocery_shop.view.activity.client
 
 import androidx.activity.viewModels
 import com.example.grocery_shop.base.BaseVMActivity

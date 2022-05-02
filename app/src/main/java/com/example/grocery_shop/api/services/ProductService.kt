@@ -8,15 +8,22 @@ import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.order.orderBody
 import com.example.grocery_shop.model.product.infoProduct
+import com.example.grocery_shop.model.product.productAddBody
 import com.example.grocery_shop.model.user.UserEditBody
 import com.example.grocery_shop.model.user.infoUser.getUserById
 import com.example.grocery_shop.model.user.updateImage.responseImage
 import com.example.grocery_shop.model.user.userResponse
+import com.example.grocery_shop.response.ErrorServer
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
+import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.order.orderResponse
+import com.example.grocery_shop.response.order.orderResponseManage
+import com.example.grocery_shop.response.product.responseManageProduct
 import com.example.grocery_shop.response.responseDeleteCart
+import com.example.grocery_shop.util.UserManager
+import com.google.gson.reflect.TypeToken
 import okhttp3.MultipartBody
 import retrofit2.http.*
 
@@ -74,4 +81,19 @@ interface ProductService {
 
     @GET("/api/v1/products/search")
     suspend fun getListSearch(@Query("q") q: String? = null): List <productList>
+
+    @DELETE("/api/v1/products")
+    suspend fun deleteProduct(@Header("Authorization")token: String, @Query("id") id: String? = null): responseDeleteProduct
+
+    @POST("/api/v1/products")
+    suspend fun addProduct(@Header("Authorization")token: String, @Query("cateId") id: String? = null, @Body response: productAddBody): responseManageProduct
+
+    @POST("/api/v1/products")
+    suspend fun addImage(@Header("Authorization")token: String, @Query("id") id: String? = null,  @Part avt: MultipartBody.Part): responseManageProduct
+
+    @GET("/api/v1/orders")
+    suspend fun getListOrder(): List <orderResponseManage>
+
+    @DELETE("/api/v1/orders")
+    suspend fun deleteOrder(@Header("Authorization")token: String, @Query("id") id : String): responseDeleteProduct
 }

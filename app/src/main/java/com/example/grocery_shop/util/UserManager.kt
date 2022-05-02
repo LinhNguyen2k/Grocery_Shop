@@ -15,6 +15,7 @@ object UserManager {
     private const val USERNAME = "user_name_login_v2"
     private const val FULL_NAME = "full_name_v2"
     private const val PROFILE_IMAGE = "profile_image_v2"
+    private const val DATE_OF_BIRTH = "date_of_birth"
     private const val EMAIL = "email_v2"
     private const val PHONE = "phone_v2"
     private const val COUNTRY_CODE = "country_code"
@@ -57,6 +58,12 @@ object UserManager {
     }
 
     fun getPassWord(context: Context): String = getPrefs(context).getString(PASSWORD, "")?: ""
+
+    fun setDateOfBirth(context: Context, passWord: String) {
+        getPrefs(context).edit { putString(DATE_OF_BIRTH, passWord) }
+    }
+
+    fun getDateOfBirth(context: Context): String = getPrefs(context).getString(DATE_OF_BIRTH, "")?: ""
 
     fun setUserName(context: Context, userName: String) {
         getPrefs(context).edit { putString(USERNAME, userName) }

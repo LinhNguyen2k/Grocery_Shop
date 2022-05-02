@@ -1,9 +1,7 @@
-package com.example.grocery_shop.view.fragment
+package com.example.grocery_shop.view.fragment.client
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.viewModels
 import com.example.grocery_shop.R
 import com.example.grocery_shop.adapter.CustomAnimation
@@ -14,16 +12,11 @@ import com.example.grocery_shop.base.RecyclerUtils
 import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.FragmentSellBinding
 import com.example.grocery_shop.model.cart.CartBody
-import com.example.grocery_shop.model.cart.deleteCartBody
 import com.example.grocery_shop.model.category.productList
-import com.example.grocery_shop.response.CartGetAllResponseItem
 import com.example.grocery_shop.util.Constants
 import com.example.grocery_shop.util.UserManager
-import com.example.grocery_shop.view.activity.HomeActivity
-import com.example.grocery_shop.view.activity.SignUpActivity
+import com.example.grocery_shop.view.activity.client.HomeActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
-import com.mobile.mbccs.base.component.navigator.openActivity
-import java.text.FieldPosition
 
 class SellFragment : BaseFragment<FragmentSellBinding, AuthenticationViewModel>() {
     private val viewModels by viewModels<AuthenticationViewModel>()

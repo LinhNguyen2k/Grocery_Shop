@@ -1,9 +1,8 @@
-package com.example.grocery_shop.view.activity
+package com.example.grocery_shop.view.activity.client
 
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.grocery_shop.base.BaseVMActivity
 import com.example.grocery_shop.databinding.ActivitySignUpBinding
 import com.example.grocery_shop.util.singleClick

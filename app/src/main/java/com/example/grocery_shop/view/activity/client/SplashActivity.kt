@@ -1,9 +1,7 @@
-package com.example.grocery_shop.view.activity
+package com.example.grocery_shop.view.activity.client
 
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.grocery_shop.R
 import com.example.grocery_shop.base.BaseActivity

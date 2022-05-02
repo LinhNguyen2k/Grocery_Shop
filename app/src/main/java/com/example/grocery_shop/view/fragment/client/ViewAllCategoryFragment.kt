@@ -1,10 +1,9 @@
-package com.example.grocery_shop.view.fragment
+package com.example.grocery_shop.view.fragment.client
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import com.example.grocery_shop.adapter.CategoryAdapter
 import com.example.grocery_shop.adapter.ProductViewSearchAdapter
 import com.example.grocery_shop.base.BaseFragment
 import com.example.grocery_shop.base.RecyclerUtils
@@ -12,7 +11,7 @@ import com.example.grocery_shop.databinding.FragmentViewAllCategoryBinding
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.util.Constants
 import com.example.grocery_shop.util.Constants.Companion.SEARCH_NEWS_TIME_DELAY
-import com.example.grocery_shop.view.activity.HomeActivity
+import com.example.grocery_shop.view.activity.client.HomeActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
@@ -75,5 +74,6 @@ class ViewAllCategoryFragment : BaseFragment<FragmentViewAllCategoryBinding, Aut
             )
         })
     }
+
 
 }

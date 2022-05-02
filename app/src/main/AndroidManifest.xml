@@ -14,20 +14,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grocery_Shop">
         <activity
-            android:name=".view.activity.SetNewPassWordActivity"
+            android:name=".view.activity.admin.ViewAllOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.ForGotPasswordActivity"
+            android:name=".view.activity.admin.UploadProductActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.EditProfileActivity"
+            android:name=".view.activity.admin.ManageProductActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.SignUpActivity"
+            android:name=".view.activity.admin.AdminHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.client.SetNewPassWordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.client.ForGotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.client.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.client.SignUpActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.SplashActivity"
+            android:name=".view.activity.client.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -38,11 +50,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name=".view.activity.client.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.HomeActivity"
+            android:name=".view.activity.client.HomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
     </application>

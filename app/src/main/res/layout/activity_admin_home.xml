@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/COLOR_GRAY_BG"
+    android:paddingHorizontal="@dimen/_20sdp"
+    tools:context=".view.activity.admin.AdminHomeActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatar"
+        android:src="@drawable/avata"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="?actionBarSize" />
+
+    <TextView
+        android:id="@+id/tv_admin"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_avatar"
+        android:layout_centerHorizontal="true"
+        android:text="Admin"
+        android:textStyle="bold"
+        android:textSize="@dimen/_20sdp" />
+    <Button
+        android:id="@+id/layout_manageProduct"
+        style="@style/ButtonText"
+        android:layout_below="@+id/tv_admin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_medium"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Quản lý sản phẩm"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/colorPrimary"
+        />
+
+    <Button
+        android:id="@+id/layout_manageOrder"
+        style="@style/ButtonText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_medium"
+        android:layout_below="@+id/layout_manageProduct"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Quản lý hóa đơn"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/colorGreen" />
+    <Button
+        android:id="@+id/layout_manageAccount"
+        style="@style/ButtonText"
+        android:layout_below="@+id/layout_manageOrder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_medium"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Quản lý tài khoản"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/teal_200"
+        />
+</RelativeLayout>
