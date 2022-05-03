@@ -355,7 +355,7 @@ class AuthenticationViewModel : BaseViewModel() {
         }
     }
 
-    private fun updateImageProduct(token: String, id: String) {
+     fun updateImageProduct(token: String, id: String) {
         imageFile?.asRequestBody("multipart/form-data".toMediaType())
             ?.also { body ->
                 MultipartBody.Part.createFormData("avt", imageFile?.name, body).let { part ->

@@ -1,5 +1,6 @@
 package com.example.grocery_shop.view.activity.admin
 
+import android.annotation.SuppressLint
 import androidx.activity.viewModels
 import com.example.grocery_shop.adapter.admin.OrderAdapter
 import com.example.grocery_shop.adapter.admin.ProductAdapter
@@ -23,6 +24,7 @@ class ViewAllOrderActivity : BaseVMActivity<ActivityViewAllOrderBinding, Authent
         getAllOrder()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun initListener() {
         binding.toolbar.onLeftClickListener = {finish()}
         categoryListOne.onTrashClickListenerDelete = { data ->

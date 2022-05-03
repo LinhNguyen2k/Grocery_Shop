@@ -87,8 +87,8 @@ interface ProductService {
 
     @POST("/api/v1/products")
     suspend fun addProduct(@Header("Authorization")token: String, @Query("cateId") id: String? = null, @Body response: productAddBody): responseManageProduct
-
-    @POST("/api/v1/products")
+    @Multipart
+    @POST("/api/v1/products/avt")
     suspend fun addImage(@Header("Authorization")token: String, @Query("id") id: String? = null,  @Part avt: MultipartBody.Part): responseManageProduct
 
     @GET("/api/v1/orders")

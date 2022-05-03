@@ -8,6 +8,7 @@ import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.ActivityLoginBinding
 import com.example.grocery_shop.util.UserManager.getPassWord
 import com.example.grocery_shop.util.UserManager.getUserName
+import com.example.grocery_shop.util.UserManager.setFulLName
 import com.example.grocery_shop.util.UserManager.setPassWord
 import com.example.grocery_shop.util.UserManager.setToken
 import com.example.grocery_shop.util.UserManager.setUserId
@@ -76,6 +77,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
                                     setUserId(applicationContext, data.userId.toInt())
                                     setToken(applicationContext, data.jwt.toString())
                                     setUserName(applicationContext, data.username.toString())
+                                    setFulLName(applicationContext, data.fullName.toString())
                                     setPassWord(
                                         applicationContext,
                                         binding.etLoginPassword.text.toString()
@@ -87,6 +89,7 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
                                     setUserId(applicationContext, data.userId.toInt())
                                     setToken(applicationContext, data.jwt.toString())
                                     setUserName(applicationContext, data.username.toString())
+                                    setFulLName(applicationContext, data.fullName.toString())
                                     setPassWord(
                                         applicationContext,
                                         binding.etLoginPassword.text.toString()

@@ -79,7 +79,7 @@ class AddInfoUserFragment : BaseFragment<FragmentAddInfoUserBinding, Authenticat
         note: String,
         phoneNumber: String
     ) {
-        var result = orderBody(address, note, phoneNumber)
+        var result = orderBody(address, note, UserManager.getFullName(requireContext()), phoneNumber)
         viewModels.orderClient(
             UserManager.getUserId(requireContext()).toString(),
             result,

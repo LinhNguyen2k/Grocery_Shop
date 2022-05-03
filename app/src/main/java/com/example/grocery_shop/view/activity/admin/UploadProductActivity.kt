@@ -9,6 +9,7 @@ import android.os.Build
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import com.example.grocery_shop.base.BaseVMActivity
@@ -23,6 +24,7 @@ private const val IMAGE_PICK_CODE = 1000
 
 class UploadProductActivity :
     BaseVMActivity<ActivityUploadProductBinding, AuthenticationViewModel>() {
+    lateinit var datav2 : Intent
     private val viewModels by viewModels<AuthenticationViewModel>()
     val option = arrayOf(
         "Sản phẩm khuyến mãi",
@@ -95,6 +97,9 @@ class UploadProductActivity :
             body,
             onComplete = { data ->
                 loadingDialog.dismiss()
+                    viewModel.compressorImageProduct("Bearer " + UserManager.getToken(this), data.productId.toString() , datav2,onComplete ={
+
+                    } )
                 confirmDialog.showDialogConfirm("Thêm sản phẩm thành công")
             },
             onErrors = { err ->
@@ -177,8 +182,9 @@ class UploadProductActivity :
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             data?.let { data ->
                 binding.imgAddProduct.setImageURI(data.data)
-//                binding.btnConfirm.setOnClickListener {
-//                    viewModel.compressorImage(UserManager.getUserId(applicationContext).toString(), data, onComplete = { bit ->
+                 datav2 = data
+//                viewModels.updateImageProduct("Bearer " + UserManager.getToken(this), "84")
+//                    viewModel.compressorImageProduct("Bearer " + UserManager.getToken(this), "83" , data, onComplete = { bit ->
 //                    })
 //                }
 
