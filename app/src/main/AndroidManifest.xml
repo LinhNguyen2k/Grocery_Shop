@@ -14,26 +14,41 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grocery_Shop">
         <activity
+            android:name=".view.activity.admin.AccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.admin.EditProductActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".view.activity.admin.ViewAllOrderActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.admin.UploadProductActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.admin.ManageProductActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.admin.AdminHomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.client.SetNewPassWordActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.client.ForGotPasswordActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.client.EditProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.activity.client.SignUpActivity"
             android:exported="true"

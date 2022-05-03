@@ -49,7 +49,9 @@
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/lock_icon_focused.xml" value="0.24074074074074073" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/spinner_selector_two_v2.xml" value="0.25833333333333336" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/drawable/user_status_on.xml" value="0.2703125" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_account.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_admin_home.xml" value="0.2421875" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_edit_product.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_edit_profile.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_for_got_password.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_home.xml" value="0.2421875" />
@@ -62,6 +64,7 @@
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_upload_product.xml" value="0.264" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/activity_view_all_order.xml" value="0.228125" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/attr.xml" value="0.25416666666666665" />
+        <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/custom_account_user.xml" value="0.2421875" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/custom_item_cart.xml" value="0.176" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/custom_item_product.xml" value="0.4" />
         <entry key="..\:/Code/Android_2022/Grocery shop/app/src/main/res/layout/custom_item_product_manage.xml" value="0.264" />

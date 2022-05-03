@@ -7,9 +7,11 @@ import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.order.orderBody
+import com.example.grocery_shop.model.product.bodyEditProduct
 import com.example.grocery_shop.model.product.infoProduct
 import com.example.grocery_shop.model.product.productAddBody
 import com.example.grocery_shop.model.user.UserEditBody
+import com.example.grocery_shop.model.user.account.accountResponseItem
 import com.example.grocery_shop.model.user.infoUser.getUserById
 import com.example.grocery_shop.model.user.updateImage.responseImage
 import com.example.grocery_shop.model.user.userResponse
@@ -20,6 +22,7 @@ import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.order.orderResponseManage
+import com.example.grocery_shop.response.product.responseEditProduct
 import com.example.grocery_shop.response.product.responseManageProduct
 import com.example.grocery_shop.response.responseDeleteCart
 import com.example.grocery_shop.util.UserManager
@@ -96,4 +99,10 @@ interface ProductService {
 
     @DELETE("/api/v1/orders")
     suspend fun deleteOrder(@Header("Authorization")token: String, @Query("id") id : String): responseDeleteProduct
+
+    @GET("/api/v1/users")
+    suspend fun getAllAccount(@Header("Authorization")token: String): List<accountResponseItem>
+
+    @POST("/api/v1/products/change-info")
+    suspend fun editInfoProduct(@Header("Authorization")token: String, @Query("id") id: String, @Body response: bodyEditProduct): responseEditProduct
 }

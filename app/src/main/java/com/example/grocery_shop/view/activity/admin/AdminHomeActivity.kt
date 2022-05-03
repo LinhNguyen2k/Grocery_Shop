@@ -18,6 +18,9 @@ class AdminHomeActivity : BaseVMActivity<ActivityAdminHomeBinding, Authenticatio
         binding.layoutManageOrder.setOnClickListener {
             openActivity(ViewAllOrderActivity::class.java)
         }
+        binding.layoutManageAccount.setOnClickListener {
+            openActivity(AccountActivity::class.java)
+        }
     }
 
     override fun initData() {

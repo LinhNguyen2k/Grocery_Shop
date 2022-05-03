@@ -3,7 +3,6 @@ package com.example.grocery_shop.view.activity.admin
 import android.annotation.SuppressLint
 import androidx.activity.viewModels
 import com.example.grocery_shop.adapter.admin.OrderAdapter
-import com.example.grocery_shop.adapter.admin.ProductAdapter
 import com.example.grocery_shop.base.BaseVMActivity
 import com.example.grocery_shop.base.RecyclerUtils
 import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
@@ -28,7 +27,7 @@ class ViewAllOrderActivity : BaseVMActivity<ActivityViewAllOrderBinding, Authent
     override fun initListener() {
         binding.toolbar.onLeftClickListener = {finish()}
         categoryListOne.onTrashClickListenerDelete = { data ->
-            viewModels.deleteOrder(UserManager.getToken(this), data.orderId.toString(), onComplete = { response ->
+            viewModels.deleteOrder("Bearer " + UserManager.getToken(this), data.orderId.toString(), onComplete = { response ->
                 confirmDialog.showDialogConfirm("Xóa đơn hàng thành công")
                 categoryListOne.dataList.remove(data)
                 categoryListOne.notifyDataSetChanged()

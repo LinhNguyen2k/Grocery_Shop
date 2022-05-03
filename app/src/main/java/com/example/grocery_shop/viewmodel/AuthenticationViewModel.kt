@@ -17,21 +17,22 @@ import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.order.orderBody
+import com.example.grocery_shop.model.product.bodyEditProduct
 import com.example.grocery_shop.model.product.productAddBody
 import com.example.grocery_shop.model.user.UserEditBody
+import com.example.grocery_shop.model.user.account.accountResponseItem
 import com.example.grocery_shop.model.user.infoUser.getUserById
 import com.example.grocery_shop.model.user.userResponse
 import com.example.grocery_shop.repository.LoginRepository
-import com.example.grocery_shop.response.ErrorServer
 import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.order.orderResponseManage
+import com.example.grocery_shop.response.product.responseEditProduct
 import com.example.grocery_shop.response.product.responseManageProduct
 import com.example.grocery_shop.response.responseDeleteCart
-import com.example.grocery_shop.util.UserManager
 import com.octalsoftaware.myapplication.utils.image.Compressor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -228,7 +229,7 @@ class AuthenticationViewModel : BaseViewModel() {
         }
     }
 
-        fun setNewPassWord(
+    fun setNewPassWord(
         body: setNewPassBody,
         onComplete: (response: responseNewPass) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
@@ -243,13 +244,13 @@ class AuthenticationViewModel : BaseViewModel() {
     }
 
 
-        fun orderClient(
-            id: String,
-            body: orderBody,
+    fun orderClient(
+        id: String,
+        body: orderBody,
         onComplete: (response: orderResponse) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
-            isLoading.value = true
+        isLoading.value = true
         launchHandler {
             authenticationRepository.orderClient(id, body).subscribe(onNext = { response ->
                 onComplete.invoke(response)
@@ -260,12 +261,12 @@ class AuthenticationViewModel : BaseViewModel() {
         }
     }
 
-        fun getListSearch(
-            key: String,
+    fun getListSearch(
+        key: String,
         onComplete: (response: List<productList>) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
-            isLoading.value = false
+        isLoading.value = false
         launchHandler {
             authenticationRepository.getListSearch(key).subscribe(onNext = { response ->
                 onComplete.invoke(response)
@@ -276,7 +277,7 @@ class AuthenticationViewModel : BaseViewModel() {
         }
     }
 
-        fun getListOrder(
+    fun getListOrder(
         onComplete: (response: List<orderResponseManage>) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
@@ -289,9 +290,9 @@ class AuthenticationViewModel : BaseViewModel() {
         }
     }
 
-        fun deleteOrder(
-            token : String,
-            key: String,
+    fun deleteOrder(
+        token: String,
+        key: String,
         onComplete: (response: responseDeleteProduct) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
@@ -305,13 +306,13 @@ class AuthenticationViewModel : BaseViewModel() {
     }
 
 
-        fun deleteProduct(
-            token : String,
-            key: String,
-            onComplete: (response: responseDeleteProduct) -> Unit,
-            onErrors: ((ErrorResponse?) -> Unit)? = null
+    fun deleteProduct(
+        token: String,
+        key: String,
+        onComplete: (response: responseDeleteProduct) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
-            isLoading.value = false
+        isLoading.value = false
         launchHandler {
             authenticationRepository.deleteProduct(token, key).subscribe(onNext = { response ->
                 onComplete.invoke(response)
@@ -323,12 +324,12 @@ class AuthenticationViewModel : BaseViewModel() {
     }
 
 
-        fun addProduct(
-            token : String,
-            key: String,
-            body : productAddBody,
-            onComplete: (response: responseManageProduct) -> Unit,
-            onErrors: ((ErrorResponse?) -> Unit)? = null
+    fun addProduct(
+        token: String,
+        key: String,
+        body: productAddBody,
+        onComplete: (response: responseManageProduct) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
         launchHandler {
             authenticationRepository.addProduct(token, key, body).subscribe(onNext = { response ->
@@ -339,7 +340,12 @@ class AuthenticationViewModel : BaseViewModel() {
         }
     }
 
-    fun compressorImageProduct(token: String, id: String, intent: Intent, onComplete: (bitmap: Bitmap) -> Unit) {
+    fun compressorImageProduct(
+        token: String,
+        id: String,
+        intent: Intent,
+        onComplete: (bitmap: Bitmap) -> Unit
+    ) {
         try {
             imageFile = FileUtil.from(context, intent.data)?.also { file ->
                 launchHandler {
@@ -355,7 +361,7 @@ class AuthenticationViewModel : BaseViewModel() {
         }
     }
 
-     fun updateImageProduct(token: String, id: String) {
+    fun updateImageProduct(token: String, id: String) {
         imageFile?.asRequestBody("multipart/form-data".toMediaType())
             ?.also { body ->
                 MultipartBody.Part.createFormData("avt", imageFile?.name, body).let { part ->
@@ -369,7 +375,6 @@ class AuthenticationViewModel : BaseViewModel() {
                 }
             }
     }
-
 
 
     fun compressorImage(id: String, intent: Intent, onComplete: (bitmap: Bitmap) -> Unit) {
@@ -403,16 +408,32 @@ class AuthenticationViewModel : BaseViewModel() {
             }
     }
 
-//    fun getInfoProduct(
-//        id: String?,
-//        onComplete: (response: infoProduct) -> Unit
-//    ) {
-//        isLoading.value = true
-//        launchHandler {
-//            flowOnIO(apiClient.getInfoProduct(id)).subscribe { response ->
-//                onComplete.invoke(response)
-//                isLoading.value = false
-//            }
-//        }
-//    }
+    fun getAllAccount(
+        token: String,
+        onComplete: (response: List<accountResponseItem>) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.getAllAccount(token).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+    fun editInfoProduct(
+        token: String,
+        id: String,
+        body: bodyEditProduct,
+        onComplete: (response: responseEditProduct) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.editInfoProduct(token, id, body).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
 }

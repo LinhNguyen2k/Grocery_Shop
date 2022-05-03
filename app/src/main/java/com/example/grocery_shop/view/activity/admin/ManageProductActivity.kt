@@ -1,9 +1,11 @@
 package com.example.grocery_shop.view.activity.admin
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.example.grocery_shop.adapter.CategoryAdapter
+import com.example.grocery_shop.adapter.CustomAnimation
 import com.example.grocery_shop.adapter.admin.ProductAdapter
 import com.example.grocery_shop.base.BaseVMActivity
 import com.example.grocery_shop.base.RecyclerUtils
@@ -29,9 +31,11 @@ class ManageProductActivity :
 
     override fun initListener() {
         binding.toolbar.onLeftClickListener = { finish() }
+        binding.rcManageProduct.itemAnimator = CustomAnimation()
         binding.btAddProduct.setOnClickListener {
             openActivity(UploadProductActivity::class.java)
         }
+        editProduct()
         deleteProduct()
     }
 
@@ -51,8 +55,17 @@ class ManageProductActivity :
                 onErrors = {
                     confirmDialog.showDialogConfirm("Xóa không thành công")
                 })
-//            categoryListOne.dataList.remove(data)
-//            categoryListOne.notifyDataSetChanged()
+            categoryListOne.dataList.remove(data)
+            categoryListOne.notifyDataSetChanged()
+        }
+    }
+
+    private fun editProduct() {
+        categoryListOne.onTrashClickListenerEdit = { data ->
+            var intent = Intent(this, EditProductActivity::class.java)
+            intent.putExtra("EditProductManage",data)
+            startActivity(intent)
+
         }
     }
 

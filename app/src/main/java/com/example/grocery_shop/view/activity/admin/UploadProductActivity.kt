@@ -24,7 +24,7 @@ private const val IMAGE_PICK_CODE = 1000
 
 class UploadProductActivity :
     BaseVMActivity<ActivityUploadProductBinding, AuthenticationViewModel>() {
-    lateinit var datav2 : Intent
+    lateinit var dataV2 : Intent
     private val viewModels by viewModels<AuthenticationViewModel>()
     val option = arrayOf(
         "Sản phẩm khuyến mãi",
@@ -93,11 +93,11 @@ class UploadProductActivity :
         loadingDialog.show(this,"")
         viewModels.addProduct(
             "Bearer " + UserManager.getToken(this),
-            "1",
+            methodPay,
             body,
             onComplete = { data ->
                 loadingDialog.dismiss()
-                    viewModel.compressorImageProduct("Bearer " + UserManager.getToken(this), data.productId.toString() , datav2,onComplete ={
+                    viewModel.compressorImageProduct("Bearer " + UserManager.getToken(this), data.productId.toString() , dataV2,onComplete ={
 
                     } )
                 confirmDialog.showDialogConfirm("Thêm sản phẩm thành công")
@@ -182,7 +182,7 @@ class UploadProductActivity :
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             data?.let { data ->
                 binding.imgAddProduct.setImageURI(data.data)
-                 datav2 = data
+                 dataV2 = data
 //                viewModels.updateImageProduct("Bearer " + UserManager.getToken(this), "84")
 //                    viewModel.compressorImageProduct("Bearer " + UserManager.getToken(this), "83" , data, onComplete = { bit ->
 //                    })

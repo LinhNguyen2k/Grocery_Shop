@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import com.example.grocery_shop.base.BaseRecyclerViewAdapter
 import com.example.grocery_shop.databinding.CustomItemViewAllOrderBinding
 import com.example.grocery_shop.response.order.orderResponseManage
+import java.lang.Exception
 import java.text.SimpleDateFormat
 
 class OrderAdapter : BaseRecyclerViewAdapter<orderResponseManage, CustomItemViewAllOrderBinding>() {
     var onTrashClickListenerDelete: ((item: orderResponseManage) -> Unit)? = null
+
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun bindData(
         binding: CustomItemViewAllOrderBinding,
@@ -15,22 +17,21 @@ class OrderAdapter : BaseRecyclerViewAdapter<orderResponseManage, CustomItemView
         position: Int
     ) {
 
-        binding.tvNameProduct.text =item.note
-        binding.tvAddress.text ="Địa chỉ: " + item.address
-//        if (item.fullName.toString().isEmpty()){
-//            binding.tvNameOrder.text = "Nguyễn Anh Linh"
-//        } else {
-//            binding.tvNameOrder.text  = item.fullName.toString()
-//        }
+        binding.tvNameProduct.text = item.note
+        binding.tvAddress.text = "Địa chỉ: " + item.address
 
-        binding.tvSumMoney.text ="Tổng tiền: " + item.totalAmount.toString()
-        binding.tvPhoneNumber.text ="Số điện thoại: " + item.phoneNumber
+        try {
+            binding.tvNameOrder.text = item.fullName.toString()
+        } catch (e: Exception) {
 
-//        binding.tvQuantity.text = item.orderDetailEntities[position].quantity.toString()
+        }
+
+        binding.tvSumMoney.text = "Tổng tiền: " + item.totalAmount.toString()
+        binding.tvPhoneNumber.text = "Số điện thoại: " + item.phoneNumber
         val fomat = item.createDate.substring(0, 9)
         val formatter = SimpleDateFormat("yyyy-MM-dd")
         binding.tvDateOrder.text = formatter.parse(fomat).toString()
-        binding.tvDateOrder.text ="Thời gian: " + item.createDate
+        binding.tvDateOrder.text = "Thời gian: " + item.createDate
 
 
         binding.btnAddDelete.setOnClickListener {

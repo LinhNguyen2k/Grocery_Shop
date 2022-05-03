@@ -11,8 +11,10 @@ import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.cart.deleteCartBody
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.order.orderBody
+import com.example.grocery_shop.model.product.bodyEditProduct
 import com.example.grocery_shop.model.product.productAddBody
 import com.example.grocery_shop.model.user.UserEditBody
+import com.example.grocery_shop.model.user.account.accountResponseItem
 import com.example.grocery_shop.model.user.infoUser.getUserById
 import com.example.grocery_shop.model.user.userResponse
 import com.example.grocery_shop.response.*
@@ -20,6 +22,7 @@ import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.order.orderResponseManage
+import com.example.grocery_shop.response.product.responseEditProduct
 import com.example.grocery_shop.response.product.responseManageProduct
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -129,6 +132,20 @@ class LoginRepository {
         key : String
     ): Flow< responseDeleteProduct> {
         return flow { emit(apiClient.deleteOrder(token, key)) }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getAllAccount(
+        token : String
+    ): Flow< List<accountResponseItem>> {
+        return flow { emit(apiClient.getAllAccount(token)) }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun editInfoProduct(
+        token : String,
+        id: String,
+        body: bodyEditProduct
+    ): Flow< responseEditProduct> {
+        return flow { emit(apiClient.editInfoProduct(token, id, body)) }.flowOn(Dispatchers.IO)
     }
 
 
