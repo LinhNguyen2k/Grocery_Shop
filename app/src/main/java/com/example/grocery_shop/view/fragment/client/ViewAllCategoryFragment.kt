@@ -41,6 +41,10 @@ class ViewAllCategoryFragment : BaseFragment<FragmentViewAllCategoryBinding, Aut
                 }, true)
             }
         }
+
+        binding.imgBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

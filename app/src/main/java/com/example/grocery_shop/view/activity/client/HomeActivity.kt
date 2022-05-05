@@ -1,6 +1,5 @@
 package com.example.grocery_shop.view.activity.client
 
-import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.grocery_shop.R
@@ -13,10 +12,6 @@ import com.example.grocery_shop.view.fragment.client.SellFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private var currentPositionBtmNav = 0
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
 
     private fun setUpBottomNav() {
@@ -54,6 +49,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
      fun replaceFragment(mFragment: Fragment, addBackStack: Boolean? = false) {
         val trans = supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
         trans.replace(R.id.mainFrame, mFragment)
         addBackStack?.let { add ->
             if (add) {
@@ -65,6 +61,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
      fun replaceFragmentFullScreen(mFragment: Fragment, addBackStack: Boolean? = false) {
         val trans = supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
         trans.replace(R.id.rl_contain_full_screen, mFragment)
         addBackStack?.let { add ->
             if (add) {

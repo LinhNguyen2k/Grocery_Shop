@@ -33,13 +33,7 @@
             android:paddingEnd="@dimen/_7sdp"
             android:textColor="#272626"
             android:textColorHint="#272626" />
-        <ImageView
-            android:id="@+id/img_filter"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_gravity="center"
-            android:src="@drawable/filter" />
+
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_listViewAll"

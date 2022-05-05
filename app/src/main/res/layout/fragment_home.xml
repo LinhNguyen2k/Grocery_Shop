@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:background="#FFFFFF"
             android:orientation="vertical"
-            tools:context=".ui.home.HomeFragment">
+            >
 
             <ViewFlipper
                 android:id="@+id/Viewflipper"

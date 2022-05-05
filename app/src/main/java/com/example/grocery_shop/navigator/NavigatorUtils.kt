@@ -12,6 +12,9 @@ import android.os.Parcelable
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.*
+import com.example.grocery_shop.R
+import com.example.grocery_shop.base.BaseFragment
+import com.example.grocery_shop.base.BaseVMActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,7 +24,6 @@ import java.lang.reflect.ParameterizedType
 fun <KClass> Context.getGenericSuperclass(position: Int): Class<KClass> {
     return (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[position] as Class<KClass>
 }
-
 
 
 fun Activity.callResultActivity() {
@@ -91,15 +93,9 @@ fun <K : Parcelable> AppCompatActivity.getParcelableBundle(key: String): K? {
 }
 
 
-
-
 /**
  * Child fragment
  */
-
-
-
-
 
 
 fun popChildFragment(parentFragment: Fragment) {
@@ -226,6 +222,47 @@ inline fun <reified T> pushBundle(data: T): Bundle {
         else -> bundle.putString(T::class.java.name, data.toString())
     }
     return bundle
+}
+
+fun Fragment.getBaseFragment(): BaseFragment<*, *>? {
+    return if (this is BaseFragment<*, *>) {
+        this
+    } else null
+}
+
+fun FragmentActivity.getBaseActivity(): BaseVMActivity<*, *>? {
+    return if (this is BaseVMActivity<*, *>) {
+        this
+    } else null
+}
+
+private fun FragmentActivity.idFragmentContainer(): Int =
+    getBaseActivity()?.idFragmentContainer() ?: 0
+
+fun Fragment.replaceFragment(
+    fragment: Fragment,
+    addToBackStack: Boolean? = false, transit: Int? = FragmentTransaction.TRANSIT_UNSET,
+) {
+    val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+        .setReorderingAllowed(true)
+        .replace(requireActivity().idFragmentContainer(), fragment, fragment::class.java.name)
+    addToBackStack?.let { if (it) transaction.addToBackStack(fragment::class.java.name) }
+    transit?.let { if (it != FragmentTransaction.TRANSIT_UNSET) transaction.setTransition(it) }
+    transaction.commit()
+}
+
+fun FragmentActivity.replaceFragment(
+    fragment: Fragment,
+    addToBackStack: Boolean? = false, transit: Int? = FragmentTransaction.TRANSIT_UNSET,
+) {
+    val transaction = this.supportFragmentManager.beginTransaction()
+        .setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
+        .setReorderingAllowed(true)
+        .replace(idFragmentContainer(), fragment, fragment::class.java.name)
+    addToBackStack?.let { if (it) transaction.addToBackStack(fragment::class.java.name) }
+    transit?.let { if (it != FragmentTransaction.TRANSIT_UNSET) transaction.setTransition(it) }
+    transaction.commit()
 }
 
 fun <T> pushBundle(key: String, data: T): Bundle {

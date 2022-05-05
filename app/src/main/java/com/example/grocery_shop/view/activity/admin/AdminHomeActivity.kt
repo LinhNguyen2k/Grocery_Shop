@@ -21,6 +21,9 @@ class AdminHomeActivity : BaseVMActivity<ActivityAdminHomeBinding, Authenticatio
         binding.layoutManageAccount.setOnClickListener {
             openActivity(AccountActivity::class.java)
         }
+        binding.layoutChartOrder.setOnClickListener {
+            openActivity(ChartOrderActivity::class.java)
+        }
     }
 
     override fun initData() {

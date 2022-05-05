@@ -2,6 +2,7 @@ package com.example.grocery_shop.api.services
 
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
+import com.example.grocery_shop.model.auth.bodyLoginGithub
 import com.example.grocery_shop.model.auth.setNewPassBody
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
@@ -22,6 +23,7 @@ import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.order.orderResponseManage
+import com.example.grocery_shop.response.order.responseAllOrder
 import com.example.grocery_shop.response.product.responseEditProduct
 import com.example.grocery_shop.response.product.responseManageProduct
 import com.example.grocery_shop.response.responseDeleteCart
@@ -102,6 +104,16 @@ interface ProductService {
 
     @GET("/api/v1/users")
     suspend fun getAllAccount(@Header("Authorization")token: String): List<accountResponseItem>
+
+    @GET("/api/v1/orders/year-revenue")
+    suspend fun getAllOrder(@Header("Authorization")token: String, @Query("year") year : String, @Query("categoryId") categoryId : String): responseAllOrder
+
+    @GET("/oauth2/authorization/github")
+    suspend fun getTokenGithub() : Unit
+
+    @GET("/api/v1/github/save")
+    suspend fun saveUserWhenLoginGithub(): bodyLoginGithub
+
 
     @POST("/api/v1/products/change-info")
     suspend fun editInfoProduct(@Header("Authorization")token: String, @Query("id") id: String, @Body response: bodyEditProduct): responseEditProduct

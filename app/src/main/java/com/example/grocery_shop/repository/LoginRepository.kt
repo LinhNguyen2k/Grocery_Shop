@@ -3,9 +3,7 @@ package com.example.grocery_shop.repository
 import android.icu.text.MessagePattern
 import com.example.grocery_shop.api.client.ApiClient
 import com.example.grocery_shop.api.services.ProductService
-import com.example.grocery_shop.model.auth.LoginBody
-import com.example.grocery_shop.model.auth.SignBody
-import com.example.grocery_shop.model.auth.setNewPassBody
+import com.example.grocery_shop.model.auth.*
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.cart.deleteCartBody
@@ -22,6 +20,7 @@ import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.order.orderResponseManage
+import com.example.grocery_shop.response.order.responseAllOrder
 import com.example.grocery_shop.response.product.responseEditProduct
 import com.example.grocery_shop.response.product.responseManageProduct
 import kotlinx.coroutines.Dispatchers
@@ -146,6 +145,25 @@ class LoginRepository {
         body: bodyEditProduct
     ): Flow< responseEditProduct> {
         return flow { emit(apiClient.editInfoProduct(token, id, body)) }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getAllOrder(
+        token : String,
+        year: String,
+        category: String?
+    ): Flow<responseAllOrder> {
+        return flow { emit(apiClient.getAllOrder(token, year, category.toString())) }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getTokenGithub(
+
+    ): Flow<Unit> {
+        return flow { emit(apiClient.getTokenGithub())}.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun saveUserWhenLoginGithub(
+    ): Flow<bodyLoginGithub> {
+        return flow { emit(apiClient.saveUserWhenLoginGithub())}.flowOn(Dispatchers.IO)
     }
 
 

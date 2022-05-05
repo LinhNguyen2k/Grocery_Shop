@@ -18,9 +18,14 @@ import com.example.grocery_shop.view.activity.admin.AdminHomeActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 import com.mobile.mbccs.base.component.navigator.openActivity
 import kotlinx.coroutines.delay
+import android.content.Intent
+import android.net.Uri
+
 
 class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewModel>() {
-
+    companion object {
+        const val CONTACT_REQUEST = 1
+    }
     private val viewModels by viewModels<AuthenticationViewModel>()
 
     private val confirmDialog by lazy {
@@ -51,10 +56,32 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
         binding.btnForgotPw.singleClick {
             openActivity(ForGotPasswordActivity::class.java)
         }
+
+        binding.btnLoginFb.singleClick {
+            val uri =
+                ("https://sale-server-app.herokuapp.com/oauth2/authorization/github")
+            var intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("url", uri)
+            startActivity(intent)
+
+//            i.data = Uri.parse(url)
+//                viewModels.saveUserWhenLoginGithub(onComplete = { data ->
+//                    finish()
+//                    openActivity(LoginActivity::class.java)
+//            })
+        }
     }
 
     override fun initData() {
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == CONTACT_REQUEST) {
+
+        }
     }
 
     private fun loginWithAccount() {

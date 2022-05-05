@@ -33,6 +33,7 @@ class ManageProductActivity :
         binding.toolbar.onLeftClickListener = { finish() }
         binding.rcManageProduct.itemAnimator = CustomAnimation()
         binding.btAddProduct.setOnClickListener {
+
             openActivity(UploadProductActivity::class.java)
         }
         editProduct()
@@ -62,6 +63,7 @@ class ManageProductActivity :
 
     private fun editProduct() {
         categoryListOne.onTrashClickListenerEdit = { data ->
+            finish()
             var intent = Intent(this, EditProductActivity::class.java)
             intent.putExtra("EditProductManage",data)
             startActivity(intent)

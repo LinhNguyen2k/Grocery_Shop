@@ -117,8 +117,6 @@ class UploadProductActivity :
         )
         binding.spCategory.onItemSelectedListener = object : AdapterView.OnItemClickListener,
             AdapterView.OnItemSelectedListener {
-
-
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,

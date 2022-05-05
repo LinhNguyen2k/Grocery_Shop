@@ -1,6 +1,5 @@
 package com.example.grocery_shop.view.fragment.client
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -13,8 +12,6 @@ import com.example.grocery_shop.databinding.FragmentHomeBinding
 import com.example.grocery_shop.util.Constants.Companion.KEY_PRODUCT_SELECTED
 import com.example.grocery_shop.view.activity.client.HomeActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
-import com.squareup.picasso.Picasso
-import java.util.*
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>() {
     private val viewModels by viewModels<AuthenticationViewModel>()
@@ -36,7 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
 
     override fun initView() {
         getCategory()
-        setlayout()
+        initSlide()
     }
 
     override fun initListener() {
@@ -142,31 +139,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
             )
         })
     }
-
-
-    private fun setlayout() {
-        val slide = ArrayList<String>()
-        slide.add("https://i.imgur.com/2pKMat0.jpg")
-        slide.add("https://i.imgur.com/NZMXeby.jpg")
-        val picasso = Picasso.get()
-        for (i in slide.indices) {
-            val imageView = ImageView(context)
-            picasso.load(slide[i]).into(imageView)
-            imageView.scaleType = ImageView.ScaleType.FIT_XY
+    private fun initSlide() {
+        val listImageSlide =
+            arrayListOf(
+                R.drawable.page1,
+                R.drawable.xxx
+            )
+        for (item in listImageSlide) {
+            val imageView = ImageView(requireContext())
+            imageView.setImageResource(item)
             binding.Viewflipper.addView(imageView)
         }
-        binding.Viewflipper.flipInterval = 4000
+        //time to slide
+        binding.Viewflipper.flipInterval = 1700
         binding.Viewflipper.isAutoStart = true
-        @SuppressLint("ResourceType") val animation_slide_in = AnimationUtils.loadAnimation(
-            context, R.transition.slide_in_right
-        )
-        @SuppressLint("ResourceType") val animation_slide_out = AnimationUtils.loadAnimation(
-            context, R.transition.slide_out_right
-        )
-        binding.Viewflipper.inAnimation = animation_slide_in
-        binding.Viewflipper.outAnimation = animation_slide_out
-
+        val animationSlideIn = AnimationUtils.loadAnimation(requireContext(), android.R.anim.slide_in_left)
+        val animationSlideOut = AnimationUtils.loadAnimation(requireContext(), android.R.anim.slide_out_right)
+        binding.Viewflipper.inAnimation = animationSlideIn
+        binding.Viewflipper.outAnimation = animationSlideOut
     }
+
 
     private fun setLayoutViewAll() {
         binding.layoutViewAllSale.setOnClickListener {

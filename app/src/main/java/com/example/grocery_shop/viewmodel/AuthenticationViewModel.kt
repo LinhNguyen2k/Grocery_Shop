@@ -12,6 +12,7 @@ import com.example.grocery_shop.base.BaseViewModel
 import com.example.grocery_shop.base.file.FileUtil
 import com.example.grocery_shop.model.auth.LoginBody
 import com.example.grocery_shop.model.auth.SignBody
+import com.example.grocery_shop.model.auth.bodyLoginGithub
 import com.example.grocery_shop.model.auth.setNewPassBody
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
@@ -30,6 +31,7 @@ import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
 import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.order.orderResponseManage
+import com.example.grocery_shop.response.order.responseAllOrder
 import com.example.grocery_shop.response.product.responseEditProduct
 import com.example.grocery_shop.response.product.responseManageProduct
 import com.example.grocery_shop.response.responseDeleteCart
@@ -430,6 +432,49 @@ class AuthenticationViewModel : BaseViewModel() {
     ) {
         launchHandler {
             authenticationRepository.editInfoProduct(token, id, body).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+
+
+    fun getAllOrder(
+        token: String,
+        year: String,
+        category: String?,
+        onComplete: (response: responseAllOrder) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.getAllOrder(token, year, category).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+    fun getTokenGithub(
+        onComplete: (response: Unit) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.getTokenGithub().subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+    fun saveUserWhenLoginGithub(
+        onComplete: (response: bodyLoginGithub) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.saveUserWhenLoginGithub().subscribe(onNext = { response ->
                 onComplete.invoke(response)
             }, onError = { err ->
                 onErrors?.invoke(err)
