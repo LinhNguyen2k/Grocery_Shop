@@ -97,7 +97,7 @@ class UploadProductActivity :
             body,
             onComplete = { data ->
                 loadingDialog.dismiss()
-                    viewModel.compressorImageProduct("Bearer " + UserManager.getToken(this), data.productId.toString() , dataV2,onComplete ={
+                    viewModel.compressorImageProduct("Bearer " + UserManager.getToken(this), data.productId.toString() , dataV2, onComplete ={
 
                     } )
                 confirmDialog.showDialogConfirm("Thêm sản phẩm thành công")
@@ -181,10 +181,6 @@ class UploadProductActivity :
             data?.let { data ->
                 binding.imgAddProduct.setImageURI(data.data)
                  dataV2 = data
-//                viewModels.updateImageProduct("Bearer " + UserManager.getToken(this), "84")
-//                    viewModel.compressorImageProduct("Bearer " + UserManager.getToken(this), "83" , data, onComplete = { bit ->
-//                    })
-//                }
 
             }
         }

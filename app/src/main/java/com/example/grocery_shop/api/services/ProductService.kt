@@ -114,7 +114,6 @@ interface ProductService {
     @GET("/api/v1/github/save")
     suspend fun saveUserWhenLoginGithub(): bodyLoginGithub
 
-
     @POST("/api/v1/products/change-info")
     suspend fun editInfoProduct(@Header("Authorization")token: String, @Query("id") id: String, @Body response: bodyEditProduct): responseEditProduct
 }

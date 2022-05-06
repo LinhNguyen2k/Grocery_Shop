@@ -25,11 +25,14 @@ class ForGotPasswordActivity : BaseVMActivity<ActivityForGotPasswordBinding, Aut
     override fun initData() {
     }
 
-    fun subMitForGotPass() {
+    private fun subMitForGotPass() {
         binding.layoutSubmitForgot.setOnClickListener {
+            loadingDialog.show(this, "")
             viewModels.forGotPassWord(binding.etRegisterUsername.text.toString(), onComplete = {
+                loadingDialog.dismiss()
                 openActivity(SetNewPassWordActivity::class.java)
             }, onErrors = {
+                loadingDialog.dismiss()
                 confirmDialog.showDialogConfirm("Không tìm thấy tài khoản ${binding.etRegisterUsername.text}")
             })
         }
