@@ -63,21 +63,16 @@ class AuthenticationViewModel : BaseViewModel() {
         email: String,
         fullName: String,
         phone: String,
-        username: String
+        username: String,
+        onComplete: (response: LoginResponse) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
         val signBody = SignBody(avatar, email, fullName, phone, username)
         launchHandler {
             authenticationRepository.signUpWithAccount(signBody).subscribe(onNext = { response ->
-                resultSignUp.postValue(response)
-            }, onError = { error ->
-                error?.let { response ->
-                    Toast.makeText(
-                        context,
-                        "${response.status}  ${response.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                }
+                onComplete.invoke(response)
+            }, onError = {
+                onErrors?.invoke(it)
             })
         }
     }
@@ -93,6 +88,7 @@ class AuthenticationViewModel : BaseViewModel() {
                 onComplete.invoke(response)
                 isLoading.value = false
             }, onError = { err ->
+                isLoading.value = false
                 onErrors?.invoke(err)
             })
 
@@ -212,6 +208,7 @@ class AuthenticationViewModel : BaseViewModel() {
                 isLoading.value = false
             }, onError = { err ->
                 onErrors?.invoke(err)
+                isLoading.value = false
             })
         }
     }

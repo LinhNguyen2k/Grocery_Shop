@@ -57,19 +57,19 @@ class LoginActivity : BaseVMActivity<ActivityLoginBinding, AuthenticationViewMod
             openActivity(ForGotPasswordActivity::class.java)
         }
 
-        binding.btnLoginFb.singleClick {
-            val uri =
-                ("https://sale-server-app.herokuapp.com/oauth2/authorization/github")
-            var intent = Intent(this, WebViewActivity::class.java)
-            intent.putExtra("url", uri)
-            startActivity(intent)
-
-//            i.data = Uri.parse(url)
-//                viewModels.saveUserWhenLoginGithub(onComplete = { data ->
-//                    finish()
-//                    openActivity(LoginActivity::class.java)
-//            })
-        }
+//        binding.btnLoginFb.singleClick {
+//            val uri =
+//                ("https://sale-server-app.herokuapp.com/oauth2/authorization/github")
+//            var intent = Intent(this, WebViewActivity::class.java)
+//            intent.putExtra("url", uri)
+//            startActivity(intent)
+//
+////            i.data = Uri.parse(url)
+////                viewModels.saveUserWhenLoginGithub(onComplete = { data ->
+////                    finish()
+////                    openActivity(LoginActivity::class.java)
+////            })
+//        }
     }
 
     override fun initData() {

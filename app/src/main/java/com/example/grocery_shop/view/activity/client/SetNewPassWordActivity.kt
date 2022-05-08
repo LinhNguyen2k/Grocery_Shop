@@ -29,11 +29,14 @@ class SetNewPassWordActivity : BaseVMActivity<ActivitySetNewPassWordBinding, Aut
     override fun initData() {
     }
 
-    fun setNewPassWord(userName : String, token : String, newPassWord : String) {
-        var result = setNewPassBody(newPassWord, token, userName)
+    private fun setNewPassWord(userName : String, token : String, newPassWord : String) {
+        loadingDialog.show(this, "")
+        val result = setNewPassBody(newPassWord, token, userName)
         viewModels.setNewPassWord(result, onComplete = {
+            loadingDialog.dismiss()
             confirmDialog.showDialogConfirm("Thay đổi mật khẩu thành công")
         }, onErrors = {
+            loadingDialog.dismiss()
             confirmDialog.showDialogConfirm("Thay đổi mật khẩu thất bại công")
         })
     }

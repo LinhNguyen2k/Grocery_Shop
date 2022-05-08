@@ -18,30 +18,29 @@
             <ImageView
                 android:layout_width="@dimen/image_logo_login_size"
                 android:layout_height="@dimen/image_logo_login_size"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:src="@drawable/logo_market" />
 
-            <Button
-                android:id="@+id/btn_login_fb"
-                style="@style/ButtonWithIcon"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height_medium"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:text="@string/text_login_with_facebook"
-                app:backgroundTint="@color/blue_facebook"
-                app:icon="@drawable/ic_facebook_white"
-                app:iconPadding="@dimen/_8sdp" />
+<!--            <Button-->
+<!--                android:id="@+id/btn_login_fb"-->
+<!--                style="@style/ButtonWithIcon"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/button_height_medium"-->
+<!--                android:layout_marginTop="@dimen/_20sdp"-->
+<!--                android:text="@string/text_login_with_facebook"-->
+<!--                app:backgroundTint="@color/blue_facebook"-->
+<!--                app:icon="@drawable/ic_facebook_white"-->
+<!--                app:iconPadding="@dimen/_8sdp" />-->
 
-            <Button
-                android:id="@+id/btn_login_google"
-                style="@style/ButtonWithIcon"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height_medium"
-                android:layout_marginTop="@dimen/spacing_tiny"
-                android:text="@string/text_login_with_google"
-                app:backgroundTint="@color/colorGoogle"
-                app:icon="@drawable/ic_google_white"
-                app:iconPadding="@dimen/_12sdp" />
+<!--            <Button-->
+<!--                android:id="@+id/btn_login_google"-->
+<!--                style="@style/ButtonWithIcon"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/button_height_medium"-->
+<!--                android:layout_marginTop="@dimen/spacing_tiny"-->
+<!--                android:text="@string/text_login_with_google"-->
+<!--                app:backgroundTint="@color/colorGoogle"-->
+<!--                app:icon="@drawable/ic_google_white"-->
+<!--                app:iconPadding="@dimen/_12sdp" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,8 +57,7 @@
                     android:layout_marginStart="@dimen/spacing_tiny"
                     android:layout_marginEnd="@dimen/spacing_tiny"
                     android:backgroundTint="@color/colorWhite"
-                    android:hint="@string/text_user_name"
-                    android:text="anhlinh"
+                    android:hint="Tên đăng nhập"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -82,7 +80,7 @@
                     android:backgroundTint="@null"
                     android:text=""
                     android:digits="@string/simple_password_digits"
-                    android:hint="@string/hint_password"
+                    android:hint="mật khẩu"
                     android:inputType="textPassword"
                     android:paddingVertical="0dp" />
 
@@ -97,7 +95,7 @@
                 android:buttonTintMode="multiply"
                 android:checked="true"
                 android:paddingStart="@dimen/spacing_small"
-                android:text="@string/text_remember_me"
+                android:text="Ghi nhớ mật khẩu"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/font_normal" />
 
@@ -107,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height_medium"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:text="@string/button_login"
+                android:text="Đăng nhập"
                 app:backgroundTint="@color/colorPrimary"
                 app:textAllCaps="true" />
 
@@ -117,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height_medium"
                 android:layout_marginTop="@dimen/spacing_tiny"
-                android:text="@string/text_forgot_password"
+                android:text="Thay đổi mật khẩu"
                 app:backgroundTint="@color/transparent" />
 
     <LinearLayout
@@ -130,7 +128,7 @@
         <TextView
             style="@style/TextContentNormal"
             android:gravity="center"
-            android:text="@string/label_do_not_have_account"
+            android:text="Bạn chưa có tài khoản?"
             android:textColor="@color/white" />
 
         <TextView
@@ -139,7 +137,7 @@
             android:layout_marginStart="@dimen/spacing_tiny"
             android:background="@drawable/background_btn_gray_ripple_white"
             android:paddingHorizontal="@dimen/spacing_tiny"
-            android:text="@string/text_sign_up"
+            android:text="Đăng ký"
             android:textColor="@color/white" />
     </LinearLayout>
 

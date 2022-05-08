@@ -16,6 +16,7 @@
         app:drawable_start="@drawable/ic_arrow_left"
         app:title="Đăng ký" />
     <LinearLayout
+        android:layout_margin="@dimen/spacing_small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -77,7 +78,7 @@
                 android:layout_marginStart="@dimen/spacing_tiny"
                 android:layout_marginEnd="@dimen/spacing_tiny"
                 android:backgroundTint="@color/colorWhite"
-                android:hint="UserName"
+                android:hint="Tên đăng nhập"
                 android:maxLength="15"
                 android:singleLine="true"
                 android:textColor="@color/black" />
@@ -99,7 +100,7 @@
                 android:layout_marginStart="@dimen/spacing_tiny"
                 android:layout_marginEnd="@dimen/spacing_tiny"
                 android:backgroundTint="@color/colorWhite"
-                android:hint="@string/hint_your_mobile_number"
+                android:hint="Số điện thoại"
                 android:inputType="number"
                 android:maxLength="15"
                 android:singleLine="true"
@@ -122,7 +123,7 @@
                 android:layout_marginStart="@dimen/spacing_tiny"
                 android:layout_marginEnd="@dimen/spacing_tiny"
                 android:backgroundTint="@color/colorWhite"
-                android:hint="FullName"
+                android:hint="Họ và tên"
                 android:maxLength="15"
                 android:singleLine="true"
                 android:textColor="@color/black" />
@@ -135,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height_medium"
             android:layout_marginTop="@dimen/spacing_normal"
-            android:text="SignUp"
+            android:text="Đăng ký"
             app:backgroundTint="@color/colorPrimary"
             app:textAllCaps="false" />
 
@@ -151,7 +152,7 @@
                 style="@style/TextContentNormal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_already_account"
+                android:text="Bạn đã có sẵn tài khoản"
                 android:textColor="@color/white" />
 
             <TextView
@@ -162,7 +163,7 @@
                 android:layout_marginStart="@dimen/spacing_tiny"
                 android:background="@drawable/background_btn_gray_ripple_white"
                 android:paddingHorizontal="@dimen/spacing_tiny"
-                android:text="@string/text_signin"
+                android:text="Đăng nhập"
                 android:textColor="@color/white" />
 
         </LinearLayout>

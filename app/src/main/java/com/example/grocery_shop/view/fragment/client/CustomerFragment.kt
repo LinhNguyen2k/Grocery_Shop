@@ -43,21 +43,27 @@ class CustomerFragment : BaseFragment<FragmentCustomerBinding, AuthenticationVie
                 try {
                     Glide.with(requireContext())
                         .load(data.avatar.toString())
-                        .error(R.drawable.iv_no_image)
+                        .error(R.drawable.avata)
                         .into(binding.imgAvatarUser)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
                 }
-                binding.edtUsernameInfor.setText(data.username)
-                binding.txtFullName.text = data.fullName
-                binding.txtEmail.text = data.email
-                binding.txtPhone.text = data.phone
 
-                UserManager.setUserName(requireContext(), data.username)
-                UserManager.setFulLName(requireContext(), data.fullName)
-                UserManager.setEmail(requireContext(), data.email)
-                UserManager.setPhone(requireContext(), data.phone)
-                UserManager.setDateOfBirth(requireContext(), data.dateOfBirthday.toString())
+                try {
+                    binding.edtUsernameInfor.setText(data.username)
+                    binding.txtFullName.text = data.fullName
+                    binding.txtEmail.text = data.email
+                    binding.txtPhone.text = data.phone
+
+                    UserManager.setUserName(requireContext(), data.username)
+                    UserManager.setFulLName(requireContext(), data.fullName)
+                    UserManager.setEmail(requireContext(), data.email)
+                    UserManager.setPhone(requireContext(), data.phone)
+                    UserManager.setDateOfBirth(requireContext(), data.dateOfBirthday.toString())
+
+                } catch (e : Exception) {
+
+                }
 
             })
     }
