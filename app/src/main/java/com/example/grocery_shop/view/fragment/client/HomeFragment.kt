@@ -1,6 +1,7 @@
 package com.example.grocery_shop.view.fragment.client
 
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.fragment.app.viewModels
@@ -9,7 +10,9 @@ import com.example.grocery_shop.adapter.CategoryAdapter
 import com.example.grocery_shop.base.BaseFragment
 import com.example.grocery_shop.base.RecyclerUtils
 import com.example.grocery_shop.databinding.FragmentHomeBinding
+import com.example.grocery_shop.sql.SQLite_User
 import com.example.grocery_shop.util.Constants.Companion.KEY_PRODUCT_SELECTED
+import com.example.grocery_shop.util.UserManager
 import com.example.grocery_shop.view.activity.client.HomeActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 
@@ -34,6 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
     override fun initView() {
         getCategory()
         initSlide()
+        getAllProductByUser()
     }
 
     override fun initListener() {
@@ -96,7 +100,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
     }
 
     private fun getCategory() {
-        viewModels.getCategory(null, "1", onComplete = { data ->
+        viewModels.getCategory(null, "5", onComplete = { data ->
             categoryListOne.addData(data)
             RecyclerUtils.setGridManagerH(
                 requireContext(),
@@ -106,7 +110,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         }, onErrors = {
 
         })
-        viewModels.getCategory(null, "2", onComplete = { data ->
+        viewModels.getCategory(null, "1", onComplete = { data ->
             categoryListTwo.addMoreData(data)
             RecyclerUtils.setGridManagerH(
                 requireContext(),
@@ -114,7 +118,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
                 categoryListTwo
             )
         })
-        viewModels.getCategory(null, "3", onComplete = { data ->
+        viewModels.getCategory(null, "2", onComplete = { data ->
             categoryListThree.addMoreData(data)
             RecyclerUtils.setGridManagerH(
                 requireContext(),
@@ -122,7 +126,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
                 categoryListThree
             )
         })
-        viewModels.getCategory(null, "4", onComplete = { data ->
+        viewModels.getCategory(null, "3", onComplete = { data ->
             categoryListFour.addMoreData(data)
             RecyclerUtils.setGridManagerH(
                 requireContext(),
@@ -130,7 +134,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
                 categoryListFour
             )
         })
-        viewModels.getCategory(null, "5", onComplete = { data ->
+        viewModels.getCategory(null, "4", onComplete = { data ->
             categoryListFive.addMoreData(data)
             RecyclerUtils.setGridManagerH(
                 requireContext(),
@@ -159,11 +163,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         binding.Viewflipper.outAnimation = animationSlideOut
     }
 
+    private fun getAllProductByUser() {
+        val db = SQLite_User(requireActivity())
+        viewModels.getOrderById(UserManager.getUserId(requireContext()).toString(), onComplete = { data ->
+                db.deleteAllUser()
+            for (i in data.indices) {
+                for (j in data[i].orderDetailEntities.indices) {
+                    db.addUser(data[i].orderDetailEntities[j].id.productId.toString(), data[i].orderId.toString())
+
+                }
+            }
+        })
+    }
 
     private fun setLayoutViewAll() {
         binding.layoutViewAllSale.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("setCategory", "1")
+            bundle.putString("setCategory", "5")
             (requireActivity() as? HomeActivity?)?.let { activity ->
                 activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
                     arguments = bundle
@@ -172,7 +188,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         }
         binding.layoutViewAllVegetable.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("setCategory", "2")
+            bundle.putString("setCategory", "1")
             (requireActivity() as? HomeActivity?)?.let { activity ->
                 activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
                     arguments = bundle
@@ -181,7 +197,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         }
         binding.layoutViewAllFood.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("setCategory", "3")
+            bundle.putString("setCategory", "2")
             (requireActivity() as? HomeActivity?)?.let { activity ->
                 activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
                     arguments = bundle
@@ -190,7 +206,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         }
         binding.layoutViewAllFrozenFoods.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("setCategory", "4")
+            bundle.putString("setCategory", "3")
             (requireActivity() as? HomeActivity?)?.let { activity ->
                 activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
                     arguments = bundle
@@ -199,7 +215,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
         }
         binding.layoutViewAllConfectionery.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("setCategory", "5")
+            bundle.putString("setCategory", "4")
             (requireActivity() as? HomeActivity?)?.let { activity ->
                 activity.replaceFragmentFullScreen(ViewAllCategoryFragment().apply {
                     arguments = bundle

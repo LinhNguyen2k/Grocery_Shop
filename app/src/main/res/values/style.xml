@@ -199,7 +199,11 @@
     <style name="DMSLiteSpinnerSearchV2">
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:spinnerMode">dropdown</item>
-        <item name="android:layout_height">@dimen/_26sdp</item>
+        <item name="android:layout_height">@dimen/_23sdp</item>
         <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="CustomerCode" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/COLOR_TEXT_CUSTOMER_CODE</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

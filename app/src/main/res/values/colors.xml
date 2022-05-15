@@ -21,6 +21,8 @@
     <color name="colorGray">#995c5b5b</color>
     <color name="colorLightGray">#333333</color>
     <color name="colorCategory">#1470F8</color>
+    <color name="COLOR_GRAY">#B4B4B4</color>
+    <color name="COLOR_TEXT_CUSTOMER_CODE">#1989ba</color>
 
     <color name="colorBlue">#0000ff</color>
     <color name="colorGreen">#009688</color>
@@ -67,6 +69,7 @@
     <color name="COLOR_GRAY19">#303030</color>
     <color name="COLOR_GRAY_TITLE">#EFEFEF</color>
     <color name="COLOR_GRAY_BG">#f2f2f2</color>
+    <color name="COLOR_PLAN">#1189CC</color>
     <color name="COLOR_BLUE_BG">#1189CC</color>
     <color name="colorDodgerBlue">#2281FD</color>
 </resources>

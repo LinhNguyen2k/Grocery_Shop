@@ -164,11 +164,11 @@ abstract class BaseRecyclerViewAdapter <T, VB : ViewBinding>
     /**
      * add one new data
      */
-    open fun addData(data: T) {
-        this.dataList.add(data)
-        notifyItemInserted(this.dataList.size)
-        compatibilityDataSizeChanged(1)
-    }
+//    open fun addData(data: T) {
+//        this.dataList.add(data)
+//        notifyItemInserted(this.dataList.size)
+//        compatibilityDataSizeChanged(1)
+//    }
 
     /**
      * add new data in to certain location

@@ -8,9 +8,13 @@ import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.order.orderBody
+import com.example.grocery_shop.model.order.responseOrderByUserId
 import com.example.grocery_shop.model.product.bodyEditProduct
 import com.example.grocery_shop.model.product.infoProduct
 import com.example.grocery_shop.model.product.productAddBody
+import com.example.grocery_shop.model.review.bodyReview
+import com.example.grocery_shop.model.review.reviewResponse
+import com.example.grocery_shop.model.review.reviewResponseItem
 import com.example.grocery_shop.model.user.UserEditBody
 import com.example.grocery_shop.model.user.account.accountResponseItem
 import com.example.grocery_shop.model.user.infoUser.getUserById
@@ -21,6 +25,7 @@ import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
+import com.example.grocery_shop.response.category.responseCategory
 import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.order.orderResponseManage
 import com.example.grocery_shop.response.order.responseAllOrder
@@ -53,6 +58,11 @@ interface ProductService {
         @Query("page") page: String? = null,
         @Query("category") category: String? = null
     ): List<productList>
+    //categories/detail?id=1
+    @GET("/api/v1/categories/detail")
+    suspend fun getCategorys(
+        @Query("id") id: String? = null,
+    ): responseCategory
 
     @POST("/api/v1/carts")
     suspend fun addProductIntoCart(@Body response: CartBody) : CartResponse
@@ -114,6 +124,13 @@ interface ProductService {
     @GET("/api/v1/github/save")
     suspend fun saveUserWhenLoginGithub(): bodyLoginGithub
 
+    @GET("/api/v1/orders/user")
+    suspend fun getOrderById(@Query("userId") userId : String): responseOrderByUserId
+    @GET("/api/v1/reviews/product")
+    suspend fun getReviewByProductId(@Query("productId") productId : String): List<reviewResponseItem>
+
     @POST("/api/v1/products/change-info")
     suspend fun editInfoProduct(@Header("Authorization")token: String, @Query("id") id: String, @Body response: bodyEditProduct): responseEditProduct
+    @POST("/api/v1/reviews")
+    suspend fun postReview(@Body response: bodyReview): reviewResponseItem
 }

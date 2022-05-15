@@ -18,8 +18,12 @@ import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.order.orderBody
+import com.example.grocery_shop.model.order.responseOrderByUserId
 import com.example.grocery_shop.model.product.bodyEditProduct
 import com.example.grocery_shop.model.product.productAddBody
+import com.example.grocery_shop.model.review.bodyReview
+import com.example.grocery_shop.model.review.reviewResponse
+import com.example.grocery_shop.model.review.reviewResponseItem
 import com.example.grocery_shop.model.user.UserEditBody
 import com.example.grocery_shop.model.user.account.accountResponseItem
 import com.example.grocery_shop.model.user.infoUser.getUserById
@@ -29,6 +33,7 @@ import com.example.grocery_shop.response.ForGotPassWordResponse
 import com.example.grocery_shop.response.LoginResponse
 import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
+import com.example.grocery_shop.response.category.responseCategory
 import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.order.orderResponseManage
 import com.example.grocery_shop.response.order.responseAllOrder
@@ -134,7 +139,7 @@ class AuthenticationViewModel : BaseViewModel() {
         onComplete: (response: List<productList>) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
-        isLoading.value = false
+        isLoading.value = true
         launchHandler {
             authenticationRepository.getCategory(page, category).subscribe(onNext = { response ->
                 onComplete.invoke(response)
@@ -436,6 +441,19 @@ class AuthenticationViewModel : BaseViewModel() {
         }
     }
 
+    fun postReview(
+        body: bodyReview,
+        onComplete: (response: reviewResponseItem) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.postReview(body).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
 
 
     fun getAllOrder(
@@ -447,6 +465,48 @@ class AuthenticationViewModel : BaseViewModel() {
     ) {
         launchHandler {
             authenticationRepository.getAllOrder(token, year, category).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+    fun getOrderById(
+        userId: String?,
+        onComplete: (response: responseOrderByUserId) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.getOrderById(userId.toString()).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+    fun getReviewByProductId(
+        userId: String?,
+        onComplete: (response: List<reviewResponseItem>) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.getReviewByProductId(userId.toString()).subscribe(onNext = { response ->
+                onComplete.invoke(response)
+            }, onError = { err ->
+                onErrors?.invoke(err)
+            })
+        }
+    }
+
+    fun getCategorys(
+        id: String,
+        onComplete: (response: responseCategory) -> Unit,
+        onErrors: ((ErrorResponse?) -> Unit)? = null
+    ) {
+        launchHandler {
+            authenticationRepository.getCategorys(id).subscribe(onNext = { response ->
                 onComplete.invoke(response)
             }, onError = { err ->
                 onErrors?.invoke(err)

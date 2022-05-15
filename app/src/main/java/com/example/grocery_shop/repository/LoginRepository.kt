@@ -9,8 +9,13 @@ import com.example.grocery_shop.model.cart.CartResponse
 import com.example.grocery_shop.model.cart.deleteCartBody
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.order.orderBody
+import com.example.grocery_shop.model.order.responseOrderByUserId
+import com.example.grocery_shop.model.order.responseOrderByUserIdItem
 import com.example.grocery_shop.model.product.bodyEditProduct
 import com.example.grocery_shop.model.product.productAddBody
+import com.example.grocery_shop.model.review.bodyReview
+import com.example.grocery_shop.model.review.reviewResponse
+import com.example.grocery_shop.model.review.reviewResponseItem
 import com.example.grocery_shop.model.user.UserEditBody
 import com.example.grocery_shop.model.user.account.accountResponseItem
 import com.example.grocery_shop.model.user.infoUser.getUserById
@@ -18,6 +23,7 @@ import com.example.grocery_shop.model.user.userResponse
 import com.example.grocery_shop.response.*
 import com.example.grocery_shop.response.auth.responseDeleteProduct
 import com.example.grocery_shop.response.auth.responseNewPass
+import com.example.grocery_shop.response.category.responseCategory
 import com.example.grocery_shop.response.order.orderResponse
 import com.example.grocery_shop.response.order.orderResponseManage
 import com.example.grocery_shop.response.order.responseAllOrder
@@ -146,6 +152,11 @@ class LoginRepository {
     ): Flow< responseEditProduct> {
         return flow { emit(apiClient.editInfoProduct(token, id, body)) }.flowOn(Dispatchers.IO)
     }
+    suspend fun postReview(
+        body: bodyReview
+    ): Flow<reviewResponseItem> {
+        return flow { emit(apiClient.postReview(body)) }.flowOn(Dispatchers.IO)
+    }
 
     suspend fun getAllOrder(
         token : String,
@@ -164,6 +175,22 @@ class LoginRepository {
     suspend fun saveUserWhenLoginGithub(
     ): Flow<bodyLoginGithub> {
         return flow { emit(apiClient.saveUserWhenLoginGithub())}.flowOn(Dispatchers.IO)
+    }
+    suspend fun getOrderById(
+        userId : String
+    ): Flow<responseOrderByUserId> {
+        return flow { emit(apiClient.getOrderById(userId))}.flowOn(Dispatchers.IO)
+    }
+    suspend fun getReviewByProductId(
+        userId : String
+    ): Flow<List<reviewResponseItem>> {
+        return flow { emit(apiClient.getReviewByProductId(userId))}.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getCategorys(
+        id : String
+    ): Flow<responseCategory> {
+        return flow { emit(apiClient.getCategorys(id))}.flowOn(Dispatchers.IO)
     }
 
 

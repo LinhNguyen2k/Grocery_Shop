@@ -3,10 +3,13 @@ package com.example.grocery_shop.view.fragment.client
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.example.grocery_shop.R
 import com.example.grocery_shop.adapter.CategoryAdapter
+import com.example.grocery_shop.adapter.admin.ReviewProductAdapter
 import com.example.grocery_shop.base.BaseFragment
 import com.example.grocery_shop.base.PriceHelper
 import com.example.grocery_shop.base.RecyclerUtils
@@ -14,18 +17,31 @@ import com.example.grocery_shop.customview.diaglog.DialogConfirmV2
 import com.example.grocery_shop.databinding.FragmentDetailProductBinding
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.category.productList
+import com.example.grocery_shop.model.review.bodyReview
+import com.example.grocery_shop.model.review.reviewResponseItem
+import com.example.grocery_shop.sql.SQLite_User
 import com.example.grocery_shop.util.Constants
 import com.example.grocery_shop.util.UserManager
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.ArrayList
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.grocery_shop.R
+
 
 class DetailProductFragment :
     BaseFragment<FragmentDetailProductBinding, AuthenticationViewModel>() {
     private val viewModels by viewModels<AuthenticationViewModel>()
+    private var listReview : ArrayList<reviewResponseItem> = ArrayList()
+
     private val categoryListOne by lazy {
         CategoryAdapter()
     }
+    private lateinit var categoryListReview : ReviewProductAdapter
+//    private var categoryListReview by lazy {
+//        ReviewProductAdapter()
+//    }
     private val confirmDialog by lazy {
         DialogConfirmV2(requireContext())
     }
@@ -46,11 +62,54 @@ class DetailProductFragment :
         binding.toolbar.onLeftClickListener = { onBackPressed() }
         setClickAddCart()
         setClickItem()
+        if (binding.edContent.text.isEmpty()) {
+            Toast.makeText(requireContext(), "Bạn chưa nhập nội dung đánh giá", Toast.LENGTH_SHORT).show()
+        } else {
+            var bundle = Bundle()
+            item = bundle.getParcelable(Constants.KEY_PRODUCT_SELECTED)
+//            postReviewProduct(binding.edContent.text.toString(), item.)
+        }
     }
 
     override fun initData() {
     }
 
+    private fun getAllReviewProduct(productId: String){
+        viewModels.getReviewByProductId(productId, onComplete = { response ->
+            categoryListReview.addData(response)
+            listReview.clear()
+            listReview.addAll(response)
+            binding.rcComment.layoutManager = LinearLayoutManager(requireContext())
+            categoryListReview = ReviewProductAdapter()
+            binding.rcComment.adapter = categoryListReview
+            categoryListReview.notifyDataSetChanged()
+            if (listReview.size == 0) {
+                binding.tvRating.visibility = View.GONE
+            }
+//            RecyclerUtils.setGridManager(
+//                requireContext(),
+//                binding.rcComment,
+//                listReview
+//            )
+        })
+    }
+
+    private fun postReviewProduct(comments: String, orderId: Int, productId: Int, rating: Int, usedId: Int) {
+        val body = bodyReview(comments, orderId, productId, rating, usedId)
+        viewModels.postReview(body, onComplete = { response ->
+
+        })
+    }
+    private fun checkReviewProduct(productId: String){
+        val sqliteUser = SQLite_User(requireActivity())
+        if (sqliteUser.checkUser(productId)) {
+            binding.edContent.visibility = View.VISIBLE
+            binding.btComment.visibility = View.VISIBLE
+        } else {
+            binding.edContent.visibility = View.GONE
+            binding.btComment.visibility = View.GONE
+        }
+    }
     @SuppressLint("SetTextI18n")
     private fun getInfoProduct(bundle: Bundle?) {
         item = bundle?.getParcelable(Constants.KEY_PRODUCT_SELECTED)
@@ -67,9 +126,9 @@ class DetailProductFragment :
                 throwable.printStackTrace()
             }
         }
-
+        checkReviewProduct(item?.productId.toString())
         binding.tvItemOldPrice.text = PriceHelper.getPriceFormat(item?.oldUnitPrice)  + "đ"
-
+        getAllReviewProduct(item?.productId.toString())
         val local = Locale("vi", "VN")
         val numberFormat = NumberFormat.getInstance(local)
         val money: String = numberFormat.format(item?.unitPrice)

@@ -58,7 +58,8 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
-                android:fontFamily="@font/beausanspro_semibold"
+
+                android:fontFamily="@font/roboto_bold"
                 android:text="Tên"
                 android:textColor="@color/COLOR_GRAY19"
                 android:textSize="@dimen/_15sdp" />
@@ -77,8 +78,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
+                    android:paddingStart="@dimen/_5sdp"
                     android:backgroundTint="@color/COLOR_GRAY19"
-                    android:fontFamily="@font/beausanspro_semibold"
+                    android:fontFamily="@font/roboto_bold"
                     android:gravity="center_vertical"
                     android:hint="Tên đăng nhập"
                     android:inputType="textCapSentences"
@@ -92,7 +94,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
-                android:fontFamily="@font/beausanspro_semibold"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Họ và tên"
                 android:textColor="@color/COLOR_GRAY19"
                 android:textSize="@dimen/_15sdp" />
@@ -111,8 +113,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
+                    android:paddingStart="@dimen/_5sdp"
                     android:backgroundTint="@color/COLOR_GRAY19"
-                    android:fontFamily="@font/beausanspro_semibold"
+                    android:fontFamily="@font/roboto_bold"
                     android:hint="Họ và tên"
                     android:inputType="textCapSentences"
                     android:singleLine="true" />
@@ -126,7 +129,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
-                android:fontFamily="@font/beausanspro_semibold"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Email"
                 android:textColor="@color/COLOR_GRAY19"
                 android:textSize="@dimen/_15sdp" />
@@ -145,8 +148,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
+                    android:paddingStart="@dimen/_5sdp"
                     android:backgroundTint="@color/COLOR_GRAY19"
-                    android:fontFamily="@font/beausanspro_semibold"
+                    android:fontFamily="@font/roboto_bold"
                     android:hint="Email"
                     android:inputType="textCapSentences"
                     android:singleLine="true" />
@@ -159,7 +163,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
-                android:fontFamily="@font/beausanspro_semibold"
+                android:fontFamily="@font/roboto_bold"
                 android:text="SĐT"
                 android:textColor="@color/COLOR_GRAY19"
                 android:textSize="@dimen/_15sdp" />
@@ -179,8 +183,9 @@
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:backgroundTint="@color/COLOR_GRAY19"
-                    android:fontFamily="@font/beausanspro_semibold"
+                    android:fontFamily="@font/roboto_bold"
                     android:hint="Sđt"
+                    android:paddingStart="@dimen/_5sdp"
                     android:inputType="textCapSentences"
                     android:singleLine="true" />
 
@@ -192,7 +197,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
-                android:fontFamily="@font/beausanspro_semibold"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Ngày sinh"
                 android:textColor="@color/COLOR_GRAY19"
                 android:textSize="@dimen/_15sdp" />
@@ -212,8 +217,9 @@
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:backgroundTint="@color/COLOR_GRAY19"
-                    android:fontFamily="@font/beausanspro_semibold"
+                    android:fontFamily="@font/roboto_bold"
                     android:hint="Ngày sinh"
+                    android:paddingStart="@dimen/_5sdp"
                     android:inputType="textCapSentences"
                     android:singleLine="true" />
 
