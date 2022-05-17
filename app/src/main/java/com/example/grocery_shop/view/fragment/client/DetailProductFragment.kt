@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.grocery_shop.R
 import com.example.grocery_shop.adapter.CategoryAdapter
 import com.example.grocery_shop.adapter.admin.ReviewProductAdapter
 import com.example.grocery_shop.base.BaseFragment
@@ -18,30 +19,26 @@ import com.example.grocery_shop.databinding.FragmentDetailProductBinding
 import com.example.grocery_shop.model.cart.CartBody
 import com.example.grocery_shop.model.category.productList
 import com.example.grocery_shop.model.review.bodyReview
-import com.example.grocery_shop.model.review.reviewResponseItem
 import com.example.grocery_shop.sql.SQLite_User
 import com.example.grocery_shop.util.Constants
 import com.example.grocery_shop.util.UserManager
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 import java.text.NumberFormat
 import java.util.*
-import kotlin.collections.ArrayList
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.grocery_shop.R
 
 
 class DetailProductFragment :
     BaseFragment<FragmentDetailProductBinding, AuthenticationViewModel>() {
     private val viewModels by viewModels<AuthenticationViewModel>()
-    private var listReview : ArrayList<reviewResponseItem> = ArrayList()
-
+    private var orderId : String? = null
+    private var userId : String? = null
     private val categoryListOne by lazy {
         CategoryAdapter()
     }
-    private lateinit var categoryListReview : ReviewProductAdapter
-//    private var categoryListReview by lazy {
-//        ReviewProductAdapter()
-//    }
+
+    private val categoryListReview by lazy {
+        ReviewProductAdapter()
+    }
     private val confirmDialog by lazy {
         DialogConfirmV2(requireContext())
     }
@@ -59,48 +56,74 @@ class DetailProductFragment :
     }
 
     override fun initListener() {
+        val bundle = Bundle()
+        item = bundle.getParcelable(Constants.KEY_PRODUCT_SELECTED)
         binding.toolbar.onLeftClickListener = { onBackPressed() }
         setClickAddCart()
         setClickItem()
-        if (binding.edContent.text.isEmpty()) {
-            Toast.makeText(requireContext(), "Bạn chưa nhập nội dung đánh giá", Toast.LENGTH_SHORT).show()
-        } else {
-            var bundle = Bundle()
-            item = bundle.getParcelable(Constants.KEY_PRODUCT_SELECTED)
-//            postReviewProduct(binding.edContent.text.toString(), item.)
-        }
+            binding.btComment.setOnClickListener {
+                if (binding.edContent.text.isEmpty()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Bạn chưa nhập nội dung đánh giá",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                        var count = 1
+                        if (UserManager.getUserId(requireContext()).toString() == userId && count == 1) {
+                            postReviewProduct(
+                                binding.edContent.text.toString(),
+                                orderId!!.toInt(),
+                                item?.productId!!,
+                                5,
+                                UserManager.getUserId(requireContext())
+                            )
+
+                        }
+                    binding.edContent.setText("")
+                }
+            }
     }
 
     override fun initData() {
     }
 
-    private fun getAllReviewProduct(productId: String){
+    private fun getAllReviewProduct(productId: String) {
         viewModels.getReviewByProductId(productId, onComplete = { response ->
-            categoryListReview.addData(response)
-            listReview.clear()
-            listReview.addAll(response)
-            binding.rcComment.layoutManager = LinearLayoutManager(requireContext())
-            categoryListReview = ReviewProductAdapter()
-            binding.rcComment.adapter = categoryListReview
-            categoryListReview.notifyDataSetChanged()
-            if (listReview.size == 0) {
-                binding.tvRating.visibility = View.GONE
+            response.forEach { data ->
+                var count = 1
+                if (UserManager.getUserId(requireContext()) == data.id.userId && count == 1) {
+                    orderId = data.id.orderId.toString()
+                    userId = data.id.userId.toString()
+                }
             }
-//            RecyclerUtils.setGridManager(
-//                requireContext(),
-//                binding.rcComment,
-//                listReview
-//            )
+
+            categoryListReview.addData(response)
+            RecyclerUtils.setGridManager(
+                requireContext(),
+                binding.rcComment,
+                categoryListReview
+            )
+
         })
     }
 
-    private fun postReviewProduct(comments: String, orderId: Int, productId: Int, rating: Int, usedId: Int) {
+    private fun postReviewProduct(
+        comments: String,
+        orderId: Int,
+        productId: Int,
+        rating: Int,
+        usedId: Int
+    ) {
         val body = bodyReview(comments, orderId, productId, rating, usedId)
         viewModels.postReview(body, onComplete = { response ->
 
+        }, onErrors = {
+            Toast.makeText(requireContext(), "Lỗi server", Toast.LENGTH_SHORT).show()
         })
     }
-    private fun checkReviewProduct(productId: String){
+
+    private fun checkReviewProduct(productId: String) {
         val sqliteUser = SQLite_User(requireActivity())
         if (sqliteUser.checkUser(productId)) {
             binding.edContent.visibility = View.VISIBLE
@@ -110,6 +133,7 @@ class DetailProductFragment :
             binding.btComment.visibility = View.GONE
         }
     }
+
     @SuppressLint("SetTextI18n")
     private fun getInfoProduct(bundle: Bundle?) {
         item = bundle?.getParcelable(Constants.KEY_PRODUCT_SELECTED)
@@ -127,7 +151,7 @@ class DetailProductFragment :
             }
         }
         checkReviewProduct(item?.productId.toString())
-        binding.tvItemOldPrice.text = PriceHelper.getPriceFormat(item?.oldUnitPrice)  + "đ"
+        binding.tvItemOldPrice.text = PriceHelper.getPriceFormat(item?.oldUnitPrice) + "đ"
         getAllReviewProduct(item?.productId.toString())
         val local = Locale("vi", "VN")
         val numberFormat = NumberFormat.getInstance(local)

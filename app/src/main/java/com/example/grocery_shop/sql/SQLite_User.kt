@@ -20,7 +20,7 @@ class SQLite_User(context: Context?) :
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE registration(ID INTEGER PRIMARY KEY AUTOINCREMENT, userId TEXT, orderId TEXT)")
+        db.execSQL("CREATE TABLE registration(ID INTEGER PRIMARY KEY AUTOINCREMENT, userId TEXT)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -31,13 +31,11 @@ class SQLite_User(context: Context?) :
     }
 
     fun addUser(
-        userId: String,
-        orderId : String
+        userId: String
     ): Long {
         val db = writableDatabase
         val contentValues = ContentValues()
         contentValues.put("userId", userId)
-        contentValues.put("orderId", orderId)
         return db.insert("registration", null, contentValues)
     }
 
@@ -107,8 +105,7 @@ class SQLite_User(context: Context?) :
         )
         while (cursor.moveToNext()) {
             val userId = cursor.getString(cursor.getColumnIndex("userId"))
-            val orderId = cursor.getString(cursor.getColumnIndex("orderId"))
-            user.add(User(userId, orderId))
+            user.add(User(userId))
         }
         return user
     }

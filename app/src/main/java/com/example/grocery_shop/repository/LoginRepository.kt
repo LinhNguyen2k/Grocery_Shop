@@ -14,6 +14,7 @@ import com.example.grocery_shop.model.order.responseOrderByUserIdItem
 import com.example.grocery_shop.model.product.bodyEditProduct
 import com.example.grocery_shop.model.product.productAddBody
 import com.example.grocery_shop.model.review.bodyReview
+import com.example.grocery_shop.model.review.bodyReview_v2Item
 import com.example.grocery_shop.model.review.reviewResponse
 import com.example.grocery_shop.model.review.reviewResponseItem
 import com.example.grocery_shop.model.user.UserEditBody
@@ -154,7 +155,7 @@ class LoginRepository {
     }
     suspend fun postReview(
         body: bodyReview
-    ): Flow<reviewResponseItem> {
+    ): Flow<bodyReview_v2Item> {
         return flow { emit(apiClient.postReview(body)) }.flowOn(Dispatchers.IO)
     }
 
@@ -183,7 +184,7 @@ class LoginRepository {
     }
     suspend fun getReviewByProductId(
         userId : String
-    ): Flow<List<reviewResponseItem>> {
+    ): Flow<List<bodyReview_v2Item>> {
         return flow { emit(apiClient.getReviewByProductId(userId))}.flowOn(Dispatchers.IO)
     }
 

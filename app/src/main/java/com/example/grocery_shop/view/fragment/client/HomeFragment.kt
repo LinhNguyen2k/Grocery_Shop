@@ -169,7 +169,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
                 db.deleteAllUser()
             for (i in data.indices) {
                 for (j in data[i].orderDetailEntities.indices) {
-                    db.addUser(data[i].orderDetailEntities[j].id.productId.toString(), data[i].orderId.toString())
+                    db.addUser(data[i].orderDetailEntities[j].id.productId.toString())
 
                 }
             }

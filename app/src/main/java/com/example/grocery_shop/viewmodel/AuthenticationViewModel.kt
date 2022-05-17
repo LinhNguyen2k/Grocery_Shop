@@ -22,6 +22,7 @@ import com.example.grocery_shop.model.order.responseOrderByUserId
 import com.example.grocery_shop.model.product.bodyEditProduct
 import com.example.grocery_shop.model.product.productAddBody
 import com.example.grocery_shop.model.review.bodyReview
+import com.example.grocery_shop.model.review.bodyReview_v2Item
 import com.example.grocery_shop.model.review.reviewResponse
 import com.example.grocery_shop.model.review.reviewResponseItem
 import com.example.grocery_shop.model.user.UserEditBody
@@ -443,7 +444,7 @@ class AuthenticationViewModel : BaseViewModel() {
 
     fun postReview(
         body: bodyReview,
-        onComplete: (response: reviewResponseItem) -> Unit,
+        onComplete: (response: bodyReview_v2Item) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
         launchHandler {
@@ -488,7 +489,7 @@ class AuthenticationViewModel : BaseViewModel() {
 
     fun getReviewByProductId(
         userId: String?,
-        onComplete: (response: List<reviewResponseItem>) -> Unit,
+        onComplete: (response: List<bodyReview_v2Item>) -> Unit,
         onErrors: ((ErrorResponse?) -> Unit)? = null
     ) {
         launchHandler {

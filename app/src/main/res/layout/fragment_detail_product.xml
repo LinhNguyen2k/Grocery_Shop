@@ -244,7 +244,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_comment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_150sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp" />
 
             <LinearLayout
@@ -279,7 +279,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="@dimen/_13sdp"
-                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_5sdp"
                     android:background="@color/TRANSPARENT"
                     android:gravity="center_vertical|right">
 
