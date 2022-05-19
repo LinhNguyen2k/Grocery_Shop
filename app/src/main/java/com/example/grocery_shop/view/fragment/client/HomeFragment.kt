@@ -146,8 +146,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, AuthenticationViewModel>(
     private fun initSlide() {
         val listImageSlide =
             arrayListOf(
-                R.drawable.page1,
-                R.drawable.xxx
+                R.drawable.imagetest,
+                R.drawable.test2,
+                R.drawable.test3
             )
         for (item in listImageSlide) {
             val imageView = ImageView(requireContext())

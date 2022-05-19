@@ -49,15 +49,15 @@ class ManageProductActivity :
             viewModels.deleteProduct(
                 "Bearer " + UserManager.getToken(applicationContext),
                 data.productId.toString(),
-                onComplete = { data ->
+                onComplete = { data2 ->
                     confirmDialog.showDialogConfirm("Xóa thành công")
-
+                    categoryListOne.dataList.remove(data)
+                    categoryListOne.notifyDataSetChanged()
                 },
                 onErrors = {
                     confirmDialog.showDialogConfirm("Xóa không thành công")
                 })
-            categoryListOne.dataList.remove(data)
-            categoryListOne.notifyDataSetChanged()
+
         }
     }
 

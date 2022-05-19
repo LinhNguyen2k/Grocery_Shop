@@ -21,19 +21,19 @@ class CategoryAdapter : BaseRecyclerViewAdapter<productList, CustomItemProductBi
             try {
                 Glide.with(context)
                     .load(iv)
-                    .error(R.drawable.iv_no_image)
+                    .error(R.drawable.page1)
                     .into(binding.imageSpBanChay)
             } catch (throwable: Throwable) {
                 throwable.printStackTrace()
             }
         }
 
-        binding.tvOldPriceSpBanChay.text = PriceHelper.getPriceFormat(item.oldUnitPrice)
+        binding.tvOldPriceSpBanChay.text = PriceHelper.getPriceFormat(item.oldUnitPrice) + "đ"
         binding.tvOldPriceSpBanChay.paintFlags =  binding.tvOldPriceSpBanChay.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         val local = Locale("vi", "VN")
         val numberFormat = NumberFormat.getInstance(local)
         val money: String = numberFormat.format(item.unitPrice)
-        binding.tvPriceSpBanChay.text = money
+        binding.tvPriceSpBanChay.text = money + "đ"
 
         binding.customListSPBanChay.setOnClickListener {
             onTrashClickListener?.invoke(item)

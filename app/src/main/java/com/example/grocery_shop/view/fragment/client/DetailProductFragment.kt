@@ -1,6 +1,7 @@
 package com.example.grocery_shop.view.fragment.client
 
 import android.annotation.SuppressLint
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -117,7 +118,7 @@ class DetailProductFragment :
     ) {
         val body = bodyReview(comments, orderId, productId, rating, usedId)
         viewModels.postReview(body, onComplete = { response ->
-
+            getAllReviewProduct(response.id.productId.toString())
         }, onErrors = {
             Toast.makeText(requireContext(), "Lỗi server", Toast.LENGTH_SHORT).show()
         })
@@ -152,6 +153,7 @@ class DetailProductFragment :
         }
         checkReviewProduct(item?.productId.toString())
         binding.tvItemOldPrice.text = PriceHelper.getPriceFormat(item?.oldUnitPrice) + "đ"
+        binding.tvItemOldPrice.paintFlags =  binding.tvItemOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         getAllReviewProduct(item?.productId.toString())
         val local = Locale("vi", "VN")
         val numberFormat = NumberFormat.getInstance(local)

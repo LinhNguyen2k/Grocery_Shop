@@ -100,8 +100,10 @@ class EditProfileActivity : BaseVMActivity<ActivityEditProfileBinding, Authentic
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            loadingDialog.show(this,"")
             data?.let {
                 viewModel.compressorImage(UserManager.getUserId(applicationContext).toString(), it, onComplete = { bit ->
+                    loadingDialog.dismiss()
                     binding.ivUserImage.setImageBitmap(bit)
                 })
             }

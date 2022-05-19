@@ -183,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:text="Mô Tả :"
                     android:textColor="#0080FF"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <TextView
                     android:layout_marginLeft="@dimen/_3sdp"

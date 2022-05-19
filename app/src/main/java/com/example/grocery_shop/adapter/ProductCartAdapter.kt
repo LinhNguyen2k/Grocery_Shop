@@ -28,7 +28,7 @@ class ProductCartAdapter : BaseRecyclerViewAdapter<productList, CustomItemCartBi
             try {
                 Glide.with(context)
                     .load(iv)
-                    .error(R.drawable.iv_no_image)
+                    .error(R.drawable.page1)
                     .into(binding.imgItem)
             } catch (throwable: Throwable) {
                 throwable.printStackTrace()

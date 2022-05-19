@@ -10,6 +10,7 @@ import com.example.grocery_shop.databinding.FragmentCustomerBinding
 import com.example.grocery_shop.util.UserManager
 import com.example.grocery_shop.util.singleClick
 import com.example.grocery_shop.view.activity.client.EditProfileActivity
+import com.example.grocery_shop.view.activity.client.HomeActivity
 import com.example.grocery_shop.view.activity.client.LoginActivity
 import com.example.grocery_shop.viewmodel.AuthenticationViewModel
 
@@ -26,6 +27,7 @@ class CustomerFragment : BaseFragment<FragmentCustomerBinding, AuthenticationVie
             startActivity(i)
         }
         binding.btnSignOut.setOnClickListener {
+            requireActivity().finish()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             UserManager.clearUserInfo(requireContext())
         }
