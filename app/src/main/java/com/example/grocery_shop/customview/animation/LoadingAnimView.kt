@@ -25,7 +25,7 @@ class LoadingAnimView: LottieAnimationView {
 
     private fun init() {
         repeatCount = LottieDrawable.INFINITE
-        setAnimation("lottie/loading.json")
+        setAnimation("lottie/loader.json")
     }
 
     fun start() {

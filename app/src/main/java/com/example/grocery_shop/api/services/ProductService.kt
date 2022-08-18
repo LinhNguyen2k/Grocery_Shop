@@ -55,6 +55,7 @@ interface ProductService {
         @Query("page") page: String? = null,
         @Query("category") category: String? = null
     ): List<productList>
+
     //categories/detail?id=1
     @GET("/api/v1/categories/detail")
     suspend fun getCategorys(
@@ -62,7 +63,7 @@ interface ProductService {
     ): responseCategory
 
     @POST("/api/v1/carts")
-    suspend fun addProductIntoCart(@Body response: CartBody) : CartResponse
+    suspend fun addProductIntoCart(@Body response: CartBody): CartResponse
 
 
     @GET("/api/v1/products/detail")
@@ -72,62 +73,99 @@ interface ProductService {
     suspend fun getAllProductCart(@Query("userId") id: String? = null): List<productList>
 
     @DELETE("/api/v1/carts")
-    suspend fun deleteCart( @Query("productId") productId : String, @Query("userId") userId : String): responseDeleteCart
+    suspend fun deleteCart(
+        @Query("productId") productId: String,
+        @Query("userId") userId: String
+    ): responseDeleteCart
 
 
     @POST("/api/v1/users/info")
-    suspend fun editProfile(@Query("id") id: String? = null, @Body response: UserEditBody) : userResponse
+    suspend fun editProfile(
+        @Query("id") id: String? = null,
+        @Body response: UserEditBody
+    ): userResponse
 
     @Multipart
     @POST("/api/v1/users/change-avt")
-    suspend fun editProfileImage(@Query("id") id: String? = null, @Part avt: MultipartBody.Part) : responseImage
+    suspend fun editProfileImage(
+        @Query("id") id: String? = null,
+        @Part avt: MultipartBody.Part
+    ): responseImage
 
     @GET("/api/v1/users/detail")
     suspend fun getInfoUser(@Query("id") id: String? = null): getUserById
 
     @POST("/api/v1/auth/new-password")
-    suspend fun setNewPassWord(@Body  response: setNewPassBody): responseNewPass
+    suspend fun setNewPassWord(@Body response: setNewPassBody): responseNewPass
 
     @POST("/api/v1/orders")
-    suspend fun orderClient(@Query("userId") userId: String? = null, @Body  response: orderBody): orderResponse
+    suspend fun orderClient(
+        @Query("userId") userId: String? = null,
+        @Body response: orderBody
+    ): orderResponse
 
     @GET("/api/v1/products/search")
-    suspend fun getListSearch(@Query("q") q: String? = null): List <productList>
+    suspend fun getListSearch(@Query("q") q: String? = null): List<productList>
 
     @DELETE("/api/v1/products")
-    suspend fun deleteProduct(@Header("Authorization")token: String, @Query("id") id: String? = null): responseDeleteProduct
+    suspend fun deleteProduct(
+        @Header("Authorization") token: String,
+        @Query("id") id: String? = null
+    ): responseDeleteProduct
 
     @POST("/api/v1/products")
-    suspend fun addProduct(@Header("Authorization")token: String, @Query("cateId") id: String? = null, @Body response: productAddBody): responseManageProduct
+    suspend fun addProduct(
+        @Header("Authorization") token: String,
+        @Query("cateId") id: String? = null,
+        @Body response: productAddBody
+    ): responseManageProduct
+
     @Multipart
     @POST("/api/v1/products/avt")
-    suspend fun addImage(@Header("Authorization")token: String, @Query("id") id: String? = null,  @Part avt: MultipartBody.Part): responseManageProduct
+    suspend fun addImage(
+        @Header("Authorization") token: String,
+        @Query("id") id: String? = null,
+        @Part avt: MultipartBody.Part
+    ): responseManageProduct
 
     @GET("/api/v1/orders")
-    suspend fun getListOrder(): List <orderResponseManage>
+    suspend fun getListOrder(): List<orderResponseManage>
 
     @DELETE("/api/v1/orders")
-    suspend fun deleteOrder(@Header("Authorization")token: String, @Query("id") id : String): responseDeleteProduct
+    suspend fun deleteOrder(
+        @Header("Authorization") token: String,
+        @Query("id") id: String
+    ): responseDeleteProduct
 
     @GET("/api/v1/users")
-    suspend fun getAllAccount(@Header("Authorization")token: String): List<accountResponseItem>
+    suspend fun getAllAccount(@Header("Authorization") token: String): List<accountResponseItem>
 
     @GET("/api/v1/orders/year-revenue")
-    suspend fun getAllOrder(@Header("Authorization")token: String, @Query("year") year : String, @Query("categoryId") categoryId : String): responseAllOrder
+    suspend fun getAllOrder(
+        @Header("Authorization") token: String,
+        @Query("year") year: String,
+        @Query("categoryId") categoryId: String
+    ): responseAllOrder
 
     @GET("/oauth2/authorization/github")
-    suspend fun getTokenGithub() : Unit
+    suspend fun getTokenGithub(): Unit
 
     @GET("/api/v1/github/save")
     suspend fun saveUserWhenLoginGithub(): bodyLoginGithub
 
     @GET("/api/v1/orders/user")
-    suspend fun getOrderById(@Query("userId") userId : String): responseOrderByUserId
+    suspend fun getOrderById(@Query("userId") userId: String): responseOrderByUserId
+
     @GET("/api/v1/reviews/product")
-    suspend fun getReviewByProductId(@Query("productId") productId : String): List<bodyReview_v2Item>
+    suspend fun getReviewByProductId(@Query("productId") productId: String): List<bodyReview_v2Item>
 
     @POST("/api/v1/products/change-info")
-    suspend fun editInfoProduct(@Header("Authorization")token: String, @Query("id") id: String, @Body response: bodyEditProduct): responseEditProduct
+    suspend fun editInfoProduct(
+        @Header("Authorization") token: String,
+        @Query("id") id: String,
+        @Body response: bodyEditProduct
+    ): responseEditProduct
+
     @POST("/api/v1/reviews")
     suspend fun postReview(@Body response: bodyReview): bodyReview_v2Item
 }

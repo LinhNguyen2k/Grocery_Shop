@@ -79,12 +79,12 @@ class AddInfoUserFragment : BaseFragment<FragmentAddInfoUserBinding, Authenticat
         note: String,
         phoneNumber: String
     ) {
-        var result = orderBody(address, note, UserManager.getFullName(requireContext()), phoneNumber)
+        val result = orderBody(address, note, UserManager.getFullName(requireContext()), phoneNumber)
         viewModels.orderClient(
             UserManager.getUserId(requireContext()).toString(),
             result,
             onComplete = {
-                var bundle = Bundle()
+                val bundle = Bundle()
                 bundle.putParcelable("info_order", it)
                 (requireActivity() as? HomeActivity?)?.let { activity ->
                     activity.replaceFragmentFullScreen(OrderFragment().apply {

@@ -52,7 +52,6 @@ class ViewAllOrderActivity : BaseVMActivity<ActivityViewAllOrderBinding, Authent
             )
         }, onErrors = {
             loadingDialog.dismiss()
-
         })
     }
 }

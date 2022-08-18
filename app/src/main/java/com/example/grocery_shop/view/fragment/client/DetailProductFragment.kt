@@ -48,7 +48,6 @@ class DetailProductFragment :
         val bundle = arguments
         getInfoProduct(bundle)
         getListProduct(bundle?.getString("category_key").toString())
-
     }
 
     override fun onResume() {
@@ -70,8 +69,7 @@ class DetailProductFragment :
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                        var count = 1
-                        if (UserManager.getUserId(requireContext()).toString() == userId && count == 1) {
+                        if (UserManager.getUserId(requireContext()).toString() == userId ) {
                             postReviewProduct(
                                 binding.edContent.text.toString(),
                                 orderId!!.toInt(),
